@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PUViewController : UIViewController
+@interface PULoginViewController : UIViewController
 
 @end

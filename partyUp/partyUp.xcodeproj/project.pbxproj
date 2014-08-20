@@ -14,7 +14,7 @@
 		200055B019A43946008377FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055AF19A43946008377FF /* main.m */; };
 		200055B419A43946008377FF /* PUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055B319A43946008377FF /* PUAppDelegate.m */; };
 		200055B719A43946008377FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 200055B519A43946008377FF /* Main.storyboard */; };
-		200055BA19A43946008377FF /* PUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055B919A43946008377FF /* PUViewController.m */; };
+		200055BA19A43946008377FF /* PULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055B919A43946008377FF /* PULoginViewController.m */; };
 		200055BC19A43946008377FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200055BB19A43946008377FF /* Images.xcassets */; };
 		200055C319A43946008377FF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055C219A43946008377FF /* XCTest.framework */; };
 		200055C419A43946008377FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055A319A43945008377FF /* Foundation.framework */; };
@@ -34,6 +34,7 @@
 		200055ED19A4404A008377FF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055EC19A4404A008377FF /* Social.framework */; };
 		200055EF19A44053008377FF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055EE19A44053008377FF /* StoreKit.framework */; };
 		200055F119A4405E008377FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055F019A4405E008377FF /* SystemConfiguration.framework */; };
+		200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055F619A4497D008377FF /* PUPartiesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +59,8 @@
 		200055B219A43946008377FF /* PUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PUAppDelegate.h; sourceTree = "<group>"; };
 		200055B319A43946008377FF /* PUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PUAppDelegate.m; sourceTree = "<group>"; };
 		200055B619A43946008377FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		200055B819A43946008377FF /* PUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PUViewController.h; sourceTree = "<group>"; };
-		200055B919A43946008377FF /* PUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PUViewController.m; sourceTree = "<group>"; };
+		200055B819A43946008377FF /* PULoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PULoginViewController.h; sourceTree = "<group>"; };
+		200055B919A43946008377FF /* PULoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PULoginViewController.m; sourceTree = "<group>"; };
 		200055BB19A43946008377FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		200055C119A43946008377FF /* partyUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = partyUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		200055C219A43946008377FF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,6 +80,8 @@
 		200055EC19A4404A008377FF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		200055EE19A44053008377FF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		200055F019A4405E008377FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		200055F519A4497D008377FF /* PUPartiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartiesViewController.h; sourceTree = "<group>"; };
+		200055F619A4497D008377FF /* PUPartiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartiesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,13 +167,9 @@
 		200055A919A43946008377FF /* partyUp */ = {
 			isa = PBXGroup;
 			children = (
-				200055B219A43946008377FF /* PUAppDelegate.h */,
-				200055B319A43946008377FF /* PUAppDelegate.m */,
-				200055B519A43946008377FF /* Main.storyboard */,
-				200055B819A43946008377FF /* PUViewController.h */,
-				200055B919A43946008377FF /* PUViewController.m */,
-				200055BB19A43946008377FF /* Images.xcassets */,
-				200055AA19A43946008377FF /* Supporting Files */,
+				200055F419A44957008377FF /* controllers */,
+				200055F319A44948008377FF /* storyboards */,
+				200055F219A44938008377FF /* app */,
 			);
 			path = partyUp;
 			sourceTree = "<group>";
@@ -202,6 +201,36 @@
 				200055CB19A43946008377FF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		200055F219A44938008377FF /* app */ = {
+			isa = PBXGroup;
+			children = (
+				200055B219A43946008377FF /* PUAppDelegate.h */,
+				200055B319A43946008377FF /* PUAppDelegate.m */,
+				200055BB19A43946008377FF /* Images.xcassets */,
+				200055AA19A43946008377FF /* Supporting Files */,
+			);
+			name = app;
+			sourceTree = "<group>";
+		};
+		200055F319A44948008377FF /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				200055B519A43946008377FF /* Main.storyboard */,
+			);
+			name = storyboards;
+			sourceTree = "<group>";
+		};
+		200055F419A44957008377FF /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				200055B819A43946008377FF /* PULoginViewController.h */,
+				200055B919A43946008377FF /* PULoginViewController.m */,
+				200055F519A4497D008377FF /* PUPartiesViewController.h */,
+				200055F619A4497D008377FF /* PUPartiesViewController.m */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,8 +331,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */,
 				200055B019A43946008377FF /* main.m in Sources */,
-				200055BA19A43946008377FF /* PUViewController.m in Sources */,
+				200055BA19A43946008377FF /* PULoginViewController.m in Sources */,
 				200055B419A43946008377FF /* PUAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
