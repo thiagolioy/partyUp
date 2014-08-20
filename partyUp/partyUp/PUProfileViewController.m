@@ -7,7 +7,7 @@
 //
 
 #import "PUProfileViewController.h"
-#import <Parse/Parse.h>
+
 
 @interface PUProfileViewController ()
 

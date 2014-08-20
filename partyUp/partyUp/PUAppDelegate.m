@@ -7,8 +7,6 @@
 //
 
 #import "PUAppDelegate.h"
-#import <Parse/Parse.h>
-#import <FacebookSDK/FacebookSDK.h>
 
 @implementation PUAppDelegate
 
