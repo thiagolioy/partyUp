@@ -11,10 +11,7 @@
 #import "PUPartiesViewController.h"
 
 @interface PULoginViewController ()
-@property (strong, nonatomic) IBOutlet UIView *checkingUserLoggedInView;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
-@property (strong, nonatomic) IBOutlet UIButton *logoutButton;
-
 @end
 
 @implementation PULoginViewController
@@ -51,7 +48,6 @@
             
         } else if ([error.userInfo[FBErrorParsedJSONResponseKey][@"body"][@"error"][@"type"] isEqualToString:@"OAuthException"]) {
             NSLog(@"The facebook session was invalidated");
-            [self logout:nil];
         } else {
             NSLog(@"Some other error: %@", error);
         }
@@ -62,16 +58,8 @@
     if ([PFUser currentUser] &&
         [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
-        _loginButton.hidden = YES;
-        _logoutButton.hidden = NO;
-         NSLog(@"User Already logged In");
         [self successOnLogin];
-    }else{
-
-        _loginButton.hidden = NO;
-        _logoutButton.hidden = YES;
     }
-    _checkingUserLoggedInView.hidden = YES;
 }
 
 
@@ -95,23 +83,13 @@
     [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
 }
 
-- (IBAction)logout:(id)sender {
-     [PFUser logOut];
-    NSLog(@"User logout");
-    _loginButton.hidden = NO;
-    _logoutButton.hidden = YES;
-
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([[segue identifier] isEqualToString:@"proceedToParties"]){
-        PUPartiesViewController *dest = (PUPartiesViewController*)[segue destinationViewController];
-        //set data on destination if needed
-        return;
-    }
-    
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if([[segue identifier] isEqualToString:@"proceedToParties"]){
+//        PUPartiesViewController *dest = (PUPartiesViewController*)[segue destinationViewController];
+//        //set data on destination if needed
+//        return;
+//    }
+//}
 
 @end
