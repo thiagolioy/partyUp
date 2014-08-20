@@ -20,6 +20,11 @@
     [super viewDidLoad];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.parentViewController.navigationItem.title = @"Profile";
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

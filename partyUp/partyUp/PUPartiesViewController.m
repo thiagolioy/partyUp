@@ -22,7 +22,17 @@ static NSString *cellID = @"partyCellID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self hidesNavigationBackButton];
     [self fetchParties];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.parentViewController.navigationItem.title = @"Parties";
+}
+
+-(void)hidesNavigationBackButton{
+    self.parentViewController.navigationItem.hidesBackButton = YES;
 }
 
 -(void)fetchParties{
