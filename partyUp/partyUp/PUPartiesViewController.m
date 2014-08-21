@@ -7,7 +7,7 @@
 //
 
 #import "PUPartiesViewController.h"
-#import <Parse/Parse.h>
+#import "PUPartyTableViewCell.h"
 
 @interface PUPartiesViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *partiesTableView;
@@ -36,19 +36,31 @@ static NSString *cellID = @"partyCellID";
 }
 
 -(void)fetchParties{
-    PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(!error){
-            NSMutableArray *partiesArray = [NSMutableArray arrayWithCapacity:objects.count];
-            for(PFObject *o in objects){
-                NSString *name =  o[@"name"];
-                [partiesArray addObject:@{@"name":name}];
-            }
-            _parties = (NSArray*)[partiesArray copy];
+    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (!error) {
+            PFQuery *query = [PFQuery queryWithClassName:@"Party"];
+            [query whereKey:@"location" nearGeoPoint:geoPoint];
+            [query orderByAscending:@"location"];
+            query.limit = 5;
             
-            _partiesTableView.dataSource = self;
-            _partiesTableView.delegate = self;
-            [_partiesTableView reloadData];
+
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if(!error){
+                    NSMutableArray *partiesArray = [NSMutableArray arrayWithCapacity:objects.count];
+                    for(PFObject *o in objects){
+                        NSString *name =  o[@"name"];
+                        NSString *imageUrl =  o[@"promoImage"];
+                        [partiesArray addObject:@{@"name":name,
+                                                  @"promoImage":imageUrl}];
+                    }
+                    _parties = (NSArray*)[partiesArray copy];
+                    
+                    _partiesTableView.dataSource = self;
+                    _partiesTableView.delegate = self;
+                    [_partiesTableView reloadData];
+                }
+            }];
         }
     }];
 }
@@ -63,10 +75,14 @@ static NSString *cellID = @"partyCellID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    PUPartyTableViewCell *cell = (PUPartyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
     NSDictionary *p = [_parties objectAtIndex:indexPath.row];
-    cell.textLabel.text = [p objectForKey:@"name"];
+    [cell fill:p];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"Select row");
 }
 
 @end
