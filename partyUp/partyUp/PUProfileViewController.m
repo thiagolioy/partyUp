@@ -7,9 +7,12 @@
 //
 
 #import "PUProfileViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface PUProfileViewController ()
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (strong, nonatomic) IBOutlet UILabel *profileName;
 
 @end
 
@@ -18,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setUpCicleMaskOnPicture];
+    [self fetchUserInfo];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -28,6 +33,21 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(void)setUpCicleMaskOnPicture{
+    [_profilePicture roundIt:40.0f];
+}
+
+-(void)fetchUserInfo{
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if(!error){
+            _profilePicture.profileID = [result objectForKey:@"id"];
+            _profileName.text = [result objectForKey:@"name"];
+        }
+    }];
+    
+
 }
 
 - (IBAction)logout:(id)sender {
