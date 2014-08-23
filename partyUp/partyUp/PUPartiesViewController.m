@@ -8,6 +8,7 @@
 
 #import "PUPartiesViewController.h"
 #import "PUPartyTableViewCell.h"
+#import "PUPartyViewController.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 
 @interface PUPartiesViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -116,9 +117,11 @@ static NSString *cellID = @"partyCellID";
 -(void)parseResultIntoParties:(NSArray*)objects{
     NSMutableArray *partiesArray = [NSMutableArray arrayWithCapacity:objects.count];
     for(PFObject *o in objects){
+        NSString *partyId = [o objectId];
         NSString *name =  o[@"name"];
         NSString *imageUrl =  o[@"promoImage"];
-        [partiesArray addObject:@{@"name":name,
+        [partiesArray addObject:@{@"partyId":partyId,
+                                  @"name":name,
                                   @"promoImage":imageUrl}];
     }
     if(!_parties)
@@ -150,8 +153,14 @@ static NSString *cellID = @"partyCellID";
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"Select row");
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([@"proceedToParty" isEqualToString:segue.identifier]){
+        NSIndexPath *path = [_partiesTableView indexPathForSelectedRow];
+        NSDictionary *selectedParty = [_parties objectAtIndex:path.row];
+        PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
+        dest.partyId = [selectedParty objectForKey:@"partyId"];
+    }
 }
 
 @end

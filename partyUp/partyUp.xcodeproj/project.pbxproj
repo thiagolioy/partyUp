@@ -39,6 +39,7 @@
 		20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */; };
 		20497C1A19A8474A00CB942F /* PUBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1919A8474A00CB942F /* PUBuddyTableViewCell.m */; };
 		20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1E19A84DEB00CB942F /* UIView+roundMask.m */; };
+		20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2A19A8531300CB942F /* PUPartyViewController.m */; };
 		209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */; };
 		209D790019A5A3E700FF0FF2 /* PUPartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
@@ -98,6 +99,8 @@
 		20497C1D19A84DEB00CB942F /* UIView+roundMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+roundMask.h"; sourceTree = "<group>"; };
 		20497C1E19A84DEB00CB942F /* UIView+roundMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+roundMask.m"; sourceTree = "<group>"; };
 		20497C2019A84E9000CB942F /* PUExtensionsHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUExtensionsHeader.h; sourceTree = "<group>"; };
+		20497C2919A8531300CB942F /* PUPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyViewController.h; sourceTree = "<group>"; };
+		20497C2A19A8531300CB942F /* PUPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyViewController.m; sourceTree = "<group>"; };
 		209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		209D78FE19A5A3E700FF0FF2 /* PUPartyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyTableViewCell.h; sourceTree = "<group>"; };
 		209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyTableViewCell.m; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 			children = (
 				200055F519A4497D008377FF /* PUPartiesViewController.h */,
 				200055F619A4497D008377FF /* PUPartiesViewController.m */,
+				20497C2919A8531300CB942F /* PUPartyViewController.h */,
+				20497C2A19A8531300CB942F /* PUPartyViewController.m */,
 			);
 			name = parties;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */,
 				200055B019A43946008377FF /* main.m in Sources */,
 				200055BA19A43946008377FF /* PULoginViewController.m in Sources */,
+				20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */,
 				200055B419A43946008377FF /* PUAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

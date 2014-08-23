@@ -55,6 +55,7 @@
                                                 <connections>
                                                     <outlet property="name" destination="2ph-VG-0r5" id="o4i-jo-9yG"/>
                                                     <outlet property="promoImage" destination="Vnd-rW-vOK" id="3oG-14-KHW"/>
+                                                    <segue destination="Hn6-BL-fiy" kind="push" identifier="proceedToParty" id="ZLc-uy-qaV"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -73,6 +74,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhF-ZI-a9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-291" y="-650"/>
+        </scene>
+        <!--Party View Controller - Party-->
+        <scene sceneID="D6Y-f7-1LJ">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hn6-BL-fiy" customClass="PUPartyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HW9-bY-OXG"/>
+                        <viewControllerLayoutGuide type="bottom" id="euD-Ul-U17"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t3N-bU-EHy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RKl-hp-ehm">
+                                <rect key="frame" x="10" y="75" width="300" height="231"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <view appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uGg-jA-NGV">
+                                <rect key="frame" x="11" y="263" width="300" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDO-tm-tKG">
+                                        <rect key="frame" x="20" y="10" width="260" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Party" id="uqT-hJ-t7I"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="name" destination="GDO-tm-tKG" id="n6L-89-4jj"/>
+                        <outlet property="promoImage" destination="RKl-hp-ehm" id="r31-UE-dZr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O42-b4-GfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136" y="-650"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IhJ-f4-FHd">
