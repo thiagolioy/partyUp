@@ -10,6 +10,7 @@
 #import "PUPartyTableViewCell.h"
 #import "PUPartyViewController.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
+#import "PartyService.h"
 
 @interface PUPartiesViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *partiesTableView;
@@ -17,6 +18,7 @@
 @property(nonatomic,assign)NSInteger currentPage;
 @property(nonatomic,assign)NSInteger partiesPerPage;
 @property(nonatomic,assign)NSInteger partiesTotalCount;
+@property(nonatomic,assign)PartyService *service;
 @end
 
 static NSString *cellID = @"partyCellID";
@@ -30,6 +32,9 @@ static NSString *cellID = @"partyCellID";
     [self hidesNavigationBackButton];
     [self setUpPullToRefreshAndInfiniteScrolling];
     [self setUpPagination];
+    
+    _service = [PartyService new];
+    
     [self fetchParties];
 }
 
@@ -68,9 +73,19 @@ static NSString *cellID = @"partyCellID";
     _currentPage++;
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (!error) {
+            PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
+            [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
+            [placeQuery orderByAscending:@"location"];
+            placeQuery.limit = 10;
+            
+            
             PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-            [query whereKey:@"location" nearGeoPoint:geoPoint];
-            [query orderByAscending:@"location"];
+            [query includeKey:@"place"];
+            [query whereKey:@"place" matchesQuery:placeQuery];
+            query.cachePolicy = kPFCachePolicyNetworkElseCache;
+            query.maxCacheAge = 60 * 60 * 24;
+            
+            
             query.limit = _partiesPerPage;
             [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
                 if(!error){
@@ -91,25 +106,11 @@ static NSString *cellID = @"partyCellID";
 }
 
 -(void)fetchParties{
-   
-    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
-        if (!error) {
-            PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-            [query whereKey:@"location" nearGeoPoint:geoPoint];
-            [query orderByAscending:@"location"];
-            query.limit = _partiesPerPage;
-            [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-                if(!error){
-                    _partiesTotalCount = number;
-                    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                        if(!error){
-                            [self parseResultIntoParties:objects];
-                            [self setUpPartiesTableView];
-                            [self refreshPartiesTableView];
-                        }
-                    }];
-                }
-            }];
+    [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
+        if(!error){
+            [self parseResultIntoParties:parties];
+            [self setUpPartiesTableView];
+            [self refreshPartiesTableView];
         }
     }];
 }
