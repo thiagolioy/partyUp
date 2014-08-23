@@ -65,7 +65,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Parties" id="wnH-VG-Etu"/>
+                    <tabBarItem key="tabBarItem" title="Parties" image="icon-cocktail" id="wnH-VG-Etu"/>
                     <connections>
                         <outlet property="partiesTableView" destination="G1N-WO-yoH" id="PrD-bF-9zL"/>
                     </connections>
@@ -79,7 +79,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="YZ3-pC-eWc" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1O1-7X-69U"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Y2F-mT-5Br">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -149,7 +149,6 @@
                                 <rect key="frame" x="139" y="92" width="161" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N6x-ct-pee">
@@ -157,9 +156,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Me" id="pG9-T2-Ixv"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="icon-user" id="pG9-T2-Ixv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oET-ah-kze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -169,8 +168,11 @@
         <scene sceneID="skD-Ut-jMl">
             <objects>
                 <navigationController definesPresentationContext="YES" id="2ZA-be-4zU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vCw-Nc-ZRA">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="vCw-Nc-ZRA">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="T7N-mw-mHd"/>
@@ -233,6 +235,10 @@
             <point key="canvasLocation" x="-1415" y="-472"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-cocktail" width="24" height="26"/>
+        <image name="icon-user" width="24" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

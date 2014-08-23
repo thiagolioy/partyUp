@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self setUpParse:launchOptions];
+    [self customizeAppearance];
     
     return YES;
 }
@@ -54,6 +55,12 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFFacebookUtils initializeFacebook];
+}
+
+-(void)customizeAppearance{
+    [[UINavigationBar appearance] setBarTintColor: [UIColor blackColor]];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
 }
 
 @end
