@@ -253,14 +253,9 @@
 		200055F419A44957008377FF /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				200055B819A43946008377FF /* PULoginViewController.h */,
-				200055B919A43946008377FF /* PULoginViewController.m */,
-				200055F519A4497D008377FF /* PUPartiesViewController.h */,
-				200055F619A4497D008377FF /* PUPartiesViewController.m */,
-				201E886F19A56160008C5532 /* PUProfileViewController.h */,
-				201E887019A56160008C5532 /* PUProfileViewController.m */,
-				20497C1519A839FC00CB942F /* PUBuddiesListViewController.h */,
-				20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */,
+				20497C2819A8527C00CB942F /* auth */,
+				20497C2719A8525E00CB942F /* profile */,
+				20497C2619A8525200CB942F /* parties */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -273,6 +268,35 @@
 				20497C2019A84E9000CB942F /* PUExtensionsHeader.h */,
 			);
 			name = extensions;
+			sourceTree = "<group>";
+		};
+		20497C2619A8525200CB942F /* parties */ = {
+			isa = PBXGroup;
+			children = (
+				200055F519A4497D008377FF /* PUPartiesViewController.h */,
+				200055F619A4497D008377FF /* PUPartiesViewController.m */,
+			);
+			name = parties;
+			sourceTree = "<group>";
+		};
+		20497C2719A8525E00CB942F /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				201E886F19A56160008C5532 /* PUProfileViewController.h */,
+				201E887019A56160008C5532 /* PUProfileViewController.m */,
+				20497C1519A839FC00CB942F /* PUBuddiesListViewController.h */,
+				20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */,
+			);
+			name = profile;
+			sourceTree = "<group>";
+		};
+		20497C2819A8527C00CB942F /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				200055B819A43946008377FF /* PULoginViewController.h */,
+				200055B919A43946008377FF /* PULoginViewController.m */,
+			);
+			name = auth;
 			sourceTree = "<group>";
 		};
 		209D78FD19A5A3C000FF0FF2 /* views */ = {
