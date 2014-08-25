@@ -18,7 +18,7 @@
 @property(nonatomic,assign)NSInteger currentPage;
 @property(nonatomic,assign)NSInteger partiesPerPage;
 @property(nonatomic,assign)NSInteger partiesTotalCount;
-@property(nonatomic,assign)PartyService *service;
+@property(nonatomic,strong)PartyService *service;
 @end
 
 static NSString *cellID = @"partyCellID";
@@ -31,16 +31,14 @@ static NSString *cellID = @"partyCellID";
     [super viewDidLoad];
     [self hidesNavigationBackButton];
     [self setUpPullToRefreshAndInfiniteScrolling];
-    [self setUpPagination];
-    
-    _service = [PartyService new];
-    
+    [self setUpPartyService];
     [self fetchParties];
 }
 
--(void)setUpPagination{
+-(void)setUpPartyService{
+    _service = [PartyService new];
+    _service.partiesPerFetch = 1;
     _currentPage = 0;
-    _partiesPerPage = 2;
 }
 
 -(void)setUpPullToRefreshAndInfiniteScrolling{
@@ -52,8 +50,7 @@ static NSString *cellID = @"partyCellID";
     
     [_partiesTableView addInfiniteScrollingWithActionHandler:^{
         __strong typeof(weakSelf)strongSelf = weakSelf;
-        if(strongSelf.partiesPerPage*strongSelf.currentPage<strongSelf.partiesTotalCount)
-            [strongSelf fetchNextParties];
+        [strongSelf fetchNextParties];
     }];
 }
 
@@ -71,36 +68,14 @@ static NSString *cellID = @"partyCellID";
 
 -(void)fetchNextParties{
     _currentPage++;
-    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
-        if (!error) {
-            PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
-            [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
-            [placeQuery orderByAscending:@"location"];
-            placeQuery.limit = 10;
+    _service.skip = _service.partiesPerFetch*_currentPage;
+    
+    [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
+        if(!error){
+            [self parseResultIntoParties:parties];
+            [self refreshPartiesTableView];
+            [_partiesTableView.infiniteScrollingView stopAnimating];
             
-            
-            PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-            [query includeKey:@"place"];
-            [query whereKey:@"place" matchesQuery:placeQuery];
-            query.cachePolicy = kPFCachePolicyNetworkElseCache;
-            query.maxCacheAge = 60 * 60 * 24;
-            
-            
-            query.limit = _partiesPerPage;
-            [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-                if(!error){
-                    _partiesTotalCount = number;
-                    query.skip = _partiesPerPage*_currentPage;
-                    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                        if(!error){
-                            [self parseResultIntoParties:objects];
-                            [self refreshPartiesTableView];
-                            [_partiesTableView.infiniteScrollingView stopAnimating];
-                            
-                        }
-                    }];
-                }
-            }];
         }
     }];
 }

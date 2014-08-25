@@ -11,5 +11,9 @@
 typedef void (^PartiesCompletion)(NSArray *parties, NSError *error);
 
 @interface PartyService : NSObject
+
+@property(nonatomic,assign)NSInteger skip;
+@property(nonatomic,assign)NSInteger partiesPerFetch;
+
 -(void)fetchPartiesNearMe:(PartiesCompletion)completion;
 @end
