@@ -7,11 +7,13 @@
 //
 
 #import "PUPartyViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "PartyService.h"
+#import "PUDownloader.h"
 
 @interface PUPartyViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *promoImage;
 @property (strong, nonatomic) IBOutlet UILabel *name;
+@property (strong, nonatomic) PartyService *service;
 @end
 
 @implementation PUPartyViewController
@@ -19,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setUpPartyService];
     [self fetchParty];
 }
 
@@ -28,31 +31,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setUpPartyService{
+    _service = [PartyService new];
+}
+
 -(void)fetchParty{
-    PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-    [query getObjectInBackgroundWithId:_partyId block:^(PFObject *party, NSError *error) {
-        NSString *name =  party[@"name"];
-        NSString *imageUrl =  party[@"promoImage"];
-        
-        _name.text = name;
-        [self downloadImage:imageUrl];
-        
+    [_service fetchParty:_partyId completion:^(NSDictionary *party, NSError *error) {
+        _name.text = [party objectForKey:@"name"];
+        [PUDownloader downloadImage:[party objectForKey:@"imageUrl"] completion:^(UIImage *image, NSError *error) {
+            if(!error && image)
+                [_promoImage setImage:image];
+        }];
     }];
 }
-
--(void)downloadImage:(NSString*)url{
-    NSURL *imageURL = [NSURL URLWithString:url];
-    
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    [manager downloadImageWithURL:imageURL options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        
-    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-        if(image){
-            [_promoImage setImage:image];
-        }
-    }];
-}
-
-
 
 @end

@@ -10,27 +10,6 @@
 
 @implementation PartyService
 
-
--(NSDate*)yesterday{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps = [NSDateComponents new];
-    comps.day = -1;
-    NSDate *yesterday = [calendar dateByAddingComponents:comps toDate:[NSDate date] options:0];
-    return yesterday;
-
-}
-
--(NSDate*)twoWeeksFromNow{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps = [NSDateComponents new];
-    comps.day = 14;
-    NSDate *twoWeeks = [calendar dateByAddingComponents:comps toDate:[NSDate date] options:0];
-    return twoWeeks;
-}
-
-
-
-
 -(void)fetchPartiesNearMe:(PartiesCompletion)completion{
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (!error) {
@@ -47,8 +26,8 @@
             [query includeKey:@"place"];
             [query whereKey:@"place" matchesQuery:placeQuery];
             
-            [query whereKey:@"date" lessThan:[self twoWeeksFromNow]];
-            [query whereKey:@"date" greaterThan:[self yesterday]];
+            [query whereKey:@"date" lessThan:[NSCalendar twoWeeksFromNow]];
+            [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
             [query orderByAscending:@"date"];
             
 
@@ -70,6 +49,21 @@
             }];
            
         }
+    }];
+}
+
+-(void)fetchParty:(NSString*)partyId completion:(PartyCompletion)completion{
+    PFQuery *query = [PFQuery queryWithClassName:@"Party"];
+    [query getObjectInBackgroundWithId:partyId block:^(PFObject *party, NSError *error) {
+        
+        if(error){
+            completion(nil,error);
+            return ;
+        }
+        NSString *name =  party[@"name"];
+        NSString *imageUrl =  party[@"promoImage"];
+        NSDictionary *dc = @{@"name":name,@"imageUrl":imageUrl};
+        completion(dc,nil);        
     }];
 }
 

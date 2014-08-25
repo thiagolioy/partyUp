@@ -43,6 +43,8 @@
 		20497C2F19A86C1800CB942F /* PartyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2E19A86C1800CB942F /* PartyService.m */; };
 		209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */; };
 		209D790019A5A3E700FF0FF2 /* PUPartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */; };
+		20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */; };
+		20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740C19ABF71300BDBE5E /* PUDownloader.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +109,10 @@
 		209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		209D78FE19A5A3E700FF0FF2 /* PUPartyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyTableViewCell.h; sourceTree = "<group>"; };
 		209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyTableViewCell.m; sourceTree = "<group>"; };
+		20F2740719ABF44200BDBE5E /* NSCalendar+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Convenience.h"; sourceTree = "<group>"; };
+		20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Convenience.m"; sourceTree = "<group>"; };
+		20F2740B19ABF71300BDBE5E /* PUDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUDownloader.h; sourceTree = "<group>"; };
+		20F2740C19ABF71300BDBE5E /* PUDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUDownloader.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B31F15F707458683D4E715 /* Pods-partyUp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.xcconfig"; path = "Pods/Pods-partyUp.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,6 +205,7 @@
 		200055A919A43946008377FF /* partyUp */ = {
 			isa = PBXGroup;
 			children = (
+				20F2740A19ABF6FD00BDBE5E /* helpers */,
 				20497C2C19A86BFC00CB942F /* services */,
 				20497C1B19A84D9400CB942F /* extensions */,
 				209D78FD19A5A3C000FF0FF2 /* views */,
@@ -273,6 +280,8 @@
 				20497C1D19A84DEB00CB942F /* UIView+roundMask.h */,
 				20497C1E19A84DEB00CB942F /* UIView+roundMask.m */,
 				20497C2019A84E9000CB942F /* PUExtensionsHeader.h */,
+				20F2740719ABF44200BDBE5E /* NSCalendar+Convenience.h */,
+				20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -326,6 +335,15 @@
 				20497C1919A8474A00CB942F /* PUBuddyTableViewCell.m */,
 			);
 			name = views;
+			sourceTree = "<group>";
+		};
+		20F2740A19ABF6FD00BDBE5E /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				20F2740B19ABF71300BDBE5E /* PUDownloader.h */,
+				20F2740C19ABF71300BDBE5E /* PUDownloader.m */,
+			);
+			name = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,7 +488,9 @@
 				200055B019A43946008377FF /* main.m in Sources */,
 				200055BA19A43946008377FF /* PULoginViewController.m in Sources */,
 				20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */,
+				20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */,
 				20497C2F19A86C1800CB942F /* PartyService.m in Sources */,
+				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
 				200055B419A43946008377FF /* PUAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
