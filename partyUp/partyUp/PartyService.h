@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PUParty.h"
 
 typedef void (^PartiesCompletion)(NSArray *parties, NSError *error);
-typedef void (^PartyCompletion)(NSDictionary *party, NSError *error);
+typedef void (^PartyCompletion)(PUParty *party, NSError *error);
 
 @interface PartyService : NSObject
 

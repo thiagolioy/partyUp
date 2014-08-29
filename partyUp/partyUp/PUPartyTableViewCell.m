@@ -17,11 +17,11 @@
 
 @implementation PUPartyTableViewCell
 
--(void)fill:(NSDictionary*)dc{
-    [PUDownloader downloadImage:[dc valueForKey:@"promoImage"] completion:^(UIImage *image, NSError *error) {
+-(void)fill:(PUParty*)party{
+    [PUDownloader downloadImage:party.promoImage completion:^(UIImage *image, NSError *error) {
         if(!error && image)
             [_promoImage setImage:image];
     }];
-    _name.text = [dc valueForKey:@"name"];
+    _name.text = party.name;
 }
 @end

@@ -37,7 +37,7 @@ static NSString *cellID = @"partyCellID";
 
 -(void)setUpPartyService{
     _service = [PartyService new];
-    _service.partiesPerFetch = 1;
+    _service.partiesPerFetch = 10;
     _currentPage = 0;
 }
 
@@ -72,10 +72,7 @@ static NSString *cellID = @"partyCellID";
     
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         if(!error){
-            [self parseResultIntoParties:parties];
-            [self refreshPartiesTableView];
-            [_partiesTableView.infiniteScrollingView stopAnimating];
-            
+            [self successOnFetchNextParties:parties];
         }
     }];
 }
@@ -83,26 +80,22 @@ static NSString *cellID = @"partyCellID";
 -(void)fetchParties{
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         if(!error){
-            [self parseResultIntoParties:parties];
-            [self setUpPartiesTableView];
-            [self refreshPartiesTableView];
+            [self successOnFetchParties:parties];
         }
     }];
 }
 
--(void)parseResultIntoParties:(NSArray*)objects{
-    NSMutableArray *partiesArray = [NSMutableArray arrayWithCapacity:objects.count];
-    for(PFObject *o in objects){
-        NSString *partyId = [o objectId];
-        NSString *name =  o[@"name"];
-        NSString *imageUrl =  o[@"promoImage"];
-        [partiesArray addObject:@{@"partyId":partyId,
-                                  @"name":name,
-                                  @"promoImage":imageUrl}];
-    }
+-(void)successOnFetchParties:(NSArray*)parties{
     if(!_parties)
         _parties = [NSMutableArray array];
-    [_parties addObjectsFromArray:(NSArray*)[partiesArray copy]];
+    [_parties addObjectsFromArray:parties];
+    [self setUpPartiesTableView];
+    [self refreshPartiesTableView];
+}
+-(void)successOnFetchNextParties:(NSArray*)parties{
+    [_parties addObjectsFromArray:parties];
+    [self refreshPartiesTableView];
+    [_partiesTableView.infiniteScrollingView stopAnimating];
 }
 
 -(void)setUpPartiesTableView{
@@ -124,8 +117,8 @@ static NSString *cellID = @"partyCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PUPartyTableViewCell *cell = (PUPartyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-    NSDictionary *p = [_parties objectAtIndex:indexPath.row];
-    [cell fill:p];
+    PUParty *party = [_parties objectAtIndex:indexPath.row];
+    [cell fill:party];
     return cell;
 }
 
@@ -133,9 +126,9 @@ static NSString *cellID = @"partyCellID";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([@"proceedToParty" isEqualToString:segue.identifier]){
         NSIndexPath *path = [_partiesTableView indexPathForSelectedRow];
-        NSDictionary *selectedParty = [_parties objectAtIndex:path.row];
+        PUParty *selectedParty = [_parties objectAtIndex:path.row];
         PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
-        dest.partyId = [selectedParty objectForKey:@"partyId"];
+        dest.partyId = selectedParty.partyId;
     }
 }
 

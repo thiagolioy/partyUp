@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PUParty.h"
 
 @interface PUPartyTableViewCell : UITableViewCell
 
--(void)fill:(NSDictionary*)dc;
+-(void)fill:(PUParty*)party;
 @end

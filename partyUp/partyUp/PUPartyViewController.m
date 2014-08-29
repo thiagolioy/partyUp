@@ -36,9 +36,10 @@
 }
 
 -(void)fetchParty{
-    [_service fetchParty:_partyId completion:^(NSDictionary *party, NSError *error) {
-        _name.text = [party objectForKey:@"name"];
-        [PUDownloader downloadImage:[party objectForKey:@"imageUrl"] completion:^(UIImage *image, NSError *error) {
+    [_service fetchParty:_partyId completion:^(PUParty *party, NSError *error) {
+        _name.text = party.name;
+        [PUDownloader downloadImage:party.promoImage
+                         completion:^(UIImage *image, NSError *error) {
             if(!error && image)
                 [_promoImage setImage:image];
         }];
