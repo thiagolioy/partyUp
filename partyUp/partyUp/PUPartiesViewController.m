@@ -55,6 +55,8 @@ static NSString *cellID = @"partyCellID";
 }
 
 -(void)refreshParties{
+    _parties = [NSMutableArray array];
+    [_partiesTableView reloadData];
     [self fetchParties];
 }
 

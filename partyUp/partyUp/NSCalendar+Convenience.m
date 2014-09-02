@@ -10,6 +10,10 @@
 
 @implementation NSCalendar (Convenience)
 
++(NSDate*)today{
+    return [NSDate date];
+}
+
 +(NSDate*)yesterday{
     return [NSCalendar dateWithDaysDelta:1];
 }
@@ -23,6 +27,12 @@
     NSDateComponents *comps = [NSDateComponents new];
     comps.day = delta;
     return [calendar dateByAddingComponents:comps toDate:[NSDate date] options:0];
+}
+
++(int)daysFromDate:(NSDate*)firstDate toDate:(NSDate*)secondDate{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [calendar components:NSDayCalendarUnit fromDate:firstDate toDate:secondDate options:0];
+    return comps.day;
 }
 
 @end

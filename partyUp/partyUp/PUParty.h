@@ -14,6 +14,7 @@
 @property(nonatomic,strong)NSString *name;
 @property(nonatomic,strong)NSString *partyDescription;
 @property(nonatomic,strong)NSString *promoImage;
+@property(nonatomic,strong)NSDate *date;
 @property(nonatomic,strong)PUPlace  *place;
 
 +(instancetype)partyWithParseObj:(PFObject*)obj;

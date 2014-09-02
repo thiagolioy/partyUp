@@ -15,6 +15,7 @@
     party.partyId = [obj objectId];
     party.name =  obj[@"name"];
     party.promoImage =  obj[@"promoImage"];
+    party.date =  obj[@"date"];
     
     party.place = [PUPlace placeWithParseObj:obj[@"place"]];
     

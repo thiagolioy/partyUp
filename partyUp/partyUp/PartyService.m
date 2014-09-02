@@ -20,7 +20,7 @@
             
             
             PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-//            query.cachePolicy = kPFCachePolicyNetworkElseCache;
+            query.cachePolicy = kPFCachePolicyNetworkOnly;
 //            query.maxCacheAge = 60 * 60 * 24;
             
             [query includeKey:@"place"];
@@ -49,6 +49,8 @@
                 }else
                     completion(nil,error);
             }];
+            
+            
            
         }
     }];

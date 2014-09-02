@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSCalendar (Convenience)
-
++(NSDate*)today;
 +(NSDate*)yesterday;
 +(NSDate*)twoWeeksFromNow;
++(int)daysFromDate:(NSDate*)firstDate toDate:(NSDate*)secondDate;
 @end
