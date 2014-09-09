@@ -10,6 +10,27 @@
 #import "PUPlace.h"
 
 @implementation PUPlacesService
+
+-(void)fetchPlacesForQuery:(NSString*)query completion:(PlacesCompletion)completion{
+    PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
+    [placeQuery whereKey:@"canonicalName" containsString:[query uppercaseString]];
+    [placeQuery orderByAscending:@"location"];
+    
+    placeQuery.limit = _placesPerFetch;
+    if(_skip && _skip > 0)
+        placeQuery.skip = _skip;
+    
+    [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(error){
+            completion(nil,error);
+            return;
+        }
+        
+        NSArray *places = [PUPlace placesWithObjects:objects];
+        completion(places,nil);
+    }];
+}
+
 -(void)fetchPlacesNearMe:(PlacesCompletion)completion{
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if(error){

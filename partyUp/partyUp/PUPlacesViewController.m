@@ -10,7 +10,7 @@
 #import "PUPlace.h"
 #import "PUPlacesService.h"
 
-@interface PUPlacesViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface PUPlacesViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong) PUPlacesService *service;
 @property(nonatomic,strong)NSMutableArray *places;
 
@@ -24,6 +24,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    _searchBar.delegate = self;
+    
     
     _service = [PUPlacesService new];
     _service.placesPerFetch = 10;
@@ -69,5 +73,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+-(void)clearPlaces{
+    [_places removeAllObjects];
+    [_placesTableView reloadData];
+}
+
+#pragma mark - UISearchBarDelegate Methods
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [_searchBar resignFirstResponder];
+    [_service fetchPlacesForQuery:searchBar.text completion:^(NSArray *places, NSError *error) {
+        [self clearPlaces];
+        [_places addObjectsFromArray:places];
+        [_placesTableView reloadData];
+    }];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar{
+    [_searchBar resignFirstResponder];
+}
 
 @end
