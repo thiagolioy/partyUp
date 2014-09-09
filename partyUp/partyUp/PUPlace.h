@@ -20,7 +20,7 @@
 @property(nonatomic,strong)NSString *state;
 @property(nonatomic,strong)NSString *country;
 
-
++(NSArray*)placesWithObjects:(NSArray*)objects;
 +(instancetype)placeWithParseObj:(PFObject*)obj;
 -(void)distanceInKmTo:(PFGeoPoint*)point;
 -(double)distanceInKm;

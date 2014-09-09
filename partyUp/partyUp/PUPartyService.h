@@ -12,7 +12,7 @@
 typedef void (^PartiesCompletion)(NSArray *parties, NSError *error);
 typedef void (^PartyCompletion)(PUParty *party, NSError *error);
 
-@interface PartyService : NSObject
+@interface PUPartyService : NSObject
 
 @property(nonatomic,assign)NSInteger skip;
 @property(nonatomic,assign)NSInteger partiesPerFetch;

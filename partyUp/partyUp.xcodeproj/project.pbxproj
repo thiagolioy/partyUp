@@ -36,11 +36,13 @@
 		200055F119A4405E008377FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055F019A4405E008377FF /* SystemConfiguration.framework */; };
 		200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055F619A4497D008377FF /* PUPartiesViewController.m */; };
 		201E887119A56160008C5532 /* PUProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201E887019A56160008C5532 /* PUProfileViewController.m */; };
+		20258BD719BE8DCA00FC5A5D /* PUPlacesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */; };
+		20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20258BD919BE943900FC5A5D /* PUPlacesViewController.m */; };
 		20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */; };
 		20497C1A19A8474A00CB942F /* PUBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1919A8474A00CB942F /* PUBuddyTableViewCell.m */; };
 		20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1E19A84DEB00CB942F /* UIView+roundMask.m */; };
 		20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2A19A8531300CB942F /* PUPartyViewController.m */; };
-		20497C2F19A86C1800CB942F /* PartyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2E19A86C1800CB942F /* PartyService.m */; };
+		20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2E19A86C1800CB942F /* PUPartyService.m */; };
 		209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */; };
 		209D790019A5A3E700FF0FF2 /* PUPartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */; };
 		20D960E719AFFB2000A893CF /* PUParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960E619AFFB2000A893CF /* PUParty.m */; };
@@ -97,6 +99,10 @@
 		200055F619A4497D008377FF /* PUPartiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartiesViewController.m; sourceTree = "<group>"; };
 		201E886F19A56160008C5532 /* PUProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUProfileViewController.h; sourceTree = "<group>"; };
 		201E887019A56160008C5532 /* PUProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUProfileViewController.m; sourceTree = "<group>"; };
+		20258BD519BE8DCA00FC5A5D /* PUPlacesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlacesService.h; sourceTree = "<group>"; };
+		20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlacesService.m; sourceTree = "<group>"; };
+		20258BD819BE943900FC5A5D /* PUPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlacesViewController.h; sourceTree = "<group>"; };
+		20258BD919BE943900FC5A5D /* PUPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlacesViewController.m; sourceTree = "<group>"; };
 		20497C1519A839FC00CB942F /* PUBuddiesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBuddiesListViewController.h; sourceTree = "<group>"; };
 		20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUBuddiesListViewController.m; sourceTree = "<group>"; };
 		20497C1819A8474A00CB942F /* PUBuddyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBuddyTableViewCell.h; sourceTree = "<group>"; };
@@ -106,8 +112,8 @@
 		20497C2019A84E9000CB942F /* PUExtensionsHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUExtensionsHeader.h; sourceTree = "<group>"; };
 		20497C2919A8531300CB942F /* PUPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyViewController.h; sourceTree = "<group>"; };
 		20497C2A19A8531300CB942F /* PUPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyViewController.m; sourceTree = "<group>"; };
-		20497C2D19A86C1800CB942F /* PartyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyService.h; sourceTree = "<group>"; };
-		20497C2E19A86C1800CB942F /* PartyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyService.m; sourceTree = "<group>"; };
+		20497C2D19A86C1800CB942F /* PUPartyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyService.h; sourceTree = "<group>"; };
+		20497C2E19A86C1800CB942F /* PUPartyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyService.m; sourceTree = "<group>"; };
 		209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		209D78FE19A5A3E700FF0FF2 /* PUPartyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyTableViewCell.h; sourceTree = "<group>"; };
 		209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyTableViewCell.m; sourceTree = "<group>"; };
@@ -300,6 +306,8 @@
 				200055F619A4497D008377FF /* PUPartiesViewController.m */,
 				20497C2919A8531300CB942F /* PUPartyViewController.h */,
 				20497C2A19A8531300CB942F /* PUPartyViewController.m */,
+				20258BD819BE943900FC5A5D /* PUPlacesViewController.h */,
+				20258BD919BE943900FC5A5D /* PUPlacesViewController.m */,
 			);
 			name = parties;
 			sourceTree = "<group>";
@@ -327,8 +335,10 @@
 		20497C2C19A86BFC00CB942F /* services */ = {
 			isa = PBXGroup;
 			children = (
-				20497C2D19A86C1800CB942F /* PartyService.h */,
-				20497C2E19A86C1800CB942F /* PartyService.m */,
+				20497C2D19A86C1800CB942F /* PUPartyService.h */,
+				20497C2E19A86C1800CB942F /* PUPartyService.m */,
+				20258BD519BE8DCA00FC5A5D /* PUPlacesService.h */,
+				20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -507,10 +517,12 @@
 				20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */,
 				200055BA19A43946008377FF /* PULoginViewController.m in Sources */,
 				20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */,
+				20258BD719BE8DCA00FC5A5D /* PUPlacesService.m in Sources */,
 				20D960E719AFFB2000A893CF /* PUParty.m in Sources */,
 				20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */,
-				20497C2F19A86C1800CB942F /* PartyService.m in Sources */,
+				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
+				20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */,
 				200055B419A43946008377FF /* PUAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

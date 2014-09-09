@@ -10,7 +10,7 @@
 #import "PUPartyTableViewCell.h"
 #import "PUPartyViewController.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
-#import "PartyService.h"
+#import "PUPartyService.h"
 
 @interface PUPartiesViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *partiesTableView;
@@ -18,7 +18,7 @@
 @property(nonatomic,assign)NSInteger currentPage;
 @property(nonatomic,assign)NSInteger partiesPerPage;
 @property(nonatomic,assign)NSInteger partiesTotalCount;
-@property(nonatomic,strong)PartyService *service;
+@property(nonatomic,strong)PUPartyService *service;
 @end
 
 static NSString *cellID = @"partyCellID";
@@ -36,7 +36,7 @@ static NSString *cellID = @"partyCellID";
 }
 
 -(void)setUpPartyService{
-    _service = [PartyService new];
+    _service = [PUPartyService new];
     _service.partiesPerFetch = 10;
     _currentPage = 0;
 }

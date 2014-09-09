@@ -7,13 +7,13 @@
 //
 
 #import "PUPartyViewController.h"
-#import "PartyService.h"
+#import "PUPartyService.h"
 #import "PUDownloader.h"
 
 @interface PUPartyViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *promoImage;
 @property (strong, nonatomic) IBOutlet UILabel *name;
-@property (strong, nonatomic) PartyService *service;
+@property (strong, nonatomic) PUPartyService *service;
 @end
 
 @implementation PUPartyViewController
@@ -32,7 +32,7 @@
 }
 
 -(void)setUpPartyService{
-    _service = [PartyService new];
+    _service = [PUPartyService new];
 }
 
 -(void)fetchParty{

@@ -33,6 +33,13 @@
     return place;
 }
 
++(NSArray*)placesWithObjects:(NSArray*)objects{
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:objects.count];
+    for(PFObject *o in objects)
+        [array addObject:[PUPlace placeWithParseObj:o]];
+    return  array;
+}
+
 -(void)distanceInKmTo:(PFGeoPoint*)point{
     _distanceInKm = [_location distanceInKilometersTo:point];
 }
