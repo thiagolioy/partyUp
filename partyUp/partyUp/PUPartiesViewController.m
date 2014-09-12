@@ -51,6 +51,19 @@ static NSString *cellID = @"partyCellID";
         [strongSelf refreshParties];
     }];
 }
+-(void)cleanPartiesTableView{
+    [_parties removeAllObjects];
+    [_partiesTableView reloadData];
+}
+
+-(void)fetchPartiesForPlace:(PUPlace*)place{
+    [self cleanPartiesTableView];
+    [_service fetchPartiesForPlace:place completion:^(NSArray *parties, NSError *error) {
+        if(!error){
+            [self successOnFetchParties:parties];
+        }
+    }];
+}
 
 -(void)refreshParties{
     _parties = [NSMutableArray array];

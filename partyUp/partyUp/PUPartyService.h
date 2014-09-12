@@ -17,6 +17,7 @@ typedef void (^PartyCompletion)(PUParty *party, NSError *error);
 @property(nonatomic,assign)NSInteger skip;
 @property(nonatomic,assign)NSInteger partiesPerFetch;
 
+-(void)fetchPartiesForPlace:(PUPlace*)place completion:(PartiesCompletion)completion;
 -(void)fetchPartiesNearMe:(PartiesCompletion)completion;
 -(void)fetchParty:(NSString*)partyId completion:(PartyCompletion)completion;
 

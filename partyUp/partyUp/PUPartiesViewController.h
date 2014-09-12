@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PUPlace.h"
 
 @interface PUPartiesViewController : UIViewController
-
+-(void)fetchPartiesForPlace:(PUPlace*)place;
 @end

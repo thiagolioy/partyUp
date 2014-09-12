@@ -10,6 +10,47 @@
 
 @implementation PUPartyService
 
+-(void)fetchPartiesForPlace:(PUPlace*)place completion:(PartiesCompletion)completion{
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if(error){
+            completion(nil,error);
+            return;
+        }
+        
+        PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
+        [placeQuery whereKey:@"objectId" equalTo:place.placeId];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Party"];
+        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+        query.maxCacheAge = 60 * 60 * 24;
+        [query includeKey:@"place"];
+        [query whereKey:@"place" matchesQuery:placeQuery];
+        
+        [query whereKey:@"date" lessThan:[NSCalendar twoWeeksFromNow]];
+        [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
+        [query orderByAscending:@"date"];
+        
+        
+        
+        query.limit = _partiesPerFetch;
+        if(_skip && _skip >= 0)
+            query.skip = _skip;
+        
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if(error){
+                completion(nil,error);
+                return;
+            }
+            
+            NSArray *parties = [PUParty partiesWithParseObjects:objects];
+            for(PUParty *p in parties)
+                [p.place distanceInKmTo:geoPoint];
+            completion(parties,nil);
+        }];
+        
+    }];
+}
 -(void)fetchPartiesNearMe:(PartiesCompletion)completion{
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if(error){

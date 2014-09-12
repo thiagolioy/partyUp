@@ -9,6 +9,7 @@
 #import "PUPlacesViewController.h"
 #import "PUPlace.h"
 #import "PUPlacesService.h"
+#import "PUPartiesViewController.h"
 
 @interface PUPlacesViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong) PUPlacesService *service;
@@ -65,6 +66,14 @@
     
     cell.textLabel.text = place.name;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PUPlace *place = [_places objectAtIndex:indexPath.row];
+    UITabBarController *tabController =  (UITabBarController*)self.parentViewController;
+    [tabController setSelectedIndex:0];
+    PUPartiesViewController *partiesController = (PUPartiesViewController*)tabController.selectedViewController;
+    [partiesController fetchPartiesForPlace:place];
 }
 /*
 #pragma mark - Navigation
