@@ -26,7 +26,6 @@
 		200055DD19A43FF0008377FF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055DC19A43FF0008377FF /* Accounts.framework */; };
 		200055DF19A43FF8008377FF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055DE19A43FF8008377FF /* AudioToolbox.framework */; };
 		200055E119A44001008377FF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E019A44001008377FF /* CFNetwork.framework */; };
-		200055E319A44017008377FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E219A44017008377FF /* CoreLocation.framework */; };
 		200055E519A44025008377FF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E419A44025008377FF /* libz.dylib */; };
 		200055E719A4402E008377FF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E619A4402E008377FF /* MobileCoreServices.framework */; };
 		200055E919A44038008377FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E819A44038008377FF /* QuartzCore.framework */; };
@@ -45,6 +44,7 @@
 		20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2E19A86C1800CB942F /* PUPartyService.m */; };
 		209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */; };
 		209D790019A5A3E700FF0FF2 /* PUPartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */; };
+		209EA9BA19C29C600015D09E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E219A44017008377FF /* CoreLocation.framework */; };
 		20D960E719AFFB2000A893CF /* PUParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960E619AFFB2000A893CF /* PUParty.m */; };
 		20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960EA19AFFB5F00A893CF /* PUPlace.m */; };
 		20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */; };
@@ -134,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209EA9BA19C29C600015D09E /* CoreLocation.framework in Frameworks */,
 				209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */,
 				200055F119A4405E008377FF /* SystemConfiguration.framework in Frameworks */,
 				200055EF19A44053008377FF /* StoreKit.framework in Frameworks */,
@@ -142,7 +143,6 @@
 				200055E919A44038008377FF /* QuartzCore.framework in Frameworks */,
 				200055E719A4402E008377FF /* MobileCoreServices.framework in Frameworks */,
 				200055E519A44025008377FF /* libz.dylib in Frameworks */,
-				200055E319A44017008377FF /* CoreLocation.framework in Frameworks */,
 				200055A619A43945008377FF /* CoreGraphics.framework in Frameworks */,
 				200055E119A44001008377FF /* CFNetwork.framework in Frameworks */,
 				200055DF19A43FF8008377FF /* AudioToolbox.framework in Frameworks */,

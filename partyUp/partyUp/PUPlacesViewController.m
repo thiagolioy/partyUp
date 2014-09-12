@@ -24,13 +24,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     _searchBar.delegate = self;
+}
+
+-(void)fetchPlaces{
+    if(!_service)
+        _service = [PUPlacesService new];
     
-    
-    _service = [PUPlacesService new];
-    _service.placesPerFetch = 10;
+    _service.placesPerFetch = 50;
     [_service fetchPlacesNearMe:^(NSArray *places, NSError *error) {
         if(!_places)
             _places = [NSMutableArray array];
@@ -42,8 +43,10 @@
         [_placesTableView reloadData];
     }];
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     self.parentViewController.navigationItem.title = @"Places";
+    [self fetchPlaces];
 }
 
 - (void)didReceiveMemoryWarning

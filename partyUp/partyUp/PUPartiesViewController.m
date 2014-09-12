@@ -19,6 +19,8 @@
 @property(nonatomic,assign)NSInteger partiesPerPage;
 @property(nonatomic,assign)NSInteger partiesTotalCount;
 @property(nonatomic,strong)PUPartyService *service;
+
+@property(nonatomic,strong)CLLocationManager *locationManager;
 @end
 
 static NSString *cellID = @"partyCellID";
@@ -48,10 +50,10 @@ static NSString *cellID = @"partyCellID";
         [strongSelf refreshParties];
     }];
     
-    [_partiesTableView addInfiniteScrollingWithActionHandler:^{
-        __strong typeof(weakSelf)strongSelf = weakSelf;
-        [strongSelf fetchNextParties];
-    }];
+//    [_partiesTableView addInfiniteScrollingWithActionHandler:^{
+//        __strong typeof(weakSelf)strongSelf = weakSelf;
+//        [strongSelf fetchNextParties];
+//    }];
 }
 
 -(void)refreshParties{
