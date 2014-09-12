@@ -40,6 +40,7 @@ static NSString *cellID = @"partyCellID";
 -(void)setUpPartyService{
     _service = [PUPartyService new];
     _service.partiesPerFetch = 10;
+    _service.skip = 0;
     _currentPage = 0;
 }
 
@@ -49,11 +50,6 @@ static NSString *cellID = @"partyCellID";
         __strong typeof(weakSelf)strongSelf = weakSelf;
         [strongSelf refreshParties];
     }];
-    
-//    [_partiesTableView addInfiniteScrollingWithActionHandler:^{
-//        __strong typeof(weakSelf)strongSelf = weakSelf;
-//        [strongSelf fetchNextParties];
-//    }];
 }
 
 -(void)refreshParties{

@@ -23,8 +23,8 @@
         
         
         PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-        query.cachePolicy = kPFCachePolicyNetworkOnly;
-//            query.maxCacheAge = 60 * 60 * 24;
+        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+        query.maxCacheAge = 60 * 60 * 24;
         
         [query includeKey:@"place"];
         [query whereKey:@"place" matchesQuery:placeQuery];
@@ -34,14 +34,11 @@
         [query orderByAscending:@"date"];
         
 
-
-
-//            [query selectKeys:@[@"name",@"promoImage",@"place"]];
-        
         
         query.limit = _partiesPerFetch;
-        if(_skip && _skip > 0)
+        if(_skip && _skip >= 0)
             query.skip = _skip;
+        
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if(error){
