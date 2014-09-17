@@ -49,6 +49,7 @@
 		20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960EA19AFFB5F00A893CF /* PUPlace.m */; };
 		20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */; };
 		20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740C19ABF71300BDBE5E /* PUDownloader.m */; };
+		20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389819C903440069EE26 /* PUHeaderCell.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,8 @@
 		20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Convenience.m"; sourceTree = "<group>"; };
 		20F2740B19ABF71300BDBE5E /* PUDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUDownloader.h; sourceTree = "<group>"; };
 		20F2740C19ABF71300BDBE5E /* PUDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUDownloader.m; sourceTree = "<group>"; };
+		20F9389719C903440069EE26 /* PUHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUHeaderCell.h; sourceTree = "<group>"; };
+		20F9389819C903440069EE26 /* PUHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUHeaderCell.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B31F15F707458683D4E715 /* Pods-partyUp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.xcconfig"; path = "Pods/Pods-partyUp.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,6 +353,8 @@
 				209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */,
 				20497C1819A8474A00CB942F /* PUBuddyTableViewCell.h */,
 				20497C1919A8474A00CB942F /* PUBuddyTableViewCell.m */,
+				20F9389719C903440069EE26 /* PUHeaderCell.h */,
+				20F9389819C903440069EE26 /* PUHeaderCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -522,6 +527,7 @@
 				20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */,
 				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
+				20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */,
 				20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */,
 				200055B419A43946008377FF /* PUAppDelegate.m in Sources */,
 			);

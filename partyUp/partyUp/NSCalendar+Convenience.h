@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSCalendar (Convenience)
++(BOOL)isToday:(NSDate*)date;
++(BOOL)isThisWeek:(NSDate*)date;
++(BOOL)isNextWeek:(NSDate*)date;
 +(NSDate*)today;
 +(NSDate*)yesterday;
 +(NSDate*)twoWeeksFromNow;

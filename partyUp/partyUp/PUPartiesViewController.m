@@ -11,16 +11,22 @@
 #import "PUPartyViewController.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "PUPartyService.h"
+#import "PUHeaderCell.h"
+typedef NS_ENUM(NSUInteger, PartiesSections) {
+    Today,
+    ThisWeek,
+    NextWeek,
+};
 
 @interface PUPartiesViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *partiesTableView;
-@property(nonatomic,strong)NSMutableArray *parties;
+@property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,assign)NSInteger currentPage;
 @property(nonatomic,assign)NSInteger partiesPerPage;
 @property(nonatomic,assign)NSInteger partiesTotalCount;
 @property(nonatomic,strong)PUPartyService *service;
+@property(nonatomic,strong)NSMutableDictionary *sectionParties;
 
-@property(nonatomic,strong)CLLocationManager *locationManager;
 @end
 
 static NSString *cellID = @"partyCellID";
@@ -52,7 +58,7 @@ static NSString *cellID = @"partyCellID";
     }];
 }
 -(void)cleanPartiesTableView{
-    [_parties removeAllObjects];
+    _parties = @[];
     [_partiesTableView reloadData];
 }
 
@@ -79,17 +85,6 @@ static NSString *cellID = @"partyCellID";
     self.parentViewController.navigationItem.hidesBackButton = YES;
 }
 
--(void)fetchNextParties{
-    _currentPage++;
-    _service.skip = _service.partiesPerFetch*_currentPage;
-    
-    [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
-        if(!error){
-            [self successOnFetchNextParties:parties];
-        }
-    }];
-}
-
 -(void)fetchParties{
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         if(!error){
@@ -99,16 +94,25 @@ static NSString *cellID = @"partyCellID";
 }
 
 -(void)successOnFetchParties:(NSArray*)parties{
-    if(!_parties)
-        _parties = [NSMutableArray array];
-    [_parties addObjectsFromArray:parties];
+    [self splitSectionParties:parties];
     [self setUpPartiesTableView];
     [self refreshPartiesTableView];
 }
--(void)successOnFetchNextParties:(NSArray*)parties{
-    [_parties addObjectsFromArray:parties];
-    [self refreshPartiesTableView];
-    [_partiesTableView.infiniteScrollingView stopAnimating];
+
+
+-(void)splitSectionParties:(NSArray*)parties{
+    NSMutableArray *todays = [NSMutableArray array];
+    NSMutableArray *thisWeek = [NSMutableArray array];
+    NSMutableArray *nextWeek = [NSMutableArray array];
+    for(PUParty *p in parties){
+        if([NSCalendar isToday:p.date])
+            [todays addObject:p];
+        else if([NSCalendar isThisWeek:p.date])
+            [thisWeek addObject:p];
+        else
+            [nextWeek addObject:p];
+    }
+    _parties = @[todays,thisWeek,nextWeek];
 }
 
 -(void)setUpPartiesTableView{
@@ -124,22 +128,53 @@ static NSString *cellID = @"partyCellID";
     [super didReceiveMemoryWarning];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _parties.count;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PUPartyTableViewCell *cell = (PUPartyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-    PUParty *party = [_parties objectAtIndex:indexPath.row];
+    PUParty *party = [self partyAtIndexPath:indexPath];
     [cell fill:party];
     return cell;
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [_parties count];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSArray *parties =  [_parties objectAtIndex:section];
+    return parties.count;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    static NSString *cellID = @"PUHeaderCellID";
+    PUHeaderCell *cell = (PUHeaderCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.message.text = [self headerMessageForSection:section];
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    NSArray *parties =  [_parties objectAtIndex:section];
+    return parties.count > 0 ? 44 : 0;
+}
+
+-(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
+    NSArray *parties = [_parties objectAtIndex:indexPath.section];
+    return [parties objectAtIndex:indexPath.row];
+}
+
+-(NSString*)headerMessageForSection:(NSInteger)section{
+    if(section == Today)
+        return @"Hoje";
+    else if(section == ThisWeek)
+        return @"Essa Semana";
+    else
+        return @"Proxima Semana";
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([@"proceedToParty" isEqualToString:segue.identifier]){
         NSIndexPath *path = [_partiesTableView indexPathForSelectedRow];
-        PUParty *selectedParty = [_parties objectAtIndex:path.row];
+        PUParty *selectedParty = [self partyAtIndexPath:path];
         PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
         dest.partyId = selectedParty.partyId;
     }
