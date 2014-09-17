@@ -62,7 +62,7 @@
 }
 
 +(NSDate*)yesterday{
-    return [NSCalendar dateWithDaysDelta:1];
+    return [NSCalendar dateWithDaysDelta:-1];
 }
 
 +(NSDate*)twoWeeksFromNow{
