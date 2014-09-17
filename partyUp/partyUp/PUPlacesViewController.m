@@ -11,6 +11,8 @@
 #import "PUPlacesService.h"
 #import "PUPartiesViewController.h"
 #import "PUHeaderCell.h"
+#import "PUSearchSuggestionsService.h"
+#import "PUSearchSuggestion.h"
 
 typedef NS_ENUM(NSUInteger, PlacesSections) {
     LessThan5KM,
@@ -21,6 +23,7 @@ typedef NS_ENUM(NSUInteger, PlacesSections) {
 @interface PUPlacesViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong) PUPlacesService *service;
 @property(nonatomic,strong)NSArray *places;
+@property(nonatomic,strong)NSArray *suggestions;
 
 @property(nonatomic,strong)IBOutlet UITableView *placesTableView;
 @property(nonatomic,strong)IBOutlet UISearchBar *searchBar;
@@ -32,7 +35,19 @@ typedef NS_ENUM(NSUInteger, PlacesSections) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self fetchSearchSuggestions];
     _searchBar.delegate = self;
+}
+
+-(void)fetchSearchSuggestions{
+    PUSearchSuggestionsService *service = [PUSearchSuggestionsService new];
+    [service fetchSuggestions:^(NSArray *suggestions, NSError *error) {
+        if(error){
+        }
+        
+        _suggestions = suggestions;
+        
+    }];
 }
 
 -(void)fetchPlaces{
@@ -147,6 +162,20 @@ typedef NS_ENUM(NSUInteger, PlacesSections) {
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar{
     [_searchBar resignFirstResponder];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    for(PUSearchSuggestion *s in _suggestions)
+        NSLog(@"searchBarTextDidBeginEditing Suggestion Kind : %@ and Suggestions:%@",s.kind,s.suggestions);
+    
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+
+}
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSString *searchTerm = [NSString stringWithFormat:@"%@%@",searchBar.text,text];
+    NSLog(@"SearchTerm: %@",searchTerm);
+    return YES;
 }
 
 @end

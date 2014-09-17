@@ -11,6 +11,7 @@
 #import "PUPartyViewController.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "PUPartyService.h"
+#import "PUSearchSuggestionsService.h"
 #import "PUHeaderCell.h"
 typedef NS_ENUM(NSUInteger, PartiesSections) {
     Today,
@@ -40,7 +41,15 @@ static NSString *cellID = @"partyCellID";
     [self hidesNavigationBackButton];
     [self setUpPullToRefreshAndInfiniteScrolling];
     [self setUpPartyService];
+    [self fetchSuggestionsAndStoreInCache];
     [self fetchParties];
+}
+
+-(void)fetchSuggestionsAndStoreInCache{
+    PUSearchSuggestionsService *service = [PUSearchSuggestionsService new];
+    [service fetchSuggestions:^(NSArray *suggestions, NSError *error) {
+        
+    }];
 }
 
 -(void)setUpPartyService{
