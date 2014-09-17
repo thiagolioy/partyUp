@@ -10,10 +10,17 @@
 #import "PUPlace.h"
 #import "PUPlacesService.h"
 #import "PUPartiesViewController.h"
+#import "PUHeaderCell.h"
+
+typedef NS_ENUM(NSUInteger, PlacesSections) {
+    LessThan5KM,
+    LessThan20KM,
+    MoreThan20KM
+};
 
 @interface PUPlacesViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @property(nonatomic,strong) PUPlacesService *service;
-@property(nonatomic,strong)NSMutableArray *places;
+@property(nonatomic,strong)NSArray *places;
 
 @property(nonatomic,strong)IBOutlet UITableView *placesTableView;
 @property(nonatomic,strong)IBOutlet UISearchBar *searchBar;
@@ -34,15 +41,29 @@
     
     _service.placesPerFetch = 50;
     [_service fetchPlacesNearMe:^(NSArray *places, NSError *error) {
-        if(!_places)
-            _places = [NSMutableArray array];
-        [_places addObjectsFromArray:places];
+        [self splitPlacesInSections:places];
         
         _placesTableView.dataSource = self;
         _placesTableView.delegate = self;
         
         [_placesTableView reloadData];
     }];
+}
+
+-(void)splitPlacesInSections:(NSArray*)places{
+    NSMutableArray *lessThan5KM = [NSMutableArray array];
+        NSMutableArray *lessThan20KM = [NSMutableArray array];
+        NSMutableArray *moreThan20KM = [NSMutableArray array];
+    for(PUPlace *p in places){
+        if(p.distanceInKm < 5){
+            [lessThan5KM addObject:p];
+        }else if(p.distanceInKm > 5 && p.distanceInKm < 20){
+            [lessThan20KM addObject:p];
+        }else{
+            [moreThan20KM addObject:p];
+        }
+    }
+    _places = @[lessThan5KM,lessThan20KM,moreThan20KM];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -55,18 +76,49 @@
     [super didReceiveMemoryWarning];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _places.count;
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"PlaceCellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
-    PUPlace *place = [_places objectAtIndex:indexPath.row];
+    PUPlace *place = [self placeAtIndexPath:indexPath];
     
     cell.textLabel.text = place.name;
     return cell;
 }
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [_places count];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSArray *places =  [_places objectAtIndex:section];
+    return places.count;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    static NSString *cellID = @"PUHeaderCellID";
+    PUHeaderCell *cell = (PUHeaderCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.message.text = [self headerMessageForSection:section];
+    return cell;
+}
+-(PUPlace*)placeAtIndexPath:(NSIndexPath*)indexPath{
+    NSArray *places = [_places objectAtIndex:indexPath.section];
+    return [places objectAtIndex:indexPath.row];
+}
+-(NSString*)headerMessageForSection:(NSInteger)section{
+    if(section == LessThan5KM)
+        return @"Menos de 5 Km";
+    else if(section == LessThan20KM)
+        return @"Menos de 20 Km";
+    else
+        return @"Mais de 20 Km";
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    NSArray *places =  [_places objectAtIndex:section];
+    return places.count > 0 ? 44 : 0;
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     PUPlace *place = [_places objectAtIndex:indexPath.row];
@@ -75,20 +127,10 @@
     PUPartiesViewController *partiesController = (PUPartiesViewController*)tabController.selectedViewController;
     [partiesController fetchPartiesForPlace:place];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 -(void)clearPlaces{
-    [_places removeAllObjects];
+    _places = @[];
     [_placesTableView reloadData];
 }
 
@@ -98,7 +140,7 @@
     [_searchBar resignFirstResponder];
     [_service fetchPlacesForQuery:searchBar.text completion:^(NSArray *places, NSError *error) {
         [self clearPlaces];
-        [_places addObjectsFromArray:places];
+        [self splitPlacesInSections:places];
         [_placesTableView reloadData];
     }];
 }
