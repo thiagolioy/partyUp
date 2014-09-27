@@ -7,7 +7,6 @@
 //
 
 #import "PULoginViewController.h"
-#import <Parse/Parse.h>
 #import "PUPartiesViewController.h"
 
 @interface PULoginViewController ()
