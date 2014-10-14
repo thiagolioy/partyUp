@@ -8,9 +8,12 @@
 
 #import "PULoginViewController.h"
 #import "PUPartiesViewController.h"
+#import "PULoginBackgroundCollectionViewCell.h"
 
-@interface PULoginViewController ()
+@interface PULoginViewController ()<UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property(nonatomic,strong)IBOutlet UICollectionView *backgroundCollection;
+@property(nonatomic,strong)IBOutlet UIPageControl *backgroundPageControl;
 @end
 
 @implementation PULoginViewController
@@ -18,11 +21,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self checkIfUserAlreadyLoggedIn];
-  
-    
+    [self setUpPageControl];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
@@ -81,14 +83,23 @@
 -(void)successOnLogin{
     [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
 }
+#pragma mark - CollectionView Methods
+-(void)setUpPageControl{
+    _backgroundPageControl.currentPage = 0;
+    _backgroundPageControl.numberOfPages = 2;
+}
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if([[segue identifier] isEqualToString:@"proceedToParties"]){
-//        PUPartiesViewController *dest = (PUPartiesViewController*)[segue destinationViewController];
-//        //set data on destination if needed
-//        return;
-//    }
-//}
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 2;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellID = @"BackgroundCell";
+    PULoginBackgroundCollectionViewCell *cell =  (PULoginBackgroundCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    cell.backgroundImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"background-%d",(int)indexPath.row]];
+    cell.titleMessage.text = @"Share";
+    cell.contentMessage.text = @"Share great parties with your friends";
+    _backgroundPageControl.currentPage = indexPath.row;
+    return  cell;
+}
 @end
