@@ -49,6 +49,7 @@
 		209EA9BA19C29C600015D09E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E219A44017008377FF /* CoreLocation.framework */; };
 		20D960E719AFFB2000A893CF /* PUParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960E619AFFB2000A893CF /* PUParty.m */; };
 		20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960EA19AFFB5F00A893CF /* PUPlace.m */; };
+		20EBA8B719FC2FC700612C85 /* PUCustomTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA8B619FC2FC700612C85 /* PUCustomTabController.m */; };
 		20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */; };
 		20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740C19ABF71300BDBE5E /* PUDownloader.m */; };
 		20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F37F1D19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m */; };
@@ -131,6 +132,8 @@
 		20D960E619AFFB2000A893CF /* PUParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUParty.m; sourceTree = "<group>"; };
 		20D960E919AFFB5F00A893CF /* PUPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlace.h; sourceTree = "<group>"; };
 		20D960EA19AFFB5F00A893CF /* PUPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlace.m; sourceTree = "<group>"; };
+		20EBA8B519FC2FC700612C85 /* PUCustomTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUCustomTabController.h; sourceTree = "<group>"; };
+		20EBA8B619FC2FC700612C85 /* PUCustomTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUCustomTabController.m; sourceTree = "<group>"; };
 		20F2740719ABF44200BDBE5E /* NSCalendar+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Convenience.h"; sourceTree = "<group>"; };
 		20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Convenience.m"; sourceTree = "<group>"; };
 		20F2740B19ABF71300BDBE5E /* PUDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUDownloader.h; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 				20497C2819A8527C00CB942F /* auth */,
 				20497C2719A8525E00CB942F /* profile */,
 				20497C2619A8525200CB942F /* parties */,
+				20EBA8B519FC2FC700612C85 /* PUCustomTabController.h */,
+				20EBA8B619FC2FC700612C85 /* PUCustomTabController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */,
 				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
+				20EBA8B719FC2FC700612C85 /* PUCustomTabController.m in Sources */,
 				20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */,
 				20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */,
 				20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */,

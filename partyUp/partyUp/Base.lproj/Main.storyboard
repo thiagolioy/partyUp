@@ -79,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="255" y="-686.61971830985908"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Controller-->
         <scene sceneID="IhJ-f4-FHd">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="YZ3-pC-eWc" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="YZ3-pC-eWc" customClass="PUCustomTabController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1O1-7X-69U">
                         <barButtonItem key="backBarButtonItem" title=" " id="Isz-Ei-fHL"/>
                     </navigationItem>
