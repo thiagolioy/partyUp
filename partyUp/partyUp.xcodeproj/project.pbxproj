@@ -281,6 +281,7 @@
 			children = (
 				200055B219A43946008377FF /* PUAppDelegate.h */,
 				200055B319A43946008377FF /* PUAppDelegate.m */,
+				20F37F1F19ECD0D20080367B /* LaunchScreen.xib */,
 				200055BB19A43946008377FF /* Images.xcassets */,
 				200055AA19A43946008377FF /* Supporting Files */,
 			);
@@ -374,7 +375,6 @@
 				20F9389819C903440069EE26 /* PUHeaderCell.m */,
 				20F37F1C19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.h */,
 				20F37F1D19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m */,
-				20F37F1F19ECD0D20080367B /* LaunchScreen.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -680,7 +680,6 @@
 			baseConfigurationReference = B1B31F15F707458683D4E715 /* Pods-partyUp.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Thiago Lioy (V4U2A6P7XZ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -701,7 +700,6 @@
 			baseConfigurationReference = B1B31F15F707458683D4E715 /* Pods-partyUp.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Thiago Lioy (V4U2A6P7XZ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
