@@ -16,13 +16,46 @@
                     <view key="view" contentMode="scaleToFill" id="58L-K3-m6O">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3tC-Tl-1gX">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xxL-GL-6TJ">
+                                    <size key="itemSize" width="300" height="240"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="partyCellID" id="P3N-nG-BSM">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="240"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3tC-Tl-1gX" secondAttribute="trailing" id="20u-mk-qGc"/>
+                            <constraint firstItem="z5U-be-uIu" firstAttribute="top" secondItem="3tC-Tl-1gX" secondAttribute="bottom" id="MPw-b6-kT0"/>
+                            <constraint firstItem="3tC-Tl-1gX" firstAttribute="leading" secondItem="58L-K3-m6O" secondAttribute="leading" id="R9W-mx-7PN"/>
+                            <constraint firstItem="3tC-Tl-1gX" firstAttribute="top" secondItem="58L-K3-m6O" secondAttribute="top" id="oWH-E3-RtN"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Parties" image="partiesTabIconNormal" id="wnH-VG-Etu"/>
+                    <connections>
+                        <outlet property="collectionView" destination="3tC-Tl-1gX" id="dlY-rh-6at"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhF-ZI-a9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-545.625" y="-686.61971830985908"/>
+            <point key="canvasLocation" x="-546" y="-687"/>
         </scene>
         <!--Party-->
         <scene sceneID="D6Y-f7-1LJ">

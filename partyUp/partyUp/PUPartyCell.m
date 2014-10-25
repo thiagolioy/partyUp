@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Thiago Lioy. All rights reserved.
 //
 
-#import "PUPartyTableViewCell.h"
+#import "PUPartyCell.h"
 #import "PUDownloader.h"
 
-@interface PUPartyTableViewCell()
+@interface PUPartyCell()
 @property (strong, nonatomic) IBOutlet UIImageView *promoImage;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *placeName;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation PUPartyTableViewCell
+@implementation PUPartyCell
 
 -(void)fill:(PUParty*)party{
     [PUDownloader downloadImage:party.promoImage completion:^(UIImage *image, NSError *error) {

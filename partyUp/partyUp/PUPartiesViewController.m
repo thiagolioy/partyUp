@@ -7,7 +7,7 @@
 //
 
 #import "PUPartiesViewController.h"
-#import "PUPartyTableViewCell.h"
+#import "PUPartyCell.h"
 #import "PUPartyViewController.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "PUPartyService.h"
@@ -19,8 +19,8 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
     NextWeek,
 };
 
-@interface PUPartiesViewController ()<UITableViewDataSource,UITableViewDelegate>
-@property (strong, nonatomic) IBOutlet UITableView *partiesTableView;
+@interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,assign)NSInteger currentPage;
 @property(nonatomic,assign)NSInteger partiesPerPage;
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
 
 @end
 
-static NSString *cellID = @"partyCellID";
+static NSString *partyCellID = @"partyCellID";
 
 @implementation PUPartiesViewController
 
@@ -39,11 +39,13 @@ static NSString *cellID = @"partyCellID";
 {
     [super viewDidLoad];
     [self showStatusBar];
-//    [self hidesNavigationBackButton];
+    [self hidesNavigationBackButton];
     [self setUpPullToRefreshAndInfiniteScrolling];
     [self setUpPartyService];
     [self fetchSuggestionsAndStoreInCache];
-    [self fetchParties];
+//    [self fetchParties];
+    
+    [self setUpPartiesDataSourceAndDelegate];
 }
 
 -(void)showStatusBar{
@@ -65,15 +67,15 @@ static NSString *cellID = @"partyCellID";
 }
 
 -(void)setUpPullToRefreshAndInfiniteScrolling{
-    __weak typeof(self)weakSelf = self;
-    [_partiesTableView addPullToRefreshWithActionHandler:^{
-        __strong typeof(weakSelf)strongSelf = weakSelf;
-        [strongSelf refreshParties];
-    }];
+//    __weak typeof(self)weakSelf = self;
+//    [_partiesTableView addPullToRefreshWithActionHandler:^{
+//        __strong typeof(weakSelf)strongSelf = weakSelf;
+//        [strongSelf refreshParties];
+//    }];
 }
 -(void)cleanPartiesTableView{
-    _parties = @[];
-    [_partiesTableView reloadData];
+//    _parties = @[];
+//    [_partiesTableView reloadData];
 }
 
 -(void)fetchPartiesForPlace:(PUPlace*)place{
@@ -86,9 +88,9 @@ static NSString *cellID = @"partyCellID";
 }
 
 -(void)refreshParties{
-    _parties = [NSMutableArray array];
-    [_partiesTableView reloadData];
-    [self fetchParties];
+//    _parties = [NSMutableArray array];
+//    [_partiesTableView reloadData];
+//    [self fetchParties];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -109,7 +111,7 @@ static NSString *cellID = @"partyCellID";
 
 -(void)successOnFetchParties:(NSArray*)parties{
     [self splitSectionParties:parties];
-    [self setUpPartiesTableView];
+    [self setUpPartiesDataSourceAndDelegate];
     [self refreshPartiesTableView];
 }
 
@@ -129,12 +131,12 @@ static NSString *cellID = @"partyCellID";
     _parties = @[todays,thisWeek,nextWeek];
 }
 
--(void)setUpPartiesTableView{
-    _partiesTableView.dataSource = self;
-    _partiesTableView.delegate = self;
+-(void)setUpPartiesDataSourceAndDelegate{
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
 }
 -(void)refreshPartiesTableView{
-    [_partiesTableView reloadData];
+//    [_partiesTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -143,38 +145,38 @@ static NSString *cellID = @"partyCellID";
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PUPartyTableViewCell *cell = (PUPartyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-    PUParty *party = [self partyAtIndexPath:indexPath];
-    [cell fill:party];
-    return cell;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [_parties count];
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *parties =  [_parties objectAtIndex:section];
-    return parties.count;
-}
-
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    static NSString *cellID = @"PUHeaderCellID";
-    PUHeaderCell *cell = (PUHeaderCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-    cell.message.text = [self headerMessageForSection:section];
-    return cell;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    NSArray *parties =  [_parties objectAtIndex:section];
-    return parties.count > 0 ? 44 : 0;
-}
-
--(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
-    NSArray *parties = [_parties objectAtIndex:indexPath.section];
-    return [parties objectAtIndex:indexPath.row];
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    PUPartyCell *cell = (PUPartyCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+//    PUParty *party = [self partyAtIndexPath:indexPath];
+//    [cell fill:party];
+//    return cell;
+//}
+//
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return [_parties count];
+//}
+//
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    NSArray *parties =  [_parties objectAtIndex:section];
+//    return parties.count;
+//}
+//
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    static NSString *cellID = @"PUHeaderCellID";
+//    PUHeaderCell *cell = (PUHeaderCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+//    cell.message.text = [self headerMessageForSection:section];
+//    return cell;
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    NSArray *parties =  [_parties objectAtIndex:section];
+//    return parties.count > 0 ? 44 : 0;
+//}
+//
+//-(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
+//    NSArray *parties = [_parties objectAtIndex:indexPath.section];
+//    return [parties objectAtIndex:indexPath.row];
+//}
 
 -(NSString*)headerMessageForSection:(NSInteger)section{
     if(section == Today)
@@ -187,11 +189,27 @@ static NSString *cellID = @"partyCellID";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([@"proceedToParty" isEqualToString:segue.identifier]){
-        NSIndexPath *path = [_partiesTableView indexPathForSelectedRow];
-        PUParty *selectedParty = [self partyAtIndexPath:path];
-        PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
-        dest.partyId = selectedParty.partyId;
+//        NSIndexPath *path = [_partiesTableView indexPathForSelectedRow];
+//        PUParty *selectedParty = [self partyAtIndexPath:path];
+//        PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
+//        dest.partyId = selectedParty.partyId;
     }
+}
+
+
+#pragma mark - CollectionView Methods
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 3;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    PUPartyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:partyCellID forIndexPath:indexPath];
+    
+    
+    return cell;
 }
 
 @end

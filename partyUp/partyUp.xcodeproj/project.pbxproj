@@ -45,7 +45,7 @@
 		206D6E4519D741760073CA2C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206D6E4219D741760073CA2C /* Parse.framework */; };
 		206D6E4619D741760073CA2C /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206D6E4319D741760073CA2C /* ParseFacebookUtils.framework */; };
 		209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */; };
-		209D790019A5A3E700FF0FF2 /* PUPartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */; };
+		209D790019A5A3E700FF0FF2 /* PUPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209D78FF19A5A3E700FF0FF2 /* PUPartyCell.m */; };
 		209EA9BA19C29C600015D09E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E219A44017008377FF /* CoreLocation.framework */; };
 		20D960E719AFFB2000A893CF /* PUParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960E619AFFB2000A893CF /* PUParty.m */; };
 		20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960EA19AFFB5F00A893CF /* PUPlace.m */; };
@@ -126,8 +126,8 @@
 		206D6E4219D741760073CA2C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = thirdParties/Parse.framework; sourceTree = "<group>"; };
 		206D6E4319D741760073CA2C /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = thirdParties/ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		209D78FE19A5A3E700FF0FF2 /* PUPartyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyTableViewCell.h; sourceTree = "<group>"; };
-		209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyTableViewCell.m; sourceTree = "<group>"; };
+		209D78FE19A5A3E700FF0FF2 /* PUPartyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyCell.h; sourceTree = "<group>"; };
+		209D78FF19A5A3E700FF0FF2 /* PUPartyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyCell.m; sourceTree = "<group>"; };
 		20D960E519AFFB2000A893CF /* PUParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUParty.h; sourceTree = "<group>"; };
 		20D960E619AFFB2000A893CF /* PUParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUParty.m; sourceTree = "<group>"; };
 		20D960E919AFFB5F00A893CF /* PUPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlace.h; sourceTree = "<group>"; };
@@ -375,8 +375,8 @@
 		209D78FD19A5A3C000FF0FF2 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				209D78FE19A5A3E700FF0FF2 /* PUPartyTableViewCell.h */,
-				209D78FF19A5A3E700FF0FF2 /* PUPartyTableViewCell.m */,
+				209D78FE19A5A3E700FF0FF2 /* PUPartyCell.h */,
+				209D78FF19A5A3E700FF0FF2 /* PUPartyCell.m */,
 				20497C1819A8474A00CB942F /* PUBuddyTableViewCell.h */,
 				20497C1919A8474A00CB942F /* PUBuddyTableViewCell.m */,
 				20F9389719C903440069EE26 /* PUHeaderCell.h */,
@@ -547,7 +547,7 @@
 			files = (
 				200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */,
 				20497C1A19A8474A00CB942F /* PUBuddyTableViewCell.m in Sources */,
-				209D790019A5A3E700FF0FF2 /* PUPartyTableViewCell.m in Sources */,
+				209D790019A5A3E700FF0FF2 /* PUPartyCell.m in Sources */,
 				20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */,
 				201E887119A56160008C5532 /* PUProfileViewController.m in Sources */,
 				20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */,

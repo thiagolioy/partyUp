@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PUParty.h"
 
-@interface PUPartyTableViewCell : UITableViewCell
+@interface PUPartyCell : UICollectionViewCell
 
 -(void)fill:(PUParty*)party;
 @end
