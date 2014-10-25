@@ -7,6 +7,7 @@
 //
 
 #import "PUAppDelegate.h"
+#import "PUCustomApperance.h"
 
 @implementation PUAppDelegate
 
@@ -58,10 +59,8 @@
 }
 
 -(void)customizeAppearance{
-    [[UINavigationBar appearance] setBarTintColor: [UIColor blackColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+    [PUCustomApperance customizeNavBar];
+    [PUCustomApperance customizeTabBar];
 }
 
 @end

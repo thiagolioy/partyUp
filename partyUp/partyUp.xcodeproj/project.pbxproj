@@ -41,6 +41,7 @@
 		20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1E19A84DEB00CB942F /* UIView+roundMask.m */; };
 		20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2A19A8531300CB942F /* PUPartyViewController.m */; };
 		20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C2E19A86C1800CB942F /* PUPartyService.m */; };
+		2051C52219FC2B3300C66ED3 /* PUCustomApperance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2051C52119FC2B3300C66ED3 /* PUCustomApperance.m */; };
 		206D6E4519D741760073CA2C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206D6E4219D741760073CA2C /* Parse.framework */; };
 		206D6E4619D741760073CA2C /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206D6E4319D741760073CA2C /* ParseFacebookUtils.framework */; };
 		209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */; };
@@ -119,6 +120,8 @@
 		20497C2A19A8531300CB942F /* PUPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyViewController.m; sourceTree = "<group>"; };
 		20497C2D19A86C1800CB942F /* PUPartyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyService.h; sourceTree = "<group>"; };
 		20497C2E19A86C1800CB942F /* PUPartyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyService.m; sourceTree = "<group>"; };
+		2051C52019FC2B3300C66ED3 /* PUCustomApperance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUCustomApperance.h; sourceTree = "<group>"; };
+		2051C52119FC2B3300C66ED3 /* PUCustomApperance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUCustomApperance.m; sourceTree = "<group>"; };
 		206D6E4219D741760073CA2C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = thirdParties/Parse.framework; sourceTree = "<group>"; };
 		206D6E4319D741760073CA2C /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = thirdParties/ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -397,6 +400,8 @@
 			children = (
 				20F2740B19ABF71300BDBE5E /* PUDownloader.h */,
 				20F2740C19ABF71300BDBE5E /* PUDownloader.m */,
+				2051C52019FC2B3300C66ED3 /* PUCustomApperance.h */,
+				2051C52119FC2B3300C66ED3 /* PUCustomApperance.m */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -556,6 +561,7 @@
 				20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */,
 				20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */,
 				200055B419A43946008377FF /* PUAppDelegate.m in Sources */,
+				2051C52219FC2B3300C66ED3 /* PUCustomApperance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

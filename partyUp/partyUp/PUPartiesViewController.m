@@ -38,11 +38,16 @@ static NSString *cellID = @"partyCellID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self hidesNavigationBackButton];
+    [self showStatusBar];
+//    [self hidesNavigationBackButton];
     [self setUpPullToRefreshAndInfiniteScrolling];
     [self setUpPartyService];
     [self fetchSuggestionsAndStoreInCache];
     [self fetchParties];
+}
+
+-(void)showStatusBar{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 }
 
 -(void)fetchSuggestionsAndStoreInCache{
