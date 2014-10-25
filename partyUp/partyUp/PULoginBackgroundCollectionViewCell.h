@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PULoginBackgroundCollectionViewCell : UICollectionViewCell
-@property(nonatomic,weak) IBOutlet UIImageView *backgroundImage;
-@property(nonatomic,weak) IBOutlet UILabel *titleMessage;
 @property(nonatomic,weak) IBOutlet UILabel *contentMessage;
 @end

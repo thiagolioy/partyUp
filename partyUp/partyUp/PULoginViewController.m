@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property(nonatomic,strong)IBOutlet UICollectionView *backgroundCollection;
 @property(nonatomic,strong)IBOutlet UIPageControl *backgroundPageControl;
+@property(nonatomic,strong)NSArray *contentMessages;
 @end
 
 @implementation PULoginViewController
@@ -21,8 +22,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self checkIfUserAlreadyLoggedIn];
+    [self setUpContentMessages];
     [self setUpPageControl];
+    [self checkIfUserAlreadyLoggedIn];
+
+}
+
+-(void)setUpContentMessages{
+    _contentMessages = @[@"Ache as melhores festas perto de você",
+                         @"Coloque seu nome e de seus amigos na lista",
+                        ];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,19 +95,18 @@
 #pragma mark - CollectionView Methods
 -(void)setUpPageControl{
     _backgroundPageControl.currentPage = 0;
-    _backgroundPageControl.numberOfPages = 2;
+    _backgroundPageControl.numberOfPages = _contentMessages.count;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 2;
+    return _contentMessages.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"BackgroundCell";
     PULoginBackgroundCollectionViewCell *cell =  (PULoginBackgroundCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    cell.backgroundImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"background-%d",(int)indexPath.row]];
-    cell.titleMessage.text = @"Share";
-    cell.contentMessage.text = @"Share great parties with your friends";
+    NSString *contentMessage = [_contentMessages objectAtIndex:indexPath.row];
+    cell.contentMessage.text = contentMessage;
     _backgroundPageControl.currentPage = indexPath.row;
     return  cell;
 }
