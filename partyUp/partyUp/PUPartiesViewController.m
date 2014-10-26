@@ -19,6 +19,8 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
     NextWeek,
 };
 
+#define HEADER_HEIGHT 50.0f
+
 @interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(nonatomic,strong)NSArray *parties;
@@ -31,6 +33,7 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
 @end
 
 static NSString *partyCellID = @"partyCellID";
+static NSString *headerCellID = @"headerCellID";
 
 @implementation PUPartiesViewController
 
@@ -211,5 +214,17 @@ static NSString *partyCellID = @"partyCellID";
     
     return cell;
 }
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    CGFloat width = self.view.bounds.size.width;
+    return CGSizeMake(width, HEADER_HEIGHT);
+}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+
+    PUHeaderCell *headerView = (PUHeaderCell*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerCellID forIndexPath:indexPath];
+
+    headerView.message.text = @"Próxima semana";
+    return headerView;
+}
+
 
 @end

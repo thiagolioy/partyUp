@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PUHeaderCell : UITableViewCell
+@interface PUHeaderCell : UICollectionReusableView
 @property(nonatomic,strong)IBOutlet UILabel *message;
 @end
