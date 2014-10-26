@@ -75,8 +75,8 @@
         [query orderByAscending:@"date"];
         
 
-        
-        query.limit = _partiesPerFetch;
+        if(_partiesPerFetch)
+            query.limit = _partiesPerFetch;
         if(_skip && _skip >= 0)
             query.skip = _skip;
         

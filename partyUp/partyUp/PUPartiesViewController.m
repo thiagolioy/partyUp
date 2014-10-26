@@ -9,7 +9,6 @@
 #import "PUPartiesViewController.h"
 #import "PUPartyCell.h"
 #import "PUPartyViewController.h"
-#import <SVPullToRefresh/SVPullToRefresh.h>
 #import "PUPartyService.h"
 #import "PUSearchSuggestionsService.h"
 #import "PUHeaderCell.h"
@@ -24,9 +23,6 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
 @interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(nonatomic,strong)NSArray *parties;
-@property(nonatomic,assign)NSInteger currentPage;
-@property(nonatomic,assign)NSInteger partiesPerPage;
-@property(nonatomic,assign)NSInteger partiesTotalCount;
 @property(nonatomic,strong)PUPartyService *service;
 @property(nonatomic,strong)NSMutableDictionary *sectionParties;
 
@@ -43,39 +39,18 @@ static NSString *headerCellID = @"headerCellID";
     [super viewDidLoad];
     [self showStatusBar];
     [self hidesNavigationBackButton];
-    [self setUpPullToRefreshAndInfiniteScrolling];
     [self setUpPartyService];
-    [self fetchSuggestionsAndStoreInCache];
     [self fetchParties];
-    
-    [self setUpPartiesDataSourceAndDelegate];
 }
 
 -(void)showStatusBar{
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 }
 
--(void)fetchSuggestionsAndStoreInCache{
-    PUSearchSuggestionsService *service = [PUSearchSuggestionsService new];
-    [service fetchSuggestions:^(NSArray *suggestions, NSError *error) {
-        
-    }];
-}
-
 -(void)setUpPartyService{
     _service = [PUPartyService new];
-    _service.partiesPerFetch = 10;
-    _service.skip = 0;
-    _currentPage = 0;
 }
 
--(void)setUpPullToRefreshAndInfiniteScrolling{
-//    __weak typeof(self)weakSelf = self;
-//    [_partiesTableView addPullToRefreshWithActionHandler:^{
-//        __strong typeof(weakSelf)strongSelf = weakSelf;
-//        [strongSelf refreshParties];
-//    }];
-}
 -(void)cleanPartiesTableView{
     _parties = @[];
     [_collectionView reloadData];
@@ -114,7 +89,6 @@ static NSString *headerCellID = @"headerCellID";
 
 -(void)successOnFetchParties:(NSArray*)parties{
     [self splitSectionParties:parties];
-    [self setUpPartiesDataSourceAndDelegate];
     [self refreshPartiesTableView];
 }
 

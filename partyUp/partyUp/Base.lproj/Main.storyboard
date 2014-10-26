@@ -24,7 +24,7 @@
                                     <size key="itemSize" width="300" height="240"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="partyCellID" id="P3N-nG-BSM" userLabel="Party Cell" customClass="PUPartyCell">
@@ -129,14 +129,18 @@
                                         <constraint firstAttribute="centerY" secondItem="N4d-r3-CT7" secondAttribute="centerY" id="kyK-Oe-wMN"/>
                                     </constraints>
                                 </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="v9X-fH-2wb" id="Uss-jC-wk4"/>
+                                    <outlet property="delegate" destination="v9X-fH-2wb" id="vTC-6D-52c"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3tC-Tl-1gX" secondAttribute="trailing" id="20u-mk-qGc"/>
-                            <constraint firstItem="z5U-be-uIu" firstAttribute="top" secondItem="3tC-Tl-1gX" secondAttribute="bottom" id="MPw-b6-kT0"/>
-                            <constraint firstItem="3tC-Tl-1gX" firstAttribute="leading" secondItem="58L-K3-m6O" secondAttribute="leading" id="R9W-mx-7PN"/>
-                            <constraint firstItem="3tC-Tl-1gX" firstAttribute="top" secondItem="58L-K3-m6O" secondAttribute="top" id="oWH-E3-RtN"/>
+                            <constraint firstItem="3tC-Tl-1gX" firstAttribute="leading" secondItem="58L-K3-m6O" secondAttribute="leading" id="4Gr-Kv-ZQa"/>
+                            <constraint firstItem="z5U-be-uIu" firstAttribute="top" secondItem="3tC-Tl-1gX" secondAttribute="bottom" id="IQW-Ge-86M"/>
+                            <constraint firstItem="3tC-Tl-1gX" firstAttribute="top" secondItem="58L-K3-m6O" secondAttribute="top" id="KQI-tU-XHI"/>
+                            <constraint firstAttribute="trailing" secondItem="3tC-Tl-1gX" secondAttribute="trailing" id="LHO-z5-sjN"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Parties" image="partiesTabIconNormal" id="wnH-VG-Etu"/>
