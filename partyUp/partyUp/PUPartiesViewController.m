@@ -46,7 +46,7 @@ static NSString *headerCellID = @"headerCellID";
     [self setUpPullToRefreshAndInfiniteScrolling];
     [self setUpPartyService];
     [self fetchSuggestionsAndStoreInCache];
-//    [self fetchParties];
+    [self fetchParties];
     
     [self setUpPartiesDataSourceAndDelegate];
 }
@@ -77,8 +77,8 @@ static NSString *headerCellID = @"headerCellID";
 //    }];
 }
 -(void)cleanPartiesTableView{
-//    _parties = @[];
-//    [_partiesTableView reloadData];
+    _parties = @[];
+    [_collectionView reloadData];
 }
 
 -(void)fetchPartiesForPlace:(PUPlace*)place{
@@ -91,9 +91,9 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 -(void)refreshParties{
-//    _parties = [NSMutableArray array];
-//    [_partiesTableView reloadData];
-//    [self fetchParties];
+    _parties = [NSMutableArray array];
+    [_collectionView reloadData];
+    [self fetchParties];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -139,7 +139,7 @@ static NSString *headerCellID = @"headerCellID";
     _collectionView.delegate = self;
 }
 -(void)refreshPartiesTableView{
-//    [_partiesTableView reloadData];
+    [_collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -176,10 +176,15 @@ static NSString *headerCellID = @"headerCellID";
 //    return parties.count > 0 ? 44 : 0;
 //}
 //
-//-(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
-//    NSArray *parties = [_parties objectAtIndex:indexPath.section];
-//    return [parties objectAtIndex:indexPath.row];
-//}
+-(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
+    NSArray *parties = [_parties objectAtIndex:indexPath.section];
+    return [parties objectAtIndex:indexPath.row];
+}
+
+-(BOOL)hasItemsInSection:(NSInteger)section{
+    NSArray *parties = [_parties objectAtIndex:section];
+    return parties.count > 0;
+}
 
 -(NSString*)headerMessageForSection:(NSInteger)section{
     if(section == Today)
@@ -202,27 +207,30 @@ static NSString *headerCellID = @"headerCellID";
 
 #pragma mark - CollectionView Methods
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return _parties.count;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 3;
+    NSArray *parties =  [_parties objectAtIndex:section];
+    return parties.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    PUPartyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:partyCellID forIndexPath:indexPath];
-    
-    
+    PUPartyCell *cell = (PUPartyCell*)[collectionView dequeueReusableCellWithReuseIdentifier:partyCellID forIndexPath:indexPath];
+    PUParty *party = [self partyAtIndexPath:indexPath];
+    [cell fill:party];
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    if(![self hasItemsInSection:section])
+        return CGSizeMake(0, 0);
+    
     CGFloat width = self.view.bounds.size.width;
     return CGSizeMake(width, HEADER_HEIGHT);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 
     PUHeaderCell *headerView = (PUHeaderCell*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerCellID forIndexPath:indexPath];
-
-    headerView.message.text = @"Próxima semana";
+    headerView.message.text = [self headerMessageForSection:indexPath.section];
     return headerView;
 }
 
