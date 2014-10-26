@@ -60,26 +60,14 @@
         
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
         [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
-//        placeQuery.limit = 10;
-        
         
         PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-//        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
-//        query.maxCacheAge = 60 * 60 * 24;
-        
         [query includeKey:@"place"];
-        [query whereKey:@"place" matchesQuery:placeQuery];
-        
         [query whereKey:@"date" lessThan:[NSCalendar oneWeekFromNow]];
         [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
+        [query whereKey:@"place" matchesQuery:placeQuery];
         [query orderByAscending:@"date"];
-        
-
-        if(_partiesPerFetch)
-            query.limit = _partiesPerFetch;
-        if(_skip && _skip >= 0)
-            query.skip = _skip;
-        
+        query.limit = 10;
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if(error){
