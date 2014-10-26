@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
 
 @interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,strong)PUPartyService *service;
 @property(nonatomic,strong)NSMutableDictionary *sectionParties;
@@ -82,6 +83,7 @@ static NSString *headerCellID = @"headerCellID";
 -(void)fetchParties{
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         if(!error){
+            [_activityIndicator stopAnimating];
             [self successOnFetchParties:parties];
         }
     }];

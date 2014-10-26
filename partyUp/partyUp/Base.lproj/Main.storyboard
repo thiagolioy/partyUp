@@ -134,6 +134,13 @@
                                     <outlet property="delegate" destination="v9X-fH-2wb" id="vTC-6D-52c"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Dfl-L4-eeR">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="2it-vZ-MXh"/>
+                                    <constraint firstAttribute="width" constant="20" id="dLX-eE-4cR"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -141,10 +148,13 @@
                             <constraint firstItem="z5U-be-uIu" firstAttribute="top" secondItem="3tC-Tl-1gX" secondAttribute="bottom" id="IQW-Ge-86M"/>
                             <constraint firstItem="3tC-Tl-1gX" firstAttribute="top" secondItem="58L-K3-m6O" secondAttribute="top" id="KQI-tU-XHI"/>
                             <constraint firstAttribute="trailing" secondItem="3tC-Tl-1gX" secondAttribute="trailing" id="LHO-z5-sjN"/>
+                            <constraint firstAttribute="centerY" secondItem="Dfl-L4-eeR" secondAttribute="centerY" id="PZ4-qf-W8T"/>
+                            <constraint firstAttribute="centerX" secondItem="Dfl-L4-eeR" secondAttribute="centerX" id="iGw-Dm-dVx"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Parties" image="partiesTabIconNormal" id="wnH-VG-Etu"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Dfl-L4-eeR" id="Dh0-Hm-NYQ"/>
                         <outlet property="collectionView" destination="3tC-Tl-1gX" id="dlY-rh-6at"/>
                     </connections>
                 </viewController>
