@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PUParty.h"
 
 @interface PUPartyViewController : UIViewController
-@property(nonatomic,strong)NSString *partyId;
+@property (strong, nonatomic) PUParty *party;
 @end

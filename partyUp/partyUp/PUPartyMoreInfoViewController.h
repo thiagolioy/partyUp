@@ -10,5 +10,5 @@
 #import "PUParty.h"
 
 @interface PUPartyMoreInfoViewController : UIViewController
--(void)fillPartyInfo:(PUParty*)party;
+@property(nonatomic,strong)PUParty *party;
 @end

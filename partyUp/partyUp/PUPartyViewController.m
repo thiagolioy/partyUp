@@ -7,7 +7,6 @@
 //
 
 #import "PUPartyViewController.h"
-#import "PUPartyService.h"
 #import "PUDownloader.h"
 #import "PUPartyMoreInfoViewController.h"
 
@@ -22,9 +21,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *placeState;
 @property (strong, nonatomic) IBOutlet UIView *moreInfoView;
 
-
-@property (strong, nonatomic) PUPartyService *service;
-@property (strong, nonatomic) PUParty *party;
 @end
 
 @implementation PUPartyViewController
@@ -32,8 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setUpPartyService];
-    [self fetchParty];
+    [self fillNavigationBarWithPartyName];
+    [self fillPartyInfo];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,19 +38,12 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setUpPartyService{
-    _service = [PUPartyService new];
+
+-(void)fillNavigationBarWithPartyName{
+    self.title = _party.name;
 }
 
--(void)fetchParty{
-    [_service fetchParty:_partyId completion:^(PUParty *party, NSError *error) {
-        if(!error)
-            [self fillPartyInfo:party];
-    }];
-}
-
--(void)fillPartyInfo:(PUParty*)party{
-    _party = party;
+-(void)fillPartyInfo{
     [self downloadPartyImage];
     [self fillPartyPrice];
     [self fillPartyDate];
@@ -90,7 +79,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([@"showPartyMoreInfo" isEqualToString:segue.identifier]){
         PUPartyMoreInfoViewController *dest = (PUPartyMoreInfoViewController*)[segue destinationViewController];
-        [dest fillPartyInfo:_party];
+        dest.party = _party;
     }
 }
 

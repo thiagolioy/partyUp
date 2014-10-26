@@ -31,12 +31,6 @@
         [query orderByAscending:@"date"];
         
         
-        
-        query.limit = _partiesPerFetch;
-        if(_skip && _skip >= 0)
-            query.skip = _skip;
-        
-        
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if(error){
                 completion(nil,error);
@@ -83,19 +77,4 @@
     
     }];
 }
-
--(void)fetchParty:(NSString*)partyId completion:(PartyCompletion)completion{
-    PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-    [query includeKey:@"place"];
-    [query getObjectInBackgroundWithId:partyId block:^(PFObject *obj, NSError *error) {
-        if(error){
-            completion(nil,error);
-            return ;
-        }
-        
-        PUParty *party = [PUParty partyWithParseObj:obj];
-        completion(party,nil);
-    }];
-}
-
 @end

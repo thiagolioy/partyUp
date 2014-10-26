@@ -9,7 +9,6 @@
 #import "PUPartyMoreInfoViewController.h"
 
 @interface PUPartyMoreInfoViewController ()
-@property(nonatomic,strong)PUParty *party;
 @property(nonatomic,strong)IBOutlet UITextView *partyDescription;
 @end
 
@@ -18,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self fillPartyInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,8 +25,7 @@
 
 }
 
--(void)fillPartyInfo:(PUParty*)party{
-    _party = party;
+-(void)fillPartyInfo{
     _partyDescription.text = _party.partyDescription;
     self.title = _party.name;
 }

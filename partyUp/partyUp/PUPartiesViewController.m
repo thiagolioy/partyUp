@@ -147,7 +147,7 @@ static NSString *headerCellID = @"headerCellID";
         NSArray *paths = [_collectionView indexPathsForSelectedItems];
         PUParty *selectedParty = [self partyAtIndexPath:[paths firstObject]];
         PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
-        dest.partyId = selectedParty.partyId;
+        dest.party = selectedParty;
     }
 }
 

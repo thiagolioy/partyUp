@@ -426,7 +426,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Party" id="uqT-hJ-t7I"/>
+                    <navigationItem key="navigationItem" title="Party" id="uqT-hJ-t7I">
+                        <barButtonItem key="backBarButtonItem" title=" " id="VQV-t5-p8m"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="date" destination="fT4-QP-SUx" id="lld-FH-Ik9"/>
                         <outlet property="moreInfoView" destination="FbE-xU-aBX" id="J6j-Ia-stZ"/>
@@ -443,7 +445,7 @@
             </objects>
             <point key="canvasLocation" x="255" y="-687"/>
         </scene>
-        <!--Party More Info View Controller-->
+        <!--PartyMoreInfo-->
         <scene sceneID="Z3S-sH-IJC">
             <objects>
                 <viewController storyboardIdentifier="PUPartyMoreInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zFk-Tm-KUh" customClass="PUPartyMoreInfoViewController" sceneMemberID="viewController">
@@ -484,6 +486,9 @@
                             <constraint firstItem="dMy-jk-JSh" firstAttribute="top" secondItem="H2Z-Fs-6F6" secondAttribute="bottom" constant="20" id="zbs-h0-4bW"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="PartyMoreInfo" id="zjW-Jv-kB9">
+                        <barButtonItem key="backBarButtonItem" title=" " id="08C-dB-nTE"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="partyDescription" destination="IxJ-X3-MPv" id="oim-Xf-nAi"/>
                     </connections>
