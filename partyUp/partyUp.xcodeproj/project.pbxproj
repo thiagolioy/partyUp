@@ -36,6 +36,8 @@
 		201E887119A56160008C5532 /* PUProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201E887019A56160008C5532 /* PUProfileViewController.m */; };
 		20258BD719BE8DCA00FC5A5D /* PUPlacesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */; };
 		20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20258BD919BE943900FC5A5D /* PUPlacesViewController.m */; };
+		202845B119FD3426004D80EE /* PUPartyMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202845B019FD3426004D80EE /* PUPartyMoreInfoViewController.m */; };
+		202845B419FD45FD004D80EE /* NSString+Validators.m in Sources */ = {isa = PBXBuildFile; fileRef = 202845B319FD45FD004D80EE /* NSString+Validators.m */; };
 		20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */; };
 		20497C1A19A8474A00CB942F /* PUBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1919A8474A00CB942F /* PUBuddyTableViewCell.m */; };
 		20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1E19A84DEB00CB942F /* UIView+roundMask.m */; };
@@ -110,6 +112,10 @@
 		20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlacesService.m; sourceTree = "<group>"; };
 		20258BD819BE943900FC5A5D /* PUPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlacesViewController.h; sourceTree = "<group>"; };
 		20258BD919BE943900FC5A5D /* PUPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlacesViewController.m; sourceTree = "<group>"; };
+		202845AF19FD3426004D80EE /* PUPartyMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyMoreInfoViewController.h; sourceTree = "<group>"; };
+		202845B019FD3426004D80EE /* PUPartyMoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyMoreInfoViewController.m; sourceTree = "<group>"; };
+		202845B219FD45FD004D80EE /* NSString+Validators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validators.h"; sourceTree = "<group>"; };
+		202845B319FD45FD004D80EE /* NSString+Validators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validators.m"; sourceTree = "<group>"; };
 		20497C1519A839FC00CB942F /* PUBuddiesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBuddiesListViewController.h; sourceTree = "<group>"; };
 		20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUBuddiesListViewController.m; sourceTree = "<group>"; };
 		20497C1819A8474A00CB942F /* PUBuddyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBuddyTableViewCell.h; sourceTree = "<group>"; };
@@ -322,6 +328,8 @@
 				20497C2019A84E9000CB942F /* PUExtensionsHeader.h */,
 				20F2740719ABF44200BDBE5E /* NSCalendar+Convenience.h */,
 				20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */,
+				202845B219FD45FD004D80EE /* NSString+Validators.h */,
+				202845B319FD45FD004D80EE /* NSString+Validators.m */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -335,6 +343,8 @@
 				20497C2A19A8531300CB942F /* PUPartyViewController.m */,
 				20258BD819BE943900FC5A5D /* PUPlacesViewController.h */,
 				20258BD919BE943900FC5A5D /* PUPlacesViewController.m */,
+				202845AF19FD3426004D80EE /* PUPartyMoreInfoViewController.h */,
+				202845B019FD3426004D80EE /* PUPartyMoreInfoViewController.m */,
 			);
 			name = parties;
 			sourceTree = "<group>";
@@ -550,6 +560,8 @@
 				209D790019A5A3E700FF0FF2 /* PUPartyCell.m in Sources */,
 				20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */,
 				201E887119A56160008C5532 /* PUProfileViewController.m in Sources */,
+				202845B419FD45FD004D80EE /* NSString+Validators.m in Sources */,
+				202845B119FD3426004D80EE /* PUPartyMoreInfoViewController.m in Sources */,
 				20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */,
 				200055B019A43946008377FF /* main.m in Sources */,
 				20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */,

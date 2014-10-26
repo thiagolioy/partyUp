@@ -304,6 +304,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbE-xU-aBX" userLabel="MoreInfo">
                                 <rect key="frame" x="10" y="360" width="580" height="44"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsF-Xh-Fn4">
+                                        <rect key="frame" x="0.0" y="0.0" width="580" height="44"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="zFk-Tm-KUh" kind="show" identifier="showPartyMoreInfo" id="BTC-k0-4mj"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mais Detalhes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvS-D8-tWa">
                                         <rect key="frame" x="10" y="12" width="200" height="21"/>
                                         <constraints>
@@ -320,12 +329,25 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="lf5-dF-C06">
+                                        <rect key="frame" x="555" y="12" width="15" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="AWx-RE-Dqw"/>
+                                            <constraint firstAttribute="width" constant="15" id="MiK-fv-ooa"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="gsF-Xh-Fn4" firstAttribute="top" secondItem="FbE-xU-aBX" secondAttribute="top" id="3fd-dm-80K"/>
+                                    <constraint firstAttribute="centerY" secondItem="lf5-dF-C06" secondAttribute="centerY" id="5C9-Mj-MWb"/>
                                     <constraint firstAttribute="height" constant="44" id="79C-c1-WPi"/>
+                                    <constraint firstAttribute="trailing" secondItem="lf5-dF-C06" secondAttribute="trailing" constant="10" id="Ec2-bC-Q7y"/>
+                                    <constraint firstItem="gsF-Xh-Fn4" firstAttribute="leading" secondItem="FbE-xU-aBX" secondAttribute="leading" id="SgU-gh-O7C"/>
                                     <constraint firstAttribute="centerY" secondItem="uvS-D8-tWa" secondAttribute="centerY" id="VcJ-P6-q6d"/>
+                                    <constraint firstAttribute="trailing" secondItem="gsF-Xh-Fn4" secondAttribute="trailing" id="W0u-VE-8ba"/>
                                     <constraint firstItem="uvS-D8-tWa" firstAttribute="leading" secondItem="FbE-xU-aBX" secondAttribute="leading" constant="10" id="ak6-y9-IEe"/>
+                                    <constraint firstAttribute="bottom" secondItem="gsF-Xh-Fn4" secondAttribute="bottom" id="q6d-wI-Z2T"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BX2-3e-Ido" userLabel="CheckinWithFriends">
@@ -406,13 +428,69 @@
                     </view>
                     <navigationItem key="navigationItem" title="Party" id="uqT-hJ-t7I"/>
                     <connections>
-                        <outlet property="name" destination="GDO-tm-tKG" id="n6L-89-4jj"/>
-                        <outlet property="promoImage" destination="RKl-hp-ehm" id="r31-UE-dZr"/>
+                        <outlet property="date" destination="fT4-QP-SUx" id="lld-FH-Ik9"/>
+                        <outlet property="moreInfoView" destination="FbE-xU-aBX" id="J6j-Ia-stZ"/>
+                        <outlet property="placeAddress" destination="cx6-Qb-PTv" id="d5n-jc-1Wu"/>
+                        <outlet property="placeDistance" destination="m79-Gj-UeV" id="7CA-9p-ypw"/>
+                        <outlet property="placeName" destination="oOv-pR-DcG" id="2ek-OR-3cM"/>
+                        <outlet property="placeNeighborhood" destination="JP0-vs-3aQ" id="COW-Af-Hll"/>
+                        <outlet property="placeState" destination="shU-ZA-EsS" id="uEE-E8-01u"/>
+                        <outlet property="price" destination="GDO-tm-tKG" id="wci-D8-1fi"/>
+                        <outlet property="promoImage" destination="RKl-hp-ehm" id="FeS-II-pcG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O42-b4-GfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="255" y="-686.61971830985908"/>
+            <point key="canvasLocation" x="255" y="-687"/>
+        </scene>
+        <!--Party More Info View Controller-->
+        <scene sceneID="Z3S-sH-IJC">
+            <objects>
+                <viewController storyboardIdentifier="PUPartyMoreInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zFk-Tm-KUh" customClass="PUPartyMoreInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pQV-Qa-TDa"/>
+                        <viewControllerLayoutGuide type="bottom" id="dMy-jk-JSh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rG3-JF-p4a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2Z-Fs-6F6">
+                                <rect key="frame" x="10" y="80" width="580" height="451"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxJ-X3-MPv">
+                                        <rect key="frame" x="10" y="10" width="560" height="431"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="IxJ-X3-MPv" secondAttribute="bottom" constant="10" id="6Zj-QK-LAE"/>
+                                    <constraint firstAttribute="trailing" secondItem="IxJ-X3-MPv" secondAttribute="trailing" constant="10" id="Qg3-8y-gtX"/>
+                                    <constraint firstItem="IxJ-X3-MPv" firstAttribute="leading" secondItem="H2Z-Fs-6F6" secondAttribute="leading" constant="10" id="dXx-dH-fFY"/>
+                                    <constraint firstItem="IxJ-X3-MPv" firstAttribute="top" secondItem="H2Z-Fs-6F6" secondAttribute="top" constant="10" id="sZQ-MB-APR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="H2Z-Fs-6F6" firstAttribute="leading" secondItem="rG3-JF-p4a" secondAttribute="leading" constant="10" id="6XT-1y-8Yr"/>
+                            <constraint firstItem="H2Z-Fs-6F6" firstAttribute="top" secondItem="rG3-JF-p4a" secondAttribute="top" constant="80" id="bIC-kg-kYK"/>
+                            <constraint firstAttribute="trailing" secondItem="H2Z-Fs-6F6" secondAttribute="trailing" constant="10" id="xMc-Gd-jcn"/>
+                            <constraint firstItem="dMy-jk-JSh" firstAttribute="top" secondItem="H2Z-Fs-6F6" secondAttribute="bottom" constant="20" id="zbs-h0-4bW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="partyDescription" destination="IxJ-X3-MPv" id="oim-Xf-nAi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WXc-I0-jQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="-687"/>
         </scene>
         <!--Custom Tab Controller-->
         <scene sceneID="IhJ-f4-FHd">
@@ -656,5 +734,6 @@
     <resources>
         <image name="icon-user" width="24" height="24"/>
         <image name="partiesTabIconNormal" width="23" height="34"/>
+        <image name="rightArrow" width="25" height="41"/>
     </resources>
 </document>

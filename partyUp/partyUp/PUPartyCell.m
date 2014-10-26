@@ -27,13 +27,8 @@
     }];
     _name.text = party.name;
     _placeName.text = party.place.name;
-    _distanceInKm.text = [NSString stringWithFormat:@"%.2f km",party.place.distanceInKm];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
-    NSString *stringFromDate = [formatter stringFromDate:party.date];
-    
-    _date.text = stringFromDate;
+    _distanceInKm.text = [party.place prettyDistanceInKM];
+    _date.text = [party prettyFormattedDate];
 }
 
 

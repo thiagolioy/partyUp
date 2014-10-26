@@ -16,6 +16,9 @@
     party.name =  obj[@"name"];
     party.promoImage =  obj[@"promoImage"];
     party.date =  obj[@"date"];
+    party.partyDescription =  obj[@"description"];
+    party.malePrice =  obj[@"gentsPrice"];
+    party.femalePrice =  obj[@"ladysPrice"];
     
     party.place = [PUPlace placeWithParseObj:obj[@"place"]];
     
@@ -27,5 +30,23 @@
         [array addObject:[PUParty partyWithParseObj:o]];
     return (NSArray*)array;
 }
+
+-(NSString*)prettyFormattedPrices{
+    NSString *prettyPrices = @"";
+    if([_malePrice isValid])
+        prettyPrices = [NSString stringWithFormat:@"M: %@",_malePrice];
+    if([_femalePrice isValid])
+        prettyPrices = [NSString stringWithFormat:@"%@  F: %@",prettyPrices,_femalePrice];
+    
+    return prettyPrices;
+}
+
+-(NSString*)prettyFormattedDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *stringFromDate = [formatter stringFromDate:_date];
+    return stringFromDate;
+}
+
 
 @end

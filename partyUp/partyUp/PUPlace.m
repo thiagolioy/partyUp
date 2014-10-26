@@ -46,4 +46,17 @@
 -(double)distanceInKm{
     return _distanceInKm;
 }
+-(NSString*)prettyFormattedAddress{
+    NSString *prettyAddress = _street;
+    if([_number isValid])
+        prettyAddress = [NSString stringWithFormat:@"%@ %@",prettyAddress,_number];
+    if([_complement isValid])
+        prettyAddress = [NSString stringWithFormat:@"%@, %@",prettyAddress,_complement];
+    
+    return prettyAddress;
+}
+-(NSString*)prettyDistanceInKM{
+    return [NSString stringWithFormat:@"%.2f km",_distanceInKm];
+}
+
 @end

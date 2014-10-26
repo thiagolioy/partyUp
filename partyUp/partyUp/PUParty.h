@@ -14,11 +14,13 @@
 @property(nonatomic,strong)NSString *name;
 @property(nonatomic,strong)NSString *partyDescription;
 @property(nonatomic,strong)NSString *promoImage;
+@property(nonatomic,strong)NSString *malePrice;
+@property(nonatomic,strong)NSString *femalePrice;
 @property(nonatomic,strong)NSDate *date;
 @property(nonatomic,strong)PUPlace  *place;
 
 +(instancetype)partyWithParseObj:(PFObject*)obj;
 +(NSArray*)partiesWithParseObjects:(NSArray*)objects;
-
-
+-(NSString*)prettyFormattedDate;
+-(NSString*)prettyFormattedPrices;
 @end

@@ -8,3 +8,4 @@
 
 #import "UIView+roundMask.h"
 #import "NSCalendar+Convenience.h"
+#import "NSString+Validators.h"
