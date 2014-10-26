@@ -123,35 +123,6 @@ static NSString *headerCellID = @"headerCellID";
     [super didReceiveMemoryWarning];
 }
 
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    PUPartyCell *cell = (PUPartyCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-//    PUParty *party = [self partyAtIndexPath:indexPath];
-//    [cell fill:party];
-//    return cell;
-//}
-//
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return [_parties count];
-//}
-//
-//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    NSArray *parties =  [_parties objectAtIndex:section];
-//    return parties.count;
-//}
-//
-//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    static NSString *cellID = @"PUHeaderCellID";
-//    PUHeaderCell *cell = (PUHeaderCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-//    cell.message.text = [self headerMessageForSection:section];
-//    return cell;
-//}
-//
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    NSArray *parties =  [_parties objectAtIndex:section];
-//    return parties.count > 0 ? 44 : 0;
-//}
-//
 -(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
     NSArray *parties = [_parties objectAtIndex:indexPath.section];
     return [parties objectAtIndex:indexPath.row];
@@ -172,11 +143,11 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([@"proceedToParty" isEqualToString:segue.identifier]){
-//        NSIndexPath *path = [_partiesTableView indexPathForSelectedRow];
-//        PUParty *selectedParty = [self partyAtIndexPath:path];
-//        PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
-//        dest.partyId = selectedParty.partyId;
+    if([@"showParty" isEqualToString:segue.identifier]){
+        NSArray *paths = [_collectionView indexPathsForSelectedItems];
+        PUParty *selectedParty = [self partyAtIndexPath:[paths firstObject]];
+        PUPartyViewController *dest = (PUPartyViewController*)[segue destinationViewController];
+        dest.partyId = selectedParty.partyId;
     }
 }
 

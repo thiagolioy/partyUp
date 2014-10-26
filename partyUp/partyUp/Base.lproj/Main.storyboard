@@ -105,6 +105,7 @@
                                             <outlet property="name" destination="IJn-rL-AeT" id="Xp5-p3-FXb"/>
                                             <outlet property="placeName" destination="35M-UJ-qwV" id="auK-Ec-SY3"/>
                                             <outlet property="promoImage" destination="lQW-EB-1bS" id="dwU-5E-HJ7"/>
+                                            <segue destination="Hn6-BL-fiy" kind="show" identifier="showParty" id="LeR-5g-Cfy"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
