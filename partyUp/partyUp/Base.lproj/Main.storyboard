@@ -530,9 +530,108 @@
                     <view key="view" contentMode="scaleToFill" id="NGu-49-foK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYd-1s-QgU">
+                                <rect key="frame" x="10" y="80" width="580" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6CA-LN-gN7" customClass="FBProfilePictureView">
+                                        <rect key="frame" x="10" y="8" width="35" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="Dg1-Qu-a5O"/>
+                                            <constraint firstAttribute="height" constant="35" id="Np1-sb-OOe"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srj-ml-veH">
+                                        <rect key="frame" x="55" y="14" width="515" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="1S1-9K-ogy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Srj-ml-veH" secondAttribute="trailing" constant="10" id="2UI-xK-uQ9"/>
+                                    <constraint firstAttribute="centerY" secondItem="Srj-ml-veH" secondAttribute="centerY" id="Pms-t2-n1d"/>
+                                    <constraint firstItem="Srj-ml-veH" firstAttribute="leading" secondItem="6CA-LN-gN7" secondAttribute="trailing" constant="10" id="Sgr-Gj-bNt"/>
+                                    <constraint firstItem="6CA-LN-gN7" firstAttribute="leading" secondItem="zYd-1s-QgU" secondAttribute="leading" constant="10" id="Zds-x1-NS3"/>
+                                    <constraint firstAttribute="height" constant="50" id="cZt-ti-XFT"/>
+                                    <constraint firstAttribute="centerY" secondItem="6CA-LN-gN7" secondAttribute="centerY" id="oFx-Wq-1Xm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y1s-GB-TxA" userLabel="Buddies">
+                                <rect key="frame" x="10" y="443" width="580" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nid-7R-dMV">
+                                        <rect key="frame" x="1" y="1" width="578" height="42"/>
+                                        <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Buddies">
+                                            <color key="titleColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ptg-Vo-rjU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nid-7R-dMV" secondAttribute="trailing" constant="1" id="0Fd-ry-HQx"/>
+                                    <constraint firstAttribute="height" constant="44" id="7oP-7F-zbb"/>
+                                    <constraint firstItem="nid-7R-dMV" firstAttribute="leading" secondItem="Y1s-GB-TxA" secondAttribute="leading" constant="1" id="EwL-5n-ZCh"/>
+                                    <constraint firstItem="nid-7R-dMV" firstAttribute="top" secondItem="Y1s-GB-TxA" secondAttribute="top" constant="1" id="HwP-C8-3Y2"/>
+                                    <constraint firstAttribute="bottom" secondItem="nid-7R-dMV" secondAttribute="bottom" constant="1" id="cSL-d7-FTR"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XW8-1T-IYg" userLabel="Logout">
+                                <rect key="frame" x="10" y="497" width="580" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wmj-Ib-Ljj">
+                                        <rect key="frame" x="1" y="1" width="578" height="42"/>
+                                        <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Logout">
+                                            <color key="titleColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pnd-dZ-eqm"/>
+                                            <action selector="logout:" destination="JeS-Z1-Aiw" eventType="touchUpInside" id="IQK-oZ-ymd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="41m-UL-F0z"/>
+                                    <constraint firstItem="Wmj-Ib-Ljj" firstAttribute="top" secondItem="XW8-1T-IYg" secondAttribute="top" constant="1" id="DlC-b0-S4t"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wmj-Ib-Ljj" secondAttribute="bottom" constant="1" id="jQU-Lf-ITK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wmj-Ib-Ljj" secondAttribute="trailing" constant="1" id="kML-9l-NL8"/>
+                                    <constraint firstItem="Wmj-Ib-Ljj" firstAttribute="leading" secondItem="XW8-1T-IYg" secondAttribute="leading" constant="1" id="lZY-Rg-h72"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zYd-1s-QgU" firstAttribute="top" secondItem="NGu-49-foK" secondAttribute="top" constant="80" id="8X0-Zr-QjN"/>
+                            <constraint firstItem="XW8-1T-IYg" firstAttribute="leading" secondItem="NGu-49-foK" secondAttribute="leading" constant="10" id="Ddf-bU-lWi"/>
+                            <constraint firstItem="uRu-9n-BeN" firstAttribute="top" secondItem="XW8-1T-IYg" secondAttribute="bottom" constant="10" id="MwS-sf-afo"/>
+                            <constraint firstItem="Y1s-GB-TxA" firstAttribute="leading" secondItem="NGu-49-foK" secondAttribute="leading" constant="10" id="Nal-dR-6FQ"/>
+                            <constraint firstItem="XW8-1T-IYg" firstAttribute="top" secondItem="Y1s-GB-TxA" secondAttribute="bottom" constant="10" id="bmP-Vn-Hy5"/>
+                            <constraint firstAttribute="trailing" secondItem="Y1s-GB-TxA" secondAttribute="trailing" constant="10" id="fwc-qm-wMm"/>
+                            <constraint firstAttribute="trailing" secondItem="XW8-1T-IYg" secondAttribute="trailing" constant="10" id="gaU-4Q-xJ5"/>
+                            <constraint firstItem="zYd-1s-QgU" firstAttribute="leading" secondItem="NGu-49-foK" secondAttribute="leading" constant="10" id="kCu-Ck-pre"/>
+                            <constraint firstAttribute="trailing" secondItem="zYd-1s-QgU" secondAttribute="trailing" constant="10" id="oQX-I8-yG4"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="icon-user" id="pG9-T2-Ixv"/>
+                    <connections>
+                        <outlet property="profileName" destination="Srj-ml-veH" id="DFW-dO-EVx"/>
+                        <outlet property="profilePicture" destination="6CA-LN-gN7" id="Nke-m0-C7n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oET-ah-kze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

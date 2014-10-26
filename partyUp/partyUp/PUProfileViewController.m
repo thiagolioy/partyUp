@@ -21,7 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setUpCicleMaskOnPicture];
+    [self setUpCircleMaskOnPicture];
     [self fetchUserInfo];
 }
 
@@ -35,8 +35,8 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)setUpCicleMaskOnPicture{
-    [_profilePicture roundIt:40.0f];
+-(void)setUpCircleMaskOnPicture{
+    [_profilePicture roundIt:16.0f];
 }
 
 -(void)fetchUserInfo{
