@@ -65,8 +65,8 @@
     return [NSCalendar dateWithDaysDelta:-1];
 }
 
-+(NSDate*)twoWeeksFromNow{
-    return [NSCalendar dateWithDaysDelta:14];
++(NSDate*)oneWeekFromNow{
+    return [NSCalendar dateWithDaysDelta:7];
 }
 
 +(NSDate*)dateWithDaysDelta:(NSInteger)delta{

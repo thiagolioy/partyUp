@@ -14,6 +14,6 @@
 +(BOOL)isNextWeek:(NSDate*)date;
 +(NSDate*)today;
 +(NSDate*)yesterday;
-+(NSDate*)twoWeeksFromNow;
++(NSDate*)oneWeekFromNow;
 +(int)daysFromDate:(NSDate*)firstDate toDate:(NSDate*)secondDate;
 @end

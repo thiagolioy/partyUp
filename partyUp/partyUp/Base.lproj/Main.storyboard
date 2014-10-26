@@ -129,6 +129,9 @@
                                         <constraint firstAttribute="trailing" secondItem="N4d-r3-CT7" secondAttribute="trailing" constant="10" id="3mP-yk-40O"/>
                                         <constraint firstAttribute="centerY" secondItem="N4d-r3-CT7" secondAttribute="centerY" id="kyK-Oe-wMN"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="message" destination="N4d-r3-CT7" id="Ebu-Zi-Y8a"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="v9X-fH-2wb" id="Uss-jC-wk4"/>

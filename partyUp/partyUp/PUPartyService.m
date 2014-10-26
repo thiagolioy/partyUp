@@ -26,7 +26,7 @@
         [query includeKey:@"place"];
         [query whereKey:@"place" matchesQuery:placeQuery];
         
-        [query whereKey:@"date" lessThan:[NSCalendar twoWeeksFromNow]];
+        [query whereKey:@"date" lessThan:[NSCalendar oneWeekFromNow]];
         [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
         [query orderByAscending:@"date"];
         
@@ -60,17 +60,17 @@
         
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
         [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
-        placeQuery.limit = 10;
+//        placeQuery.limit = 10;
         
         
         PFQuery *query = [PFQuery queryWithClassName:@"Party"];
-        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
-        query.maxCacheAge = 60 * 60 * 24;
+//        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+//        query.maxCacheAge = 60 * 60 * 24;
         
         [query includeKey:@"place"];
         [query whereKey:@"place" matchesQuery:placeQuery];
         
-        [query whereKey:@"date" lessThan:[NSCalendar twoWeeksFromNow]];
+        [query whereKey:@"date" lessThan:[NSCalendar oneWeekFromNow]];
         [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
         [query orderByAscending:@"date"];
         

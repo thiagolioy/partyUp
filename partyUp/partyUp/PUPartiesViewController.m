@@ -139,7 +139,7 @@ static NSString *headerCellID = @"headerCellID";
     else if(section == ThisWeek)
         return @"Essa Semana";
     else
-        return @"Proxima Semana";
+        return @"Semana que vem";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
