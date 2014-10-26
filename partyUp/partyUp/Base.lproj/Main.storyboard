@@ -301,11 +301,38 @@
                                     <constraint firstAttribute="trailing" secondItem="shU-ZA-EsS" secondAttribute="trailing" constant="10" id="vUn-Xu-h1f"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbE-xU-aBX" userLabel="MoreInfo">
+                                <rect key="frame" x="10" y="360" width="580" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mais Detalhes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvS-D8-tWa">
+                                        <rect key="frame" x="10" y="12" width="200" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="FHF-Rw-01s"/>
+                                            <constraint firstAttribute="width" constant="200" id="Yhe-AU-D6L"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="nop-gG-uKi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="nop-gG-uKi"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="79C-c1-WPi"/>
+                                    <constraint firstAttribute="centerY" secondItem="uvS-D8-tWa" secondAttribute="centerY" id="VcJ-P6-q6d"/>
+                                    <constraint firstItem="uvS-D8-tWa" firstAttribute="leading" secondItem="FbE-xU-aBX" secondAttribute="leading" constant="10" id="ak6-y9-IEe"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BX2-3e-Ido" userLabel="CheckinWithFriends">
-                                <rect key="frame" x="10" y="436" width="580" height="50"/>
+                                <rect key="frame" x="10" y="448" width="580" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NA-MZ-uwa">
-                                        <rect key="frame" x="1" y="1" width="578" height="48"/>
+                                        <rect key="frame" x="1" y="1" width="578" height="42"/>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Checkin with Friends">
@@ -321,16 +348,16 @@
                                 <constraints>
                                     <constraint firstItem="3NA-MZ-uwa" firstAttribute="top" secondItem="BX2-3e-Ido" secondAttribute="top" constant="1" id="Iee-Tk-PPq"/>
                                     <constraint firstAttribute="trailing" secondItem="3NA-MZ-uwa" secondAttribute="trailing" constant="1" id="LlH-sJ-Tbv"/>
-                                    <constraint firstAttribute="height" constant="50" id="SIW-cu-Kof"/>
+                                    <constraint firstAttribute="height" constant="44" id="SIW-cu-Kof"/>
                                     <constraint firstItem="3NA-MZ-uwa" firstAttribute="leading" secondItem="BX2-3e-Ido" secondAttribute="leading" constant="1" id="wAV-pe-DkZ"/>
                                     <constraint firstAttribute="bottom" secondItem="3NA-MZ-uwa" secondAttribute="bottom" constant="1" id="x02-yt-Ekf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-w7-WPC" userLabel="TraceRoute">
-                                <rect key="frame" x="10" y="491" width="580" height="50"/>
+                                <rect key="frame" x="10" y="497" width="580" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhK-a3-mrT">
-                                        <rect key="frame" x="1" y="1" width="578" height="48"/>
+                                        <rect key="frame" x="1" y="1" width="578" height="42"/>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Trace Route">
@@ -346,7 +373,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="OhK-a3-mrT" secondAttribute="trailing" constant="1" id="7zN-tL-kNM"/>
                                     <constraint firstAttribute="bottom" secondItem="OhK-a3-mrT" secondAttribute="bottom" constant="1" id="HB7-O5-0aU"/>
-                                    <constraint firstAttribute="height" constant="50" id="bjQ-WV-BtA"/>
+                                    <constraint firstAttribute="height" constant="44" id="bjQ-WV-BtA"/>
                                     <constraint firstItem="OhK-a3-mrT" firstAttribute="top" secondItem="ZXY-w7-WPC" secondAttribute="top" constant="1" id="pe9-ob-9xV"/>
                                     <constraint firstItem="OhK-a3-mrT" firstAttribute="leading" secondItem="ZXY-w7-WPC" secondAttribute="leading" constant="1" id="spA-Xb-2jR"/>
                                 </constraints>
@@ -354,6 +381,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="FbE-xU-aBX" firstAttribute="leading" secondItem="t3N-bU-EHy" secondAttribute="leading" constant="10" id="0kW-Of-NAb"/>
                             <constraint firstItem="x0R-HQ-GPa" firstAttribute="leading" secondItem="t3N-bU-EHy" secondAttribute="leading" constant="10" id="8fR-Hu-Cf4"/>
                             <constraint firstItem="UI7-Lv-gwH" firstAttribute="top" secondItem="HW9-bY-OXG" secondAttribute="bottom" constant="10" id="DXe-Jk-RgO"/>
                             <constraint firstItem="ZXY-w7-WPC" firstAttribute="top" secondItem="BX2-3e-Ido" secondAttribute="bottom" constant="5" id="FLG-nf-tu4"/>
@@ -361,12 +389,20 @@
                             <constraint firstAttribute="trailing" secondItem="x0R-HQ-GPa" secondAttribute="trailing" constant="10" id="Rxz-x9-dbn"/>
                             <constraint firstItem="x0R-HQ-GPa" firstAttribute="top" secondItem="UI7-Lv-gwH" secondAttribute="bottom" constant="5" id="TEQ-an-zIl"/>
                             <constraint firstItem="UI7-Lv-gwH" firstAttribute="leading" secondItem="t3N-bU-EHy" secondAttribute="leading" constant="10" id="Zxk-Fb-SCk"/>
+                            <constraint firstItem="FbE-xU-aBX" firstAttribute="top" secondItem="x0R-HQ-GPa" secondAttribute="bottom" constant="5" id="aS7-Ru-xWG"/>
                             <constraint firstAttribute="trailing" secondItem="UI7-Lv-gwH" secondAttribute="trailing" constant="10" id="bhF-Dd-A5c"/>
+                            <constraint firstAttribute="trailing" secondItem="FbE-xU-aBX" secondAttribute="trailing" constant="10" id="dxq-yY-Xky"/>
                             <constraint firstItem="euD-Ul-U17" firstAttribute="top" secondItem="ZXY-w7-WPC" secondAttribute="bottom" constant="10" id="ebs-P0-K5m"/>
                             <constraint firstItem="ZXY-w7-WPC" firstAttribute="leading" secondItem="t3N-bU-EHy" secondAttribute="leading" constant="10" id="uNM-cN-DVO"/>
                             <constraint firstItem="BX2-3e-Ido" firstAttribute="leading" secondItem="t3N-bU-EHy" secondAttribute="leading" constant="10" id="wIq-Md-dvv"/>
+                            <constraint firstItem="BX2-3e-Ido" firstAttribute="top" secondItem="FbE-xU-aBX" secondAttribute="bottom" constant="5" id="yFg-3d-Mmr"/>
                             <constraint firstAttribute="trailing" secondItem="BX2-3e-Ido" secondAttribute="trailing" constant="10" id="zMc-Vb-bLR"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yFg-3d-Mmr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Party" id="uqT-hJ-t7I"/>
                     <connections>
