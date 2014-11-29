@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ZA-be-4zU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C68m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ZA-be-4zU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -575,6 +575,7 @@
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ptg-Vo-rjU"/>
+                                            <segue destination="RTF-qu-7wA" kind="show" id="x73-tU-O0D"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -649,28 +650,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="54" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-nl-g3H">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DWu-nl-g3H">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BuddyCellID" rowHeight="54" id="A91-2k-CDR" customClass="PUBuddyTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BuddyCellID" rowHeight="55" id="A91-2k-CDR" customClass="PUBuddyTableViewCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A91-2k-CDR" id="oXg-XH-1Ze">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HYT-Zh-Wa5" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="10" y="5" width="44" height="44"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SAa-TH-cCl">
+                                                    <rect key="frame" x="10" y="5" width="580" height="50"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYT-Zh-Wa5" customClass="FBProfilePictureView">
+                                                            <rect key="frame" x="10" y="8" width="35" height="35"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="55W-g1-EyH"/>
+                                                                <constraint firstAttribute="width" constant="35" id="rBr-fP-Zge"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cu-uX-1ZR">
+                                                            <rect key="frame" x="55" y="15" width="515" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="0O9-Qi-xPX"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="centerY" secondItem="0Cu-uX-1ZR" secondAttribute="centerY" id="3j1-sY-tlC"/>
+                                                        <constraint firstAttribute="centerY" secondItem="HYT-Zh-Wa5" secondAttribute="centerY" id="8k5-K6-nN3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0Cu-uX-1ZR" secondAttribute="trailing" constant="10" id="DwO-sX-EI3"/>
+                                                        <constraint firstItem="HYT-Zh-Wa5" firstAttribute="leading" secondItem="SAa-TH-cCl" secondAttribute="leading" constant="10" id="Hqx-ci-n6v"/>
+                                                        <constraint firstItem="0Cu-uX-1ZR" firstAttribute="leading" secondItem="HYT-Zh-Wa5" secondAttribute="trailing" constant="10" id="YNj-7A-AMH"/>
+                                                    </constraints>
                                                 </view>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cu-uX-1ZR">
-                                                    <rect key="frame" x="62" y="16" width="238" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.086274509799999996" green="0.10980392160000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="SAa-TH-cCl" firstAttribute="leading" secondItem="oXg-XH-1Ze" secondAttribute="leading" constant="10" id="Ccq-Ad-tDj"/>
+                                                <constraint firstItem="SAa-TH-cCl" firstAttribute="top" secondItem="oXg-XH-1Ze" secondAttribute="top" constant="5" id="Dgn-el-aiR"/>
+                                                <constraint firstAttribute="trailing" secondItem="SAa-TH-cCl" secondAttribute="trailing" constant="10" id="WUJ-hx-khX"/>
+                                                <constraint firstAttribute="bottom" secondItem="SAa-TH-cCl" secondAttribute="bottom" id="wo8-PM-yjg"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="name" destination="0Cu-uX-1ZR" id="Eg8-QR-dQp"/>
@@ -680,7 +708,13 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.086274509803921567" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="DWu-nl-g3H" firstAttribute="leading" secondItem="oVR-HW-h9R" secondAttribute="leading" id="6wK-mn-dhU"/>
+                            <constraint firstAttribute="bottom" secondItem="DWu-nl-g3H" secondAttribute="bottom" id="JvA-Mf-DBh"/>
+                            <constraint firstAttribute="trailing" secondItem="DWu-nl-g3H" secondAttribute="trailing" id="OPG-P4-eHu"/>
+                            <constraint firstItem="DWu-nl-g3H" firstAttribute="top" secondItem="oVR-HW-h9R" secondAttribute="top" id="XbZ-oy-Cmm"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Buddies" id="vXa-PI-s4k"/>
                     <connections>

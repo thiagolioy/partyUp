@@ -34,8 +34,14 @@
         _buddies = [NSMutableArray array];
     [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if(!error){
-            for(NSDictionary *b in [result objectForKey:@"data"])
+            for(NSDictionary *b in [result objectForKey:@"data"]){
                 [_buddies addObject:b];
+                [_buddies addObject:b];
+                [_buddies addObject:b];
+                [_buddies addObject:b];
+                [_buddies addObject:b];
+
+            }
         }
         _buddiesTableView.dataSource = self;
         _buddiesTableView.delegate = self;
