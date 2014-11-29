@@ -11,7 +11,7 @@
 #import "PUBestBuddyTableViewCell.h"
 #import "PUHeaderTableViewCell.h"
 
-@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate>
+@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
@@ -52,11 +52,6 @@ static NSString *headerCellID = @"HeaderCellID";
         if(!error){
             for(NSDictionary *b in [result objectForKey:@"data"]){
                 [_buddies addObject:b];
-                [_buddies addObject:b];
-                [_buddies addObject:b];
-                [_bestBuddies addObject:b];
-//                [_bestBuddies addObject:b];
-
             }
         }
         _buddiesTableView.dataSource = self;
@@ -88,7 +83,7 @@ static NSString *headerCellID = @"HeaderCellID";
     
     NSArray *buddies = [self buddiesForSection:indexPath.section];
     NSDictionary *dc = [buddies objectAtIndex:indexPath.row];
-    [cell fill:dc];
+    [cell fill:dc andDelegate:self];
     return cell;
 }
 
@@ -113,36 +108,62 @@ static NSString *headerCellID = @"HeaderCellID";
     PUHeaderTableViewCell *cell = (PUHeaderTableViewCell*)[tableView dequeueReusableCellWithIdentifier:headerCellID];
     if([self hasBestBuddies:section])
         cell.message.text = @"Best Buddies";
-    else if(section == otherBuddies)
-        cell.message.text = @"Others";
+    else if([self hasBuddies:section])
+        cell.message.text = @"Buddies";
     return [cell contentView];
 }
 -(BOOL)hasBestBuddies:(NSInteger)section{
     return (section == bestBuddies && _bestBuddies.count > 0);
 }
+-(BOOL)hasBuddies:(NSInteger)section{
+    return (section == otherBuddies && _buddies.count > 0);
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if([self hasBestBuddies:section])
         return 44.0f;
-    else if(section == otherBuddies)
+    else if([self hasBuddies:section])
         return 44.0f;
     return 0.0f;
 }
 
 #pragma mark - Cell Delegates
 -(void)removeBuddy:(NSString *)buddyId{
-    NSDictionary *buddyToRemove;
-    for(NSDictionary *b in _bestBuddies){
-        NSString *bId = [b objectForKey:@"id"];
-        if([bId isEqualToString:buddyId]){
-            buddyToRemove = b;
-            break;
-        }
-    }
-    if(buddyToRemove){
-        [_bestBuddies removeObject:buddyToRemove];
+    NSDictionary *buddy = [self findBuddy:buddyId onList:_bestBuddies];
+    if(buddy){
+        [self demoteToBuddy:buddy];
         [_buddiesTableView reloadData];
     }
 }
+
+
+-(void)promoteToBestBuddy:(NSDictionary*)buddy{
+    [_buddies removeObject:buddy];
+    [_bestBuddies addObject:buddy];
+}
+
+-(void)demoteToBuddy:(NSDictionary*)buddy{
+    [_bestBuddies removeObject:buddy];
+    [_buddies addObject:buddy];
+}
+
+-(void)addToBestBuddies:(NSString *)buddyId{
+    NSDictionary *buddy = [self findBuddy:buddyId onList:_buddies];
+    if(buddy){
+        [self promoteToBestBuddy:buddy];
+        [_buddiesTableView reloadData];
+    }
+}
+
+-(NSDictionary*)findBuddy:(NSString*)buddyId onList:(NSArray*)buddies{
+    for(NSDictionary *b in buddies){
+        NSString *bId = [b objectForKey:@"id"];
+        if([bId isEqualToString:buddyId])
+            return b;
+
+    }
+    return nil;
+}
+
 
 @end
