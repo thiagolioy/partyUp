@@ -673,7 +673,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cu-uX-1ZR">
-                                                            <rect key="frame" x="55" y="15" width="515" height="21"/>
+                                                            <rect key="frame" x="55" y="15" width="470" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="0O9-Qi-xPX"/>
                                                             </constraints>
@@ -681,14 +681,45 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C95-Qc-ptI">
+                                                            <rect key="frame" x="535" y="0.0" width="45" height="50"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecs-I2-tTL">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="50"/>
+                                                                    <state key="normal">
+                                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                </button>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_icon_dark" translatesAutoresizingMaskIntoConstraints="NO" id="vfh-DQ-nD8">
+                                                                    <rect key="frame" x="10" y="13" width="25" height="25"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="1Zm-Re-8cJ"/>
+                                                                        <constraint firstAttribute="width" constant="25" id="WoY-bw-0rl"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="centerY" secondItem="vfh-DQ-nD8" secondAttribute="centerY" id="2Ea-VL-RNn"/>
+                                                                <constraint firstItem="Ecs-I2-tTL" firstAttribute="leading" secondItem="C95-Qc-ptI" secondAttribute="leading" id="aPY-st-TvQ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Ecs-I2-tTL" secondAttribute="trailing" id="d8f-qg-FUY"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Ecs-I2-tTL" secondAttribute="bottom" id="ee6-4S-zVW"/>
+                                                                <constraint firstItem="Ecs-I2-tTL" firstAttribute="top" secondItem="C95-Qc-ptI" secondAttribute="top" id="lq0-4u-hxG"/>
+                                                                <constraint firstAttribute="centerX" secondItem="vfh-DQ-nD8" secondAttribute="centerX" id="uwa-y6-kRb"/>
+                                                                <constraint firstAttribute="width" constant="45" id="wKt-kB-8Ws"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="centerY" secondItem="0Cu-uX-1ZR" secondAttribute="centerY" id="3j1-sY-tlC"/>
                                                         <constraint firstAttribute="centerY" secondItem="HYT-Zh-Wa5" secondAttribute="centerY" id="8k5-K6-nN3"/>
-                                                        <constraint firstAttribute="trailing" secondItem="0Cu-uX-1ZR" secondAttribute="trailing" constant="10" id="DwO-sX-EI3"/>
+                                                        <constraint firstAttribute="bottom" secondItem="C95-Qc-ptI" secondAttribute="bottom" id="FcJ-S0-JDD"/>
                                                         <constraint firstItem="HYT-Zh-Wa5" firstAttribute="leading" secondItem="SAa-TH-cCl" secondAttribute="leading" constant="10" id="Hqx-ci-n6v"/>
+                                                        <constraint firstItem="C95-Qc-ptI" firstAttribute="top" secondItem="SAa-TH-cCl" secondAttribute="top" id="Tbh-f0-fur"/>
+                                                        <constraint firstAttribute="trailing" secondItem="C95-Qc-ptI" secondAttribute="trailing" id="Thd-Ob-Xff"/>
                                                         <constraint firstItem="0Cu-uX-1ZR" firstAttribute="leading" secondItem="HYT-Zh-Wa5" secondAttribute="trailing" constant="10" id="YNj-7A-AMH"/>
+                                                        <constraint firstItem="C95-Qc-ptI" firstAttribute="leading" secondItem="0Cu-uX-1ZR" secondAttribute="trailing" constant="10" id="gFe-EK-mL1"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -870,6 +901,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_icon_dark" width="21" height="21"/>
         <image name="icon-user" width="24" height="24"/>
         <image name="partiesTabIconNormal" width="23" height="34"/>
         <image name="rightArrow" width="25" height="41"/>
