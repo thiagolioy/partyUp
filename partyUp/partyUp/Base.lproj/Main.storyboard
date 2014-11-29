@@ -398,7 +398,6 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JE5-BO-ghe"/>
                                             <action selector="sendNamesToParty" destination="Hn6-BL-fiy" eventType="touchUpInside" id="o5S-Vo-ALB"/>
                                         </connections>
                                     </button>
@@ -425,7 +424,6 @@
                                         </state>
                                         <connections>
                                             <action selector="displayRouteToParty" destination="Hn6-BL-fiy" eventType="touchUpInside" id="80P-Wk-Vua"/>
-                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nNG-0I-Gks"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -612,7 +610,6 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ptg-Vo-rjU"/>
                                             <segue destination="RTF-qu-7wA" kind="show" id="x73-tU-O0D"/>
                                         </connections>
                                     </button>
@@ -638,7 +635,6 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pnd-dZ-eqm"/>
                                             <action selector="logout:" destination="JeS-Z1-Aiw" eventType="touchUpInside" id="IQK-oZ-ymd"/>
                                         </connections>
                                     </button>
@@ -1112,7 +1108,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQb-iH-WNm">
                                 <rect key="frame" x="175" y="470" width="250" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBG-pC-g4d">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBG-pC-g4d" customClass="UIAsyncButton">
                                         <rect key="frame" x="1" y="1" width="248" height="48"/>
                                         <color key="backgroundColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
@@ -1121,7 +1117,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="s4M-Sj-la0"/>
+                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lhf-lz-ROZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1153,7 +1149,7 @@
                     <connections>
                         <outlet property="backgroundCollection" destination="kYs-3p-L47" id="QfT-R6-wL5"/>
                         <outlet property="backgroundPageControl" destination="a08-jt-ldI" id="lwU-3h-j45"/>
-                        <outlet property="loginButton" destination="eBG-pC-g4d" id="rFc-yr-7Lk"/>
+                        <outlet property="loginButton" destination="eBG-pC-g4d" id="iTp-SD-kdv"/>
                         <segue destination="YZ3-pC-eWc" kind="show" identifier="proceedToParties" id="SmP-7d-DOX"/>
                     </connections>
                 </viewController>

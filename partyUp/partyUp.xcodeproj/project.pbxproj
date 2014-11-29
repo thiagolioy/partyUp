@@ -65,6 +65,7 @@
 		3EB5EA191A2A491D00C18AED /* PUBuddiesStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA181A2A491D00C18AED /* PUBuddiesStorage.m */; };
 		3EB5EA1B1A2A696900C18AED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5EA1A1A2A696900C18AED /* MapKit.framework */; };
 		3EB5EA1E1A2A7BC100C18AED /* PUSendMailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA1D1A2A7BC100C18AED /* PUSendMailHelper.m */; };
+		3EB5EA261A2A8AD800C18AED /* UIAsyncButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA251A2A8AD800C18AED /* UIAsyncButton.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -172,6 +173,8 @@
 		3EB5EA1A1A2A696900C18AED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3EB5EA1C1A2A7BC100C18AED /* PUSendMailHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUSendMailHelper.h; sourceTree = "<group>"; };
 		3EB5EA1D1A2A7BC100C18AED /* PUSendMailHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSendMailHelper.m; sourceTree = "<group>"; };
+		3EB5EA241A2A8AD800C18AED /* UIAsyncButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAsyncButton.h; sourceTree = "<group>"; };
+		3EB5EA251A2A8AD800C18AED /* UIAsyncButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAsyncButton.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-partyUp/Pods-partyUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -406,6 +409,7 @@
 		209D78FD19A5A3C000FF0FF2 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				3EB5EA231A2A8ABE00C18AED /* components */,
 				3EB5EA0B1A29FBB100C18AED /* PUBestBuddyTableViewCell.h */,
 				3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */,
 				209D78FE19A5A3E700FF0FF2 /* PUPartyCell.h */,
@@ -450,6 +454,15 @@
 				3EB5EA1D1A2A7BC100C18AED /* PUSendMailHelper.m */,
 			);
 			name = helpers;
+			sourceTree = "<group>";
+		};
+		3EB5EA231A2A8ABE00C18AED /* components */ = {
+			isa = PBXGroup;
+			children = (
+				3EB5EA241A2A8AD800C18AED /* UIAsyncButton.h */,
+				3EB5EA251A2A8AD800C18AED /* UIAsyncButton.m */,
+			);
+			name = components;
 			sourceTree = "<group>";
 		};
 		FD8EBE52ABF76918DCCA5A34 /* Pods */ = {
@@ -608,6 +621,7 @@
 			files = (
 				200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */,
 				20497C1A19A8474A00CB942F /* PUBuddyTableViewCell.m in Sources */,
+				3EB5EA261A2A8AD800C18AED /* UIAsyncButton.m in Sources */,
 				209D790019A5A3E700FF0FF2 /* PUPartyCell.m in Sources */,
 				20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */,
 				3EB5EA161A2A3E3D00C18AED /* PUUser.m in Sources */,

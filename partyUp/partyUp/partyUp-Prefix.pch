@@ -17,4 +17,5 @@
     #import <ParseFacebookUtils/PFFacebookUtils.h>
     #import <FacebookSDK/FacebookSDK.h>
     #import "PUExtensionsHeader.h"
+    #import "UIAsyncButton.h"
 #endif

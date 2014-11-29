@@ -12,9 +12,11 @@
 #import "PUSocialService.h"
 
 @interface PULoginViewController ()<UICollectionViewDataSource>
-@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UIAsyncButton *loginButton;
 @property(nonatomic,strong)IBOutlet UICollectionView *backgroundCollection;
 @property(nonatomic,strong)IBOutlet UIPageControl *backgroundPageControl;
+
+
 @property(nonatomic,strong)NSArray *contentMessages;
 @property(nonatomic,strong)PUSocialService *service;
 @end
@@ -98,6 +100,7 @@
 
 -(void)successOnLogin{
     [_service fetchMyself:^(PUUser *me, NSError *error) {
+        [_loginButton reset];
         if(!error)
             [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
     }];
