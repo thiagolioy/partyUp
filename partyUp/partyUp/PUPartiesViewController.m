@@ -23,6 +23,9 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
 @interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) IBOutlet UIView *errorMsgContainer;
+@property (strong, nonatomic) IBOutlet UILabel *errorMsg;
+
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,strong)PUPartyService *service;
 @property(nonatomic,strong)NSMutableDictionary *sectionParties;
@@ -66,6 +69,12 @@ static NSString *headerCellID = @"headerCellID";
     }];
 }
 
+-(void)showErrorMsg:(NSString*)error{
+    _errorMsgContainer.hidden = NO;
+    if(error)
+        _errorMsg.text = error;
+}
+
 -(void)refreshParties{
     _parties = [NSMutableArray array];
     [_collectionView reloadData];
@@ -82,14 +91,22 @@ static NSString *headerCellID = @"headerCellID";
 
 -(void)fetchParties{
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
-        if(!error){
-            [_activityIndicator stopAnimating];
+        [_activityIndicator stopAnimating];
+        if(!error)
             [self successOnFetchParties:parties];
-        }
+        else
+            [self showErrorMsg:@"Aconteceu um erro inesperado, tente mais tarde."];
     }];
 }
 
+-(void)noPartiesFound{
+    [self showErrorMsg:nil];
+}
+
 -(void)successOnFetchParties:(NSArray*)parties{
+    if(parties.count == 0)
+        [self noPartiesFound];
+    
     [self splitSectionParties:parties];
     [self refreshPartiesTableView];
 }
