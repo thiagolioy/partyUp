@@ -10,12 +10,14 @@
 #import "PUBuddyTableViewCell.h"
 #import "PUBestBuddyTableViewCell.h"
 #import "PUHeaderTableViewCell.h"
+#import "PUSocialService.h"
 
 @interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
 @property(nonatomic,strong)IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
+@property(nonatomic,strong)PUSocialService *service;
 @end
 
 typedef NS_ENUM(NSUInteger, BuddiesSections) {
@@ -34,6 +36,7 @@ static NSString *headerCellID = @"HeaderCellID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initSocialService];
     [self fetchBuddies];
 }
 
@@ -43,23 +46,27 @@ static NSString *headerCellID = @"HeaderCellID";
     // Dispose of any resources that can be recreated.
 }
 
--(void)fetchBuddies{
+-(void)initSocialService{
+    _service = [PUSocialService new];
+}
+-(void)initBuddiesArrays{
     if(!_buddies)
         _buddies = [NSMutableArray array];
     if(!_bestBuddies)
         _bestBuddies = [NSMutableArray array];
+}
+
+-(void)fetchBuddies{
+    [self initBuddiesArrays];
     
     [_activityIndicator startAnimating];
-    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        if(!error){
-            for(NSDictionary *b in [result objectForKey:@"data"]){
-                [_buddies addObject:b];
-            }
-        }
+
+    [_service fetchBuddies:^(NSArray *buddies, NSError *error) {
         [_activityIndicator stopAnimating];
-        _buddiesTableView.dataSource = self;
-        _buddiesTableView.delegate = self;
-        [_buddiesTableView reloadData];
+        if(!error){
+            [_buddies addObjectsFromArray:buddies];
+            [_buddiesTableView reloadData];
+        }
     }];
 }
 
@@ -74,6 +81,11 @@ static NSString *headerCellID = @"HeaderCellID";
     return _buddies.count;
 }
 
+-(PUUser*)buddyAtIndexPath:(NSIndexPath*)indexPath{
+    NSArray *buddies = [self buddiesForSection:indexPath.section];
+    return [buddies objectAtIndex:indexPath.row];
+}
+
 -(NSArray*)buddiesForSection:(NSInteger)section{
     if(section == bestBuddies)
         return (NSArray*)_bestBuddies;
@@ -83,19 +95,17 @@ static NSString *headerCellID = @"HeaderCellID";
 
 - (PUBuddyTableViewCell *)tableView:(UITableView *)tableView buddiesCellAtIndexPath:(NSIndexPath *)indexPath{
     PUBuddyTableViewCell *cell = (PUBuddyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:buddiesCellID];
-    
-    NSArray *buddies = [self buddiesForSection:indexPath.section];
-    NSDictionary *dc = [buddies objectAtIndex:indexPath.row];
-    [cell fill:dc andDelegate:self];
+   
+    PUUser *buddy = [self buddyAtIndexPath:indexPath];
+    [cell fill:buddy andDelegate:self];
     return cell;
 }
 
 - (PUBestBuddyTableViewCell *)tableView:(UITableView *)tableView bestBuddiesCellAtIndexPath:(NSIndexPath *)indexPath{
     PUBestBuddyTableViewCell *cell = (PUBestBuddyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:bestBuddiesCellID];
     
-    NSArray *buddies = [self buddiesForSection:indexPath.section];
-    NSDictionary *dc = [buddies objectAtIndex:indexPath.row];
-    [cell fill:dc withDelegate:self];
+    PUUser *buddy = [self buddyAtIndexPath:indexPath];
+    [cell fill:buddy withDelegate:self];
     return cell;
 }
 
@@ -131,40 +141,37 @@ static NSString *headerCellID = @"HeaderCellID";
 }
 
 #pragma mark - Cell Delegates
--(void)removeBuddy:(NSString *)buddyId{
-    NSDictionary *buddy = [self findBuddy:buddyId onList:_bestBuddies];
+-(void)removeBuddy:(PUUser *)b{
+    PUUser *buddy = [self findBuddy:b onList:_bestBuddies];
     if(buddy){
-        [self demoteToBuddy:buddy];
+        [self demoteToBuddies:buddy];
         [_buddiesTableView reloadData];
     }
 }
 
 
--(void)promoteToBestBuddy:(NSDictionary*)buddy{
+-(void)promoteToBestBuddies:(PUUser*)buddy{
     [_buddies removeObject:buddy];
     [_bestBuddies addObject:buddy];
 }
 
--(void)demoteToBuddy:(NSDictionary*)buddy{
+-(void)demoteToBuddies:(PUUser*)buddy{
     [_bestBuddies removeObject:buddy];
     [_buddies addObject:buddy];
 }
 
--(void)addToBestBuddies:(NSString *)buddyId{
-    NSDictionary *buddy = [self findBuddy:buddyId onList:_buddies];
+-(void)addToBestBuddies:(PUUser *)b{
+    PUUser *buddy = [self findBuddy:b onList:_buddies];
     if(buddy){
-        [self promoteToBestBuddy:buddy];
+        [self promoteToBestBuddies:buddy];
         [_buddiesTableView reloadData];
     }
 }
 
--(NSDictionary*)findBuddy:(NSString*)buddyId onList:(NSArray*)buddies{
-    for(NSDictionary *b in buddies){
-        NSString *bId = [b objectForKey:@"id"];
-        if([bId isEqualToString:buddyId])
+-(PUUser*)findBuddy:(PUUser*)buddy onList:(NSArray*)buddies{
+    for(PUUser *b in buddies)
+        if([PUUser areTheSame:buddy otherUser:b])
             return b;
-
-    }
     return nil;
 }
 

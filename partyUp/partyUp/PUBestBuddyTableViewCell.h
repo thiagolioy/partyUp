@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PUUser.h"
 
 @protocol PUBestBuddyTableViewCellDelegate <NSObject>
 
--(void)removeBuddy:(NSString*)buddyId;
+-(void)removeBuddy:(PUUser*)buddy;
 
 @end
 
 @interface PUBestBuddyTableViewCell : UITableViewCell
 
--(void)fill:(NSDictionary*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate;
+-(void)fill:(PUUser*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate;
 @end

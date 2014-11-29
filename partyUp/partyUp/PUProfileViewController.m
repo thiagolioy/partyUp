@@ -8,11 +8,12 @@
 
 #import "PUProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "PUSocialService.h"
 
 @interface PUProfileViewController ()
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (strong, nonatomic) IBOutlet UILabel *profileName;
+@property (strong, nonatomic) PUSocialService *service;
 
 @end
 
@@ -22,6 +23,7 @@
 {
     [super viewDidLoad];
     [self setUpCircleMaskOnPicture];
+    [self initSocialService];
     [self fetchUserInfo];
 }
 
@@ -35,19 +37,30 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)initSocialService{
+    _service = [PUSocialService new];
+}
+
 -(void)setUpCircleMaskOnPicture{
     [_profilePicture roundIt:16.0f];
 }
 
 -(void)fetchUserInfo{
-    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        if(!error){
-            _profilePicture.profileID = [result objectForKey:@"id"];
-            _profileName.text = [result objectForKey:@"name"];
-        }
+    [_service fetchMyself:^(PUUser *me, NSError *error) {
+        if(!error)
+            [self fillUserInfo:me];
+        else
+            [self recoverUserFromCache];
     }];
-    
+}
 
+-(void)recoverUserFromCache{
+
+}
+
+-(void)fillUserInfo:(PUUser*)user{
+    _profilePicture.profileID = user.userId;
+    _profileName.text = user.name;
 }
 
 - (IBAction)logout:(id)sender {

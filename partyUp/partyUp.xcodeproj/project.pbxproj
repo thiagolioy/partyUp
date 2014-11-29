@@ -61,6 +61,8 @@
 		20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */; };
 		3EB5EA0D1A29FBB100C18AED /* PUBestBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */; };
 		3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */; };
+		3EB5EA131A2A3DAC00C18AED /* PUSocialService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA121A2A3DAC00C18AED /* PUSocialService.m */; };
+		3EB5EA161A2A3E3D00C18AED /* PUUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA151A2A3E3D00C18AED /* PUUser.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +162,10 @@
 		3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUBestBuddyTableViewCell.m; sourceTree = "<group>"; };
 		3EB5EA0E1A2A0B3F00C18AED /* PUHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUHeaderTableViewCell.h; sourceTree = "<group>"; };
 		3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUHeaderTableViewCell.m; sourceTree = "<group>"; };
+		3EB5EA111A2A3DAC00C18AED /* PUSocialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUSocialService.h; sourceTree = "<group>"; };
+		3EB5EA121A2A3DAC00C18AED /* PUSocialService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSocialService.m; sourceTree = "<group>"; };
+		3EB5EA141A2A3E3D00C18AED /* PUUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUUser.h; sourceTree = "<group>"; };
+		3EB5EA151A2A3E3D00C18AED /* PUUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUUser.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-partyUp/Pods-partyUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -385,6 +391,8 @@
 				20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */,
 				20F9389A19C92D8A0069EE26 /* PUSearchSuggestionsService.h */,
 				20F9389B19C92D8A0069EE26 /* PUSearchSuggestionsService.m */,
+				3EB5EA111A2A3DAC00C18AED /* PUSocialService.h */,
+				3EB5EA121A2A3DAC00C18AED /* PUSocialService.m */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -417,6 +425,8 @@
 				20D960EA19AFFB5F00A893CF /* PUPlace.m */,
 				20F9389D19C92E590069EE26 /* PUSearchSuggestion.h */,
 				20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */,
+				3EB5EA141A2A3E3D00C18AED /* PUUser.h */,
+				3EB5EA151A2A3E3D00C18AED /* PUUser.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -579,6 +589,7 @@
 				20497C1A19A8474A00CB942F /* PUBuddyTableViewCell.m in Sources */,
 				209D790019A5A3E700FF0FF2 /* PUPartyCell.m in Sources */,
 				20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */,
+				3EB5EA161A2A3E3D00C18AED /* PUUser.m in Sources */,
 				201E887119A56160008C5532 /* PUProfileViewController.m in Sources */,
 				202845B419FD45FD004D80EE /* NSString+Validators.m in Sources */,
 				202845B119FD3426004D80EE /* PUPartyMoreInfoViewController.m in Sources */,
@@ -596,6 +607,7 @@
 				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
 				20EBA8B719FC2FC700612C85 /* PUCustomTabController.m in Sources */,
+				3EB5EA131A2A3DAC00C18AED /* PUSocialService.m in Sources */,
 				20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */,
 				20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */,
 				20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */,

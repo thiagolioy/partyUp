@@ -14,23 +14,23 @@
 @property (strong, nonatomic) IBOutlet UILabel *name;
 
 @property (strong, nonatomic) id<PUBestBuddyTableViewCellDelegate> delegate;
-@property (strong, nonatomic) NSDictionary *buddy;
+@property (strong, nonatomic) PUUser *buddy;
 
 @end
 
 @implementation PUBestBuddyTableViewCell
 
--(void)fill:(NSDictionary*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate{
+-(void)fill:(PUUser*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate{
     _delegate = delegate;
     _buddy = buddy;
     [_profilePicture roundIt:20.0f];
-    _profilePicture.profileID = [buddy objectForKey:@"id"];
-    _name.text = [buddy objectForKey:@"name"];
+    _profilePicture.profileID = buddy.userId;
+    _name.text =  buddy.name;
 }
 
 -(IBAction)clickOnRemoveIcon:(id)sender{
     if(_delegate)
-        [_delegate removeBuddy:[_buddy objectForKey:@"id"]];
+        [_delegate removeBuddy:_buddy];
 }
 
 @end

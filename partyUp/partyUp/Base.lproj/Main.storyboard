@@ -726,7 +726,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.086274509799999996" green="0.10980392160000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="SAa-TH-cCl" firstAttribute="leading" secondItem="oXg-XH-1Ze" secondAttribute="leading" constant="10" id="Ccq-Ad-tDj"/>
                                                 <constraint firstItem="SAa-TH-cCl" firstAttribute="top" secondItem="oXg-XH-1Ze" secondAttribute="top" constant="5" id="Dgn-el-aiR"/>
@@ -811,7 +811,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.086274509799999996" green="0.10980392160000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="nan-cD-83x" secondAttribute="trailing" constant="10" id="9pz-HP-T7l"/>
                                                 <constraint firstItem="nan-cD-83x" firstAttribute="top" secondItem="XGt-KY-yuH" secondAttribute="top" constant="5" id="Izu-EL-Egj"/>
@@ -840,7 +840,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.086274509803921567" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="XUy-ny-scr" secondAttribute="trailing" constant="10" id="HYL-J1-Jxe"/>
                                                 <constraint firstAttribute="centerY" secondItem="XUy-ny-scr" secondAttribute="centerY" id="k3l-AJ-XCn"/>
@@ -853,6 +853,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="RTF-qu-7wA" id="iKa-iP-EKZ"/>
+                                    <outlet property="delegate" destination="RTF-qu-7wA" id="gC6-zc-APZ"/>
+                                </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uzk-oa-1uW">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
@@ -862,7 +866,7 @@
                                 </constraints>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.086274509803921567" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="uzk-oa-1uW" secondAttribute="centerY" id="5d4-Of-JtK"/>
                             <constraint firstItem="DWu-nl-g3H" firstAttribute="leading" secondItem="oVR-HW-h9R" secondAttribute="leading" id="6wK-mn-dhU"/>
