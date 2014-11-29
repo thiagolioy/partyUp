@@ -17,12 +17,15 @@
 
 @implementation PUBuddyTableViewCell
 
--(void)fill:(PUUser*)buddy andDelegate:(id<PUBuddyTableViewCellDelegate>)delegate{
-    _delegate = delegate;
+-(void)fill:(PUUser*)buddy{
     _buddy = buddy;
     [_profilePicture roundIt:20.0f];
     _profilePicture.profileID = buddy.userId;
     _name.text = buddy.name;
+}
+-(void)fill:(PUUser*)buddy andDelegate:(id<PUBuddyTableViewCellDelegate>)delegate{
+    _delegate = delegate;
+    [self fill:buddy];
 }
 
 -(IBAction)addBuddy:(id)sender{

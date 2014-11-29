@@ -16,6 +16,6 @@
 @end
 
 @interface PUBestBuddyTableViewCell : UITableViewCell
-
+-(void)fill:(PUUser*)buddy;
 -(void)fill:(PUUser*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate;
 @end

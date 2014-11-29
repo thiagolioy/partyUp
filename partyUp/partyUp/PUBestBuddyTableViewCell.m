@@ -19,13 +19,16 @@
 @end
 
 @implementation PUBestBuddyTableViewCell
-
--(void)fill:(PUUser*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate{
-    _delegate = delegate;
+-(void)fill:(PUUser*)buddy{
     _buddy = buddy;
     [_profilePicture roundIt:20.0f];
     _profilePicture.profileID = buddy.userId;
     _name.text =  buddy.name;
+}
+
+-(void)fill:(PUUser*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate{
+    _delegate = delegate;
+    [self fill:buddy];
 }
 
 -(IBAction)clickOnRemoveIcon:(id)sender{
