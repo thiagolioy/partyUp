@@ -13,6 +13,7 @@
 
 @interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
+@property(nonatomic,strong)IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
 @end
@@ -48,12 +49,14 @@ static NSString *headerCellID = @"HeaderCellID";
     if(!_bestBuddies)
         _bestBuddies = [NSMutableArray array];
     
+    [_activityIndicator startAnimating];
     [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if(!error){
             for(NSDictionary *b in [result objectForKey:@"data"]){
                 [_buddies addObject:b];
             }
         }
+        [_activityIndicator stopAnimating];
         _buddiesTableView.dataSource = self;
         _buddiesTableView.delegate = self;
         [_buddiesTableView reloadData];

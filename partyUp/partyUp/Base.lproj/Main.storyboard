@@ -854,17 +854,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uzk-oa-1uW">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="5T6-CA-YBd"/>
+                                    <constraint firstAttribute="height" constant="20" id="yJU-fC-lX2"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.086274509803921567" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="uzk-oa-1uW" secondAttribute="centerY" id="5d4-Of-JtK"/>
                             <constraint firstItem="DWu-nl-g3H" firstAttribute="leading" secondItem="oVR-HW-h9R" secondAttribute="leading" id="6wK-mn-dhU"/>
                             <constraint firstAttribute="bottom" secondItem="DWu-nl-g3H" secondAttribute="bottom" id="JvA-Mf-DBh"/>
+                            <constraint firstAttribute="centerX" secondItem="uzk-oa-1uW" secondAttribute="centerX" id="Kiq-3i-fMG"/>
                             <constraint firstAttribute="trailing" secondItem="DWu-nl-g3H" secondAttribute="trailing" id="OPG-P4-eHu"/>
                             <constraint firstItem="DWu-nl-g3H" firstAttribute="top" secondItem="oVR-HW-h9R" secondAttribute="top" id="XbZ-oy-Cmm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Buddies" id="vXa-PI-s4k"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="uzk-oa-1uW" id="faV-Gg-jDs"/>
                         <outlet property="buddiesTableView" destination="DWu-nl-g3H" id="1bK-On-pm7"/>
                     </connections>
                 </viewController>
