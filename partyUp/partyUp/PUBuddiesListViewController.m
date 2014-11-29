@@ -9,6 +9,7 @@
 #import "PUBuddiesListViewController.h"
 #import "PUBuddyTableViewCell.h"
 #import "PUBestBuddyTableViewCell.h"
+#import "PUHeaderTableViewCell.h"
 
 @interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
@@ -24,6 +25,8 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 
 static NSString *buddiesCellID = @"BuddyCellID";
 static NSString *bestBuddiesCellID = @"BestBuddyCellID";
+static NSString *headerCellID = @"HeaderCellID";
+
 @implementation PUBuddiesListViewController
 
 
@@ -51,8 +54,8 @@ static NSString *bestBuddiesCellID = @"BestBuddyCellID";
                 [_buddies addObject:b];
                 [_buddies addObject:b];
                 [_buddies addObject:b];
-                [_bestBuddies addObject:b];
-                [_bestBuddies addObject:b];
+//                [_bestBuddies addObject:b];
+//                [_bestBuddies addObject:b];
 
             }
         }
@@ -104,6 +107,26 @@ static NSString *bestBuddiesCellID = @"BestBuddyCellID";
         return [self tableView:tableView bestBuddiesCellAtIndexPath:indexPath];
     else
         return [self tableView:tableView buddiesCellAtIndexPath:indexPath];
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    PUHeaderTableViewCell *cell = (PUHeaderTableViewCell*)[tableView dequeueReusableCellWithIdentifier:headerCellID];
+    if([self hasBestBuddies:section])
+        cell.message.text = @"Best Buddies";
+    else if(section == otherBuddies)
+        cell.message.text = @"All buddies";
+    return [cell contentView];
+}
+-(BOOL)hasBestBuddies:(NSInteger)section{
+    return (section == bestBuddies && _bestBuddies.count > 0);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if([self hasBestBuddies:section])
+        return 44.0f;
+    else if(section == otherBuddies)
+        return 44.0f;
+    return 0.0f;
 }
 
 @end

@@ -60,6 +60,7 @@
 		20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389B19C92D8A0069EE26 /* PUSearchSuggestionsService.m */; };
 		20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */; };
 		3EB5EA0D1A29FBB100C18AED /* PUBestBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */; };
+		3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +158,8 @@
 		20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchSuggestion.m; sourceTree = "<group>"; };
 		3EB5EA0B1A29FBB100C18AED /* PUBestBuddyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBestBuddyTableViewCell.h; sourceTree = "<group>"; };
 		3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUBestBuddyTableViewCell.m; sourceTree = "<group>"; };
+		3EB5EA0E1A2A0B3F00C18AED /* PUHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUHeaderTableViewCell.h; sourceTree = "<group>"; };
+		3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUHeaderTableViewCell.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-partyUp/Pods-partyUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -399,6 +402,8 @@
 				20F9389819C903440069EE26 /* PUHeaderCell.m */,
 				20F37F1C19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.h */,
 				20F37F1D19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m */,
+				3EB5EA0E1A2A0B3F00C18AED /* PUHeaderTableViewCell.h */,
+				3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -586,6 +591,7 @@
 				20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */,
 				20258BD719BE8DCA00FC5A5D /* PUPlacesService.m in Sources */,
 				20D960E719AFFB2000A893CF /* PUParty.m in Sources */,
+				3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */,
 				20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */,
 				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
