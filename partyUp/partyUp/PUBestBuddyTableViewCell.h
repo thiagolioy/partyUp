@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PUBestBuddyTableViewCellDelegate <NSObject>
+
+-(void)removeBuddy:(NSString*)buddyId;
+
+@end
+
 @interface PUBestBuddyTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
-@property (strong, nonatomic) IBOutlet UILabel *name;
--(void)fill:(NSDictionary*)buddy;
+
+-(void)fill:(NSDictionary*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate;
 @end

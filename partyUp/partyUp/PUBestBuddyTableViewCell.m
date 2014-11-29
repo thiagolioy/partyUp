@@ -8,12 +8,29 @@
 
 #import "PUBestBuddyTableViewCell.h"
 
+@interface PUBestBuddyTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (strong, nonatomic) IBOutlet UILabel *name;
+
+@property (strong, nonatomic) id<PUBestBuddyTableViewCellDelegate> delegate;
+@property (strong, nonatomic) NSDictionary *buddy;
+
+@end
+
 @implementation PUBestBuddyTableViewCell
 
--(void)fill:(NSDictionary*)buddy{
+-(void)fill:(NSDictionary*)buddy withDelegate:(id<PUBestBuddyTableViewCellDelegate>)delegate{
+    _delegate = delegate;
+    _buddy = buddy;
     [_profilePicture roundIt:20.0f];
     _profilePicture.profileID = [buddy objectForKey:@"id"];
     _name.text = [buddy objectForKey:@"name"];
+}
+
+-(IBAction)clickOnRemoveIcon:(id)sender{
+    if(_delegate)
+        [_delegate removeBuddy:[_buddy objectForKey:@"id"]];
 }
 
 @end

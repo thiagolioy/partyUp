@@ -771,6 +771,9 @@
                                                                     <state key="normal">
                                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="clickOnRemoveIcon:" destination="QmT-Pr-ude" eventType="touchUpInside" id="6Ux-tL-hi1"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove_icon_dark" translatesAutoresizingMaskIntoConstraints="NO" id="pLp-LM-daQ">
                                                                     <rect key="frame" x="15" y="18" width="15" height="15"/>

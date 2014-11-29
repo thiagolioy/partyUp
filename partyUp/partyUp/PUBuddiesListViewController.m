@@ -11,7 +11,7 @@
 #import "PUBestBuddyTableViewCell.h"
 #import "PUHeaderTableViewCell.h"
 
-@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
@@ -54,7 +54,7 @@ static NSString *headerCellID = @"HeaderCellID";
                 [_buddies addObject:b];
                 [_buddies addObject:b];
                 [_buddies addObject:b];
-//                [_bestBuddies addObject:b];
+                [_bestBuddies addObject:b];
 //                [_bestBuddies addObject:b];
 
             }
@@ -97,7 +97,7 @@ static NSString *headerCellID = @"HeaderCellID";
     
     NSArray *buddies = [self buddiesForSection:indexPath.section];
     NSDictionary *dc = [buddies objectAtIndex:indexPath.row];
-    [cell fill:dc];
+    [cell fill:dc withDelegate:self];
     return cell;
 }
 
@@ -114,7 +114,7 @@ static NSString *headerCellID = @"HeaderCellID";
     if([self hasBestBuddies:section])
         cell.message.text = @"Best Buddies";
     else if(section == otherBuddies)
-        cell.message.text = @"All buddies";
+        cell.message.text = @"Others";
     return [cell contentView];
 }
 -(BOOL)hasBestBuddies:(NSInteger)section{
@@ -127,6 +127,22 @@ static NSString *headerCellID = @"HeaderCellID";
     else if(section == otherBuddies)
         return 44.0f;
     return 0.0f;
+}
+
+#pragma mark - Cell Delegates
+-(void)removeBuddy:(NSString *)buddyId{
+    NSDictionary *buddyToRemove;
+    for(NSDictionary *b in _bestBuddies){
+        NSString *bId = [b objectForKey:@"id"];
+        if([bId isEqualToString:buddyId]){
+            buddyToRemove = b;
+            break;
+        }
+    }
+    if(buddyToRemove){
+        [_bestBuddies removeObject:buddyToRemove];
+        [_buddiesTableView reloadData];
+    }
 }
 
 @end
