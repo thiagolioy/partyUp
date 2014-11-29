@@ -18,4 +18,10 @@
 +(BOOL)areTheSame:(PUUser*)user otherUser:(PUUser*)otherUser{
     return [user.userId isEqualToString:otherUser.userId];
 }
+-(NSDictionary*)asDict{
+    return @{
+             @"id":_userId,
+             @"name":_name
+             };
+}
 @end

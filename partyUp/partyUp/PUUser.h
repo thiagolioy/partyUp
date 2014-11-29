@@ -14,4 +14,5 @@
 
 +(instancetype)parseUser:(NSDictionary*)dc;
 +(BOOL)areTheSame:(PUUser*)user otherUser:(PUUser*)otherUser;
+-(NSDictionary*)asDict;
 @end

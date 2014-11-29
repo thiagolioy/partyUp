@@ -11,6 +11,7 @@
 #import "PUBestBuddyTableViewCell.h"
 #import "PUHeaderTableViewCell.h"
 #import "PUSocialService.h"
+#import "PUBuddiesStorage.h"
 
 @interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
@@ -54,6 +55,15 @@ static NSString *headerCellID = @"HeaderCellID";
         _buddies = [NSMutableArray array];
     if(!_bestBuddies)
         _bestBuddies = [NSMutableArray array];
+    
+    [_bestBuddies addObjectsFromArray:[PUBuddiesStorage storedBuddies]];
+}
+
+-(void)removeBestBuddiesOfBuddies{
+    for(PUUser *b in _bestBuddies){
+        PUUser *buddy =  [self findBuddy:b onList:_buddies];
+        [_buddies removeObject:buddy];
+    }
 }
 
 -(void)fetchBuddies{
@@ -65,6 +75,7 @@ static NSString *headerCellID = @"HeaderCellID";
         [_activityIndicator stopAnimating];
         if(!error){
             [_buddies addObjectsFromArray:buddies];
+            [self removeBestBuddiesOfBuddies];
             [_buddiesTableView reloadData];
         }
     }];
@@ -151,13 +162,18 @@ static NSString *headerCellID = @"HeaderCellID";
 
 
 -(void)promoteToBestBuddies:(PUUser*)buddy{
-    [_buddies removeObject:buddy];
-    [_bestBuddies addObject:buddy];
+    [self transferBuddy:buddy from:_buddies to:_bestBuddies];
+    [PUBuddiesStorage storeBuddies:_bestBuddies];
 }
 
 -(void)demoteToBuddies:(PUUser*)buddy{
-    [_bestBuddies removeObject:buddy];
-    [_buddies addObject:buddy];
+    [self transferBuddy:buddy from:_bestBuddies to:_buddies];
+    [PUBuddiesStorage storeBuddies:_bestBuddies];
+}
+
+-(void)transferBuddy:(PUUser*)buddy from:(NSMutableArray*)fromList to:(NSMutableArray*)toList{
+    [fromList removeObject:buddy];
+    [toList addObject:buddy];
 }
 
 -(void)addToBestBuddies:(PUUser *)b{
@@ -174,6 +190,9 @@ static NSString *headerCellID = @"HeaderCellID";
             return b;
     return nil;
 }
+
+
+
 
 
 @end
