@@ -38,4 +38,13 @@ static NSString *kStoredBuddies = @"storedBuddies";
     return buddies;
 }
 
++(NSString*)storedBuddiesAsMailBody{
+    NSString *body = @"Lista de Nomes:";
+    NSArray *buddies = [PUBuddiesStorage storedBuddies];
+    for(PUUser *b in buddies){
+        body = [NSString stringWithFormat:@"%@\n%@",body,b.name];
+    }
+    return body;
+}
+
 @end

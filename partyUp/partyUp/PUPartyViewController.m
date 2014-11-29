@@ -10,6 +10,7 @@
 #import "PUDownloader.h"
 #import "PUPartyMoreInfoViewController.h"
 #import <MapKit/MapKit.h>
+#import "PUSendMailHelper.h"
 
 
 @interface PUPartyViewController ()
@@ -83,6 +84,16 @@
         PUPartyMoreInfoViewController *dest = (PUPartyMoreInfoViewController*)[segue destinationViewController];
         dest.party = _party;
     }
+}
+-(IBAction)sendNamesToParty{
+    if(_party.isMailNamesList)
+        [PUSendMailHelper sendNamesTo:_party];
+    else if(_party.isFacebookNamesList)
+        [self sendNamesToFacebookEvent];
+}
+
+-(void)sendNamesToFacebookEvent{
+
 }
 
 -(IBAction)displayRouteToParty{

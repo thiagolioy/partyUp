@@ -12,5 +12,5 @@
 
 +(void)storeBuddies:(NSArray*)buddies;
 +(NSArray*)storedBuddies;
-
++(NSString*)storedBuddiesAsMailBody;
 @end

@@ -399,6 +399,7 @@
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JE5-BO-ghe"/>
+                                            <action selector="sendNamesToParty" destination="Hn6-BL-fiy" eventType="touchUpInside" id="o5S-Vo-ALB"/>
                                         </connections>
                                     </button>
                                 </subviews>

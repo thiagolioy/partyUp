@@ -7,6 +7,9 @@
 //
 
 #import "PUParty.h"
+@interface PUParty ()
+@property(nonatomic,strong)NSString *sendNamesType;
+@end
 
 @implementation PUParty
 
@@ -19,6 +22,8 @@
     party.partyDescription =  obj[@"description"];
     party.malePrice =  obj[@"gentsPrice"];
     party.femalePrice =  obj[@"ladysPrice"];
+    party.sendNamesType =  obj[@"sendNamesType"];
+    party.sendNamesTo =  obj[@"sendNamesTo"];
     
     party.place = [PUPlace placeWithParseObj:obj[@"place"]];
     
@@ -46,6 +51,13 @@
     [formatter setDateFormat:@"dd/MM/yyyy"];
     NSString *stringFromDate = [formatter stringFromDate:_date];
     return stringFromDate;
+}
+
+-(BOOL)isFacebookNamesList{
+    return [_sendNamesType isEqualToString:@"facebook"];
+}
+-(BOOL)isMailNamesList{
+    return [_sendNamesType isEqualToString:@"mail"];
 }
 
 
