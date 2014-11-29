@@ -7,6 +7,7 @@
 //
 
 #import "PUSocialService.h"
+#import "PUBuddiesStorage.h"
 
 @implementation PUSocialService
 
@@ -27,6 +28,7 @@
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if(!error){
             PUUser *me = [PUUser parseUser:result];
+            [PUBuddiesStorage storeMyself:me];
             completion(me,nil);
         }else
             completion(nil,error);

@@ -14,7 +14,7 @@ static NSString *mailRecipe = @"mailto:%@?subject=%@&body=%@";
 +(void)sendNamesTo:(PUParty*)party{
     
     NSString *subject = [NSString stringWithFormat:@"%@ : lista de nomes",party.name];
-    NSString *body = [PUBuddiesStorage storedBuddiesAsMailBody];
+    NSString *body = [PUBuddiesStorage storedBuddiesAndMyselfAsMailBody];
     NSString *message = [NSString stringWithFormat:mailRecipe,party.sendNamesTo,subject,body];
     
     message = [message stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

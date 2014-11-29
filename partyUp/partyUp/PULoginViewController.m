@@ -9,12 +9,14 @@
 #import "PULoginViewController.h"
 #import "PUPartiesViewController.h"
 #import "PULoginBackgroundCollectionViewCell.h"
+#import "PUSocialService.h"
 
 @interface PULoginViewController ()<UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property(nonatomic,strong)IBOutlet UICollectionView *backgroundCollection;
 @property(nonatomic,strong)IBOutlet UIPageControl *backgroundPageControl;
 @property(nonatomic,strong)NSArray *contentMessages;
+@property(nonatomic,strong)PUSocialService *service;
 @end
 
 @implementation PULoginViewController
@@ -22,10 +24,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initSocialService];
     [self setUpContentMessages];
     [self setUpPageControl];
     [self checkIfUserAlreadyLoggedIn];
 
+}
+
+-(void)initSocialService{
+    _service = [PUSocialService new];
 }
 
 -(void)setUpContentMessages{
@@ -90,7 +97,10 @@
 }
 
 -(void)successOnLogin{
-    [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
+    [_service fetchMyself:^(PUUser *me, NSError *error) {
+        if(!error)
+            [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
+    }];
 }
 #pragma mark - CollectionView Methods
 -(void)setUpPageControl{

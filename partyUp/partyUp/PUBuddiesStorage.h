@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PUUser.h"
 
 @interface PUBuddiesStorage : NSObject
 
++(void)storeMyself:(PUUser*)me;
++(PUUser*)myself;
 +(void)storeBuddies:(NSArray*)buddies;
 +(NSArray*)storedBuddies;
-+(NSString*)storedBuddiesAsMailBody;
++(NSString*)storedBuddiesAndMyselfAsMailBody;
++(void)clearStorage;
 @end

@@ -8,7 +8,6 @@
 
 #import "PUProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "PUSocialService.h"
 #import "PUBuddiesStorage.h"
 #import "PUBestBuddyTableViewCell.h"
 #import "PUHeaderTableViewCell.h"
@@ -18,7 +17,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *profileName;
 @property (strong, nonatomic) IBOutlet UITableView *bestBuddiesTableView;
 @property (strong, nonatomic) NSArray *bestBuddies;
-@property (strong, nonatomic) PUSocialService *service;
 
 @end
 
@@ -32,13 +30,12 @@ static NSString *headerCellID = @"HeaderCellID";
 {
     [super viewDidLoad];
     [self setUpCircleMaskOnPicture];
-    [self initSocialService];
-    [self fetchUserInfo];
+    [self recoverUserFromCache];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     self.parentViewController.navigationItem.title = @"Profile";
-    [self fetchBuddies];
+    [self recoverBuddiesFromCache];
 }
 
 
@@ -47,30 +44,20 @@ static NSString *headerCellID = @"HeaderCellID";
     [super didReceiveMemoryWarning];
 }
 
--(void)initSocialService{
-    _service = [PUSocialService new];
-}
 
 -(void)setUpCircleMaskOnPicture{
     [_profilePicture roundIt:16.0f];
 }
 
--(void)fetchBuddies{
+-(void)recoverBuddiesFromCache{
     _bestBuddies = [PUBuddiesStorage storedBuddies];
     [_bestBuddiesTableView reloadData];
 }
 
--(void)fetchUserInfo{
-    [_service fetchMyself:^(PUUser *me, NSError *error) {
-        if(!error)
-            [self fillUserInfo:me];
-        else
-            [self recoverUserFromCache];
-    }];
-}
-
 -(void)recoverUserFromCache{
-
+    PUUser *me = [PUBuddiesStorage myself];
+    if(me)
+        [self fillUserInfo:me];
 }
 
 -(void)fillUserInfo:(PUUser*)user{
@@ -80,6 +67,7 @@ static NSString *headerCellID = @"HeaderCellID";
 
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
+    [PUBuddiesStorage clearStorage];
     UIViewController *vc =  [self.parentViewController parentViewController];
     if([vc isKindOfClass:[UINavigationController class]])
         [((UINavigationController*)vc) popToRootViewControllerAnimated:YES];
