@@ -58,5 +58,9 @@
 -(NSString*)prettyDistanceInKM{
     return [NSString stringWithFormat:@"%.2f km",_distanceInKm];
 }
+-(CLLocation*)location{
+    return [[CLLocation alloc] initWithLatitude:_location.latitude longitude:_location.longitude];
+}
+
 
 @end

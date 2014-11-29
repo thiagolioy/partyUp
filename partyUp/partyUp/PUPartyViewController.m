@@ -9,6 +9,8 @@
 #import "PUPartyViewController.h"
 #import "PUDownloader.h"
 #import "PUPartyMoreInfoViewController.h"
+#import <MapKit/MapKit.h>
+
 
 @interface PUPartyViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *promoImage;
@@ -81,6 +83,25 @@
         PUPartyMoreInfoViewController *dest = (PUPartyMoreInfoViewController*)[segue destinationViewController];
         dest.party = _party;
     }
+}
+
+-(IBAction)displayRouteToParty{
+
+    MKMapItem *from = [MKMapItem mapItemForCurrentLocation];
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:_party.place.location.coordinate addressDictionary:nil];
+    MKMapItem *to = [[MKMapItem alloc] initWithPlacemark:placemark];
+    to.name = _party.name;
+    [self displayRouteFrom:from to:to];
+    
+    
+}
+
+- (void)displayRouteFrom:(MKMapItem*)from to:(MKMapItem*)to {
+    NSDictionary* options = @{
+                              MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving
+                              };
+    [MKMapItem openMapsWithItems: @[from,to] launchOptions: options];
+
 }
 
 @end

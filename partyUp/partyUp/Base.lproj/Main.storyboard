@@ -423,6 +423,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="displayRouteToParty" destination="Hn6-BL-fiy" eventType="touchUpInside" id="80P-Wk-Vua"/>
                                             <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nNG-0I-Gks"/>
                                         </connections>
                                     </button>

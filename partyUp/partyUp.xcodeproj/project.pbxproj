@@ -30,7 +30,6 @@
 		200055E919A44038008377FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055E819A44038008377FF /* QuartzCore.framework */; };
 		200055EB19A44041008377FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055EA19A44041008377FF /* Security.framework */; };
 		200055ED19A4404A008377FF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055EC19A4404A008377FF /* Social.framework */; };
-		200055EF19A44053008377FF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055EE19A44053008377FF /* StoreKit.framework */; };
 		200055F119A4405E008377FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200055F019A4405E008377FF /* SystemConfiguration.framework */; };
 		200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055F619A4497D008377FF /* PUPartiesViewController.m */; };
 		201E887119A56160008C5532 /* PUProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201E887019A56160008C5532 /* PUProfileViewController.m */; };
@@ -64,6 +63,7 @@
 		3EB5EA131A2A3DAC00C18AED /* PUSocialService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA121A2A3DAC00C18AED /* PUSocialService.m */; };
 		3EB5EA161A2A3E3D00C18AED /* PUUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA151A2A3E3D00C18AED /* PUUser.m */; };
 		3EB5EA191A2A491D00C18AED /* PUBuddiesStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA181A2A491D00C18AED /* PUBuddiesStorage.m */; };
+		3EB5EA1B1A2A696900C18AED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5EA1A1A2A696900C18AED /* MapKit.framework */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -108,7 +108,6 @@
 		200055E819A44038008377FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		200055EA19A44041008377FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		200055EC19A4404A008377FF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		200055EE19A44053008377FF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		200055F019A4405E008377FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		200055F519A4497D008377FF /* PUPartiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartiesViewController.h; sourceTree = "<group>"; };
 		200055F619A4497D008377FF /* PUPartiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartiesViewController.m; sourceTree = "<group>"; };
@@ -169,6 +168,7 @@
 		3EB5EA151A2A3E3D00C18AED /* PUUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUUser.m; sourceTree = "<group>"; };
 		3EB5EA171A2A491D00C18AED /* PUBuddiesStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBuddiesStorage.h; sourceTree = "<group>"; };
 		3EB5EA181A2A491D00C18AED /* PUBuddiesStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUBuddiesStorage.m; sourceTree = "<group>"; };
+		3EB5EA1A1A2A696900C18AED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-partyUp/Pods-partyUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,12 +181,12 @@
 				209EA9BA19C29C600015D09E /* CoreLocation.framework in Frameworks */,
 				209D78FC19A5A3B300FF0FF2 /* ImageIO.framework in Frameworks */,
 				200055F119A4405E008377FF /* SystemConfiguration.framework in Frameworks */,
-				200055EF19A44053008377FF /* StoreKit.framework in Frameworks */,
 				200055ED19A4404A008377FF /* Social.framework in Frameworks */,
 				200055EB19A44041008377FF /* Security.framework in Frameworks */,
 				200055E919A44038008377FF /* QuartzCore.framework in Frameworks */,
 				200055E719A4402E008377FF /* MobileCoreServices.framework in Frameworks */,
 				200055E519A44025008377FF /* libz.dylib in Frameworks */,
+				3EB5EA1B1A2A696900C18AED /* MapKit.framework in Frameworks */,
 				200055A619A43945008377FF /* CoreGraphics.framework in Frameworks */,
 				200055E119A44001008377FF /* CFNetwork.framework in Frameworks */,
 				200055DF19A43FF8008377FF /* AudioToolbox.framework in Frameworks */,
@@ -236,11 +236,11 @@
 		200055A219A43945008377FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3EB5EA1A1A2A696900C18AED /* MapKit.framework */,
 				206D6E4219D741760073CA2C /* Parse.framework */,
 				206D6E4319D741760073CA2C /* ParseFacebookUtils.framework */,
 				209D78FB19A5A3B300FF0FF2 /* ImageIO.framework */,
 				200055F019A4405E008377FF /* SystemConfiguration.framework */,
-				200055EE19A44053008377FF /* StoreKit.framework */,
 				200055EC19A4404A008377FF /* Social.framework */,
 				200055EA19A44041008377FF /* Security.framework */,
 				200055E819A44038008377FF /* QuartzCore.framework */,
@@ -506,6 +506,17 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Thiago Lioy";
 				TargetAttributes = {
+					2000559F19A43945008377FF = {
+						DevelopmentTeam = J5P786SDN2;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					200055C019A43946008377FF = {
 						TestTargetID = 2000559F19A43945008377FF;
 					};
@@ -744,7 +755,8 @@
 			baseConfigurationReference = 0EDB05370A311BD6C75EF9A3 /* Pods-partyUp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thiago Lioy (V4U2A6P7XZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdParties",
@@ -754,7 +766,7 @@
 				GCC_PREFIX_HEADER = "partyUp/partyUp-Prefix.pch";
 				INFOPLIST_FILE = "partyUp/partyUp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "966f4d42-e208-4b67-b456-0e6d62f3cff5";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -764,7 +776,8 @@
 			baseConfigurationReference = F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thiago Lioy (V4U2A6P7XZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdParties",
@@ -774,7 +787,7 @@
 				GCC_PREFIX_HEADER = "partyUp/partyUp-Prefix.pch";
 				INFOPLIST_FILE = "partyUp/partyUp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "966f4d42-e208-4b67-b456-0e6d62f3cff5";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

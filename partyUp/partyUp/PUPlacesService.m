@@ -11,6 +11,7 @@
 
 @implementation PUPlacesService
 
+
 -(void)fetchPlacesForQuery:(NSString*)query completion:(PlacesCompletion)completion{
     PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
     [placeQuery whereKey:@"canonicalName" containsString:[query uppercaseString]];
