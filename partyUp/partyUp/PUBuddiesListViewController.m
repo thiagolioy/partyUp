@@ -56,7 +56,7 @@ static NSString *headerCellID = @"HeaderCellID";
     if(!_bestBuddies)
         _bestBuddies = [NSMutableArray array];
     
-    [_bestBuddies addObjectsFromArray:[PUBuddiesStorage storedBuddies]];
+    [_bestBuddies addObjectsFromArray:[self sortBuddiesByName:[PUBuddiesStorage storedBuddies]]];
 }
 
 -(void)removeBestBuddiesOfBuddies{
@@ -76,7 +76,7 @@ static NSString *headerCellID = @"HeaderCellID";
         if(!error){
             [_buddies addObjectsFromArray:buddies];
             [self removeBestBuddiesOfBuddies];
-             [self refreshBuddiesList];
+            [self refreshBuddiesList];
         }
     }];
 }
@@ -185,6 +185,7 @@ static NSString *headerCellID = @"HeaderCellID";
 }
 
 -(void)refreshBuddiesList{
+    [self sortBuddiesLists];
     [self addReloadAnimationTo:_buddiesTableView];
     [_buddiesTableView reloadData];
 }
@@ -194,9 +195,30 @@ static NSString *headerCellID = @"HeaderCellID";
     swapAnimation.type = kCATransitionFade;
     swapAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     swapAnimation.fillMode = kCAFillModeBoth;
-    swapAnimation.duration = .4f;
+    swapAnimation.duration = .6f;
     [tableView.layer addAnimation:swapAnimation forKey:@"UITableViewReloadDataAnimationKey"];
 }
+
+-(void)sortBuddiesLists{
+    _buddies = [NSMutableArray arrayWithArray:[self sortBuddiesByName:(NSArray*)_buddies]];
+    _bestBuddies = [NSMutableArray arrayWithArray:[self sortBuddiesByName:(NSArray*)_bestBuddies]];
+}
+
+-(NSArray*)sortBuddiesByName:(NSArray*)list{
+    NSInteger options = NSCaseInsensitiveSearch
+    | NSNumericSearch              // Numbers are compared using numeric value
+    | NSDiacriticInsensitiveSearch // Ignores diacritics (â == á == a)
+    | NSWidthInsensitiveSearch;
+    
+    //sort facebookFriendsArray using name
+    return [NSMutableArray arrayWithArray:
+                            [list sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSString *firstName = [(PUUser*)a name];
+        NSString *secondName = [(PUUser*)b name];
+        return [firstName compare:secondName options:options];
+    }]];
+}
+
 
 -(PUUser*)findBuddy:(PUUser*)buddy onList:(NSArray*)buddies{
     for(PUUser *b in buddies)
