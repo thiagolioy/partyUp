@@ -83,7 +83,7 @@
 
 
 - (IBAction)login:(id)sender {
-    NSArray *permissions = @[@"public_profile",@"email",@"user_friends"];
+    NSArray *permissions = @[@"public_profile",@"email",@"user_friends",@"publish_actions",@"rsvp_event",@"user_groups"];
     [PFFacebookUtils logInWithPermissions:permissions  block:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Facebook login.");

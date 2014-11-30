@@ -11,6 +11,8 @@
 #import "PUPartyMoreInfoViewController.h"
 #import <MapKit/MapKit.h>
 #import "PUSendMailHelper.h"
+#import "PUSocialService.h"
+#import "PUBuddiesStorage.h"
 
 
 @interface PUPartyViewController ()
@@ -24,6 +26,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *placeState;
 @property (strong, nonatomic) IBOutlet UIView *moreInfoView;
 
+@property (strong, nonatomic) PUSocialService *service;
+
 @end
 
 @implementation PUPartyViewController
@@ -33,6 +37,7 @@
     [super viewDidLoad];
     [self fillNavigationBarWithPartyName];
     [self fillPartyInfo];
+    [self initSocialService];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +46,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)initSocialService{
+    _service = [PUSocialService new];
+}
 
 -(void)fillNavigationBarWithPartyName{
     self.title = _party.name;
@@ -93,7 +102,18 @@
 }
 
 -(void)sendNamesToFacebookEvent{
-
+    NSString *eventId = _party.sendNamesTo;
+    [_service attendToEvent:eventId completion:^(NSError *error) {
+        if(!error){
+            [_service postOnEventFeed:eventId message:[PUBuddiesStorage storedBuddiesAndMyselfAsMailBody]
+                           completion:^(NSString *evId,NSString *postId, NSError *error) {
+                if(!error){
+                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://events/%@/",evId]];
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            }];
+        }
+    }];
 }
 
 -(IBAction)displayRouteToParty{

@@ -7,5 +7,6 @@
 //
 #import <UIKit/UIKit.h>
 @interface UIAsyncButton : UIButton
+-(void)showLoader;
 -(void) reset;
 @end

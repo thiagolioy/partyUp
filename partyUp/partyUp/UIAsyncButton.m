@@ -38,13 +38,17 @@
 }
 
 -(void) cliqued:(id)sender{
-    [self disableButton];
-    [self createLoader];
+    [self showLoader];
 }
 
 -(void) disableButton{
     self.enabled = NO;
     [self setTitle:@"" forState:UIControlStateNormal];
+}
+
+-(void)showLoader{
+    [self disableButton];
+    [self createLoader];
 }
 
 -(void) reset{

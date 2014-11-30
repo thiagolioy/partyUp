@@ -34,4 +34,37 @@
             completion(nil,error);
     }];
 }
+
+
+
+-(void)attendToEvent:(NSString*)eventId
+            completion:(AttendToEventCompletion)completion{
+
+    
+    NSString *graphUrl = [NSString stringWithFormat:@"/%@/attending",eventId];
+    [FBRequestConnection startWithGraphPath:graphUrl
+                                 parameters:nil
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(FBRequestConnection *connection,id result,NSError *error) {
+                              completion(error);
+                          }];
+}
+
+-(void)postOnEventFeed:(NSString*)eventId
+               message:(NSString*)message
+            completion:(PostOnEventFeedCompletion)completion{
+    
+    NSDictionary *params =@{@"message":message};
+    NSString *graphUrl = [NSString stringWithFormat:@"/%@/feed",eventId];
+    [FBRequestConnection startWithGraphPath:graphUrl
+                                 parameters:params
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(FBRequestConnection *connection,id result,NSError *error) {
+                              NSString *fullId = [result objectForKey:@"id"];
+                              NSArray *cpms = [fullId componentsSeparatedByString:@"_"];
+                              NSString *eventId = cpms.firstObject;
+                              NSString *postId = cpms.lastObject;
+                              completion(eventId,postId,error);
+                          }];
+}
 @end
