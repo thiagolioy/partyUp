@@ -389,11 +389,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BX2-3e-Ido" userLabel="CheckinWithFriends">
                                 <rect key="frame" x="10" y="448" width="580" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NA-MZ-uwa">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NA-MZ-uwa" customClass="UIAsyncButton">
                                         <rect key="frame" x="1" y="1" width="578" height="42"/>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Checkin with Friends">
+                                        <state key="normal" title="Send Names">
                                             <color key="titleColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -475,6 +475,7 @@
                         <outlet property="placeState" destination="shU-ZA-EsS" id="uEE-E8-01u"/>
                         <outlet property="price" destination="GDO-tm-tKG" id="wci-D8-1fi"/>
                         <outlet property="promoImage" destination="RKl-hp-ehm" id="FeS-II-pcG"/>
+                        <outlet property="sendNamesButton" destination="3NA-MZ-uwa" id="WiA-Rz-LKT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O42-b4-GfA" userLabel="First Responder" sceneMemberID="firstResponder"/>

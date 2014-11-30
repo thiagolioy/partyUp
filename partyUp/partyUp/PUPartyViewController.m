@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *placeNeighborhood;
 @property (strong, nonatomic) IBOutlet UILabel *placeState;
 @property (strong, nonatomic) IBOutlet UIView *moreInfoView;
+@property (strong, nonatomic) IBOutlet UIAsyncButton *sendNamesButton;
 
 @property (strong, nonatomic) PUSocialService *service;
 
@@ -111,8 +112,10 @@
                     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://events/%@/",evId]];
                     [[UIApplication sharedApplication] openURL:url];
                 }
+                [_sendNamesButton reset];                
             }];
-        }
+        }else
+            [_sendNamesButton reset];
     }];
 }
 

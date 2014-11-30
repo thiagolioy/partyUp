@@ -10,6 +10,7 @@
 #import "PUPartiesViewController.h"
 #import "PULoginBackgroundCollectionViewCell.h"
 #import "PUSocialService.h"
+#import "PUBuddiesStorage.h"
 
 @interface PULoginViewController ()<UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIAsyncButton *loginButton;
@@ -99,11 +100,22 @@
 }
 
 -(void)successOnLogin{
+    if([PUBuddiesStorage myself] == nil)
+        [self fetchMyself];
+    else
+        [self proceedToParties];
+}
+
+-(void)fetchMyself{
     [_service fetchMyself:^(PUUser *me, NSError *error) {
         [_loginButton reset];
         if(!error)
-            [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
+            [self proceedToParties];
     }];
+}
+
+-(void)proceedToParties{
+   [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
 }
 #pragma mark - CollectionView Methods
 -(void)setUpPageControl{
