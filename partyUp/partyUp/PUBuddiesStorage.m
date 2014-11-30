@@ -27,7 +27,8 @@ static NSString *kMyself = @"myself";
 }
 +(PUUser*)myself{
     NSDictionary *dc = [[NSUserDefaults standardUserDefaults] objectForKey:kMyself];
-    return [PUUser parseUser:dc];
+    PUUser *me = [PUUser parseUser:dc];
+    return me.isEmpty ? nil : me;
 }
 
 

@@ -24,4 +24,9 @@
              @"name":_name
              };
 }
+
+-(BOOL)isEmpty{
+    return (_userId && _userId.length > 0
+            && _name && _name.length > 0) ? NO : YES;
+}
 @end
