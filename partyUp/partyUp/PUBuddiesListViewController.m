@@ -76,7 +76,7 @@ static NSString *headerCellID = @"HeaderCellID";
         if(!error){
             [_buddies addObjectsFromArray:buddies];
             [self removeBestBuddiesOfBuddies];
-            [_buddiesTableView reloadData];
+             [self refreshBuddiesList];
         }
     }];
 }
@@ -156,7 +156,7 @@ static NSString *headerCellID = @"HeaderCellID";
     PUUser *buddy = [self findBuddy:b onList:_bestBuddies];
     if(buddy){
         [self demoteToBuddies:buddy];
-        [_buddiesTableView reloadData];
+        [self refreshBuddiesList];
     }
 }
 
@@ -180,8 +180,22 @@ static NSString *headerCellID = @"HeaderCellID";
     PUUser *buddy = [self findBuddy:b onList:_buddies];
     if(buddy){
         [self promoteToBestBuddies:buddy];
-        [_buddiesTableView reloadData];
+        [self refreshBuddiesList];
     }
+}
+
+-(void)refreshBuddiesList{
+    [self addReloadAnimationTo:_buddiesTableView];
+    [_buddiesTableView reloadData];
+}
+
+-(void)addReloadAnimationTo:(UITableView*)tableView{
+    CATransition* swapAnimation = [CATransition animation];
+    swapAnimation.type = kCATransitionFade;
+    swapAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    swapAnimation.fillMode = kCAFillModeBoth;
+    swapAnimation.duration = .4f;
+    [tableView.layer addAnimation:swapAnimation forKey:@"UITableViewReloadDataAnimationKey"];
 }
 
 -(PUUser*)findBuddy:(PUUser*)buddy onList:(NSArray*)buddies{
