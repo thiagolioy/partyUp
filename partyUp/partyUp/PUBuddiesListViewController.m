@@ -39,6 +39,9 @@ static NSString *headerCellID = @"HeaderCellID";
     [super viewDidLoad];
     [self initSocialService];
     [self fetchBuddies];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,9 +134,9 @@ static NSString *headerCellID = @"HeaderCellID";
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     PUHeaderTableViewCell *cell = (PUHeaderTableViewCell*)[tableView dequeueReusableCellWithIdentifier:headerCellID];
     if([self hasBestBuddies:section])
-        cell.message.text = @"Best Buddies";
+        cell.message.text = @"Na lista";
     else if([self hasBuddies:section])
-        cell.message.text = @"Buddies";
+        cell.message.text = @"Amigos";
     return [cell contentView];
 }
 -(BOOL)hasBestBuddies:(NSInteger)section{
@@ -227,7 +230,13 @@ static NSString *headerCellID = @"HeaderCellID";
     return nil;
 }
 
+-(IBAction)dismissBuddiesModal:(id)sender{
+   [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                           withAnimation:UIStatusBarAnimationFade];
+    [self dismissViewControllerAnimated:YES completion:^{
 
+    }];
+}
 
 
 
