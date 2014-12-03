@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^AfterSelectFriends)(void);
 
 @interface PUBuddiesListViewController : UIViewController
-
+@property (nonatomic, copy) AfterSelectFriends block;
 @end

@@ -13,6 +13,7 @@
 #import "PUSendMailHelper.h"
 #import "PUSocialService.h"
 #import "PUBuddiesStorage.h"
+#import "PUBuddiesListViewController.h"
 
 
 @interface PUPartyViewController ()
@@ -96,27 +97,47 @@
     }
 }
 -(IBAction)sendNamesToParty{
-    if(_party.isMailNamesList)
-        [PUSendMailHelper sendNamesTo:_party];
-    else if(_party.isFacebookNamesList)
-        [self sendNamesToFacebookEvent];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PUBuddiesListViewController *buddiesVC = [storyboard instantiateViewControllerWithIdentifier:@"PUBuddiesListViewController"];
+    
+    buddiesVC.block = ^{
+        if(_party.isMailNamesList)
+            [PUSendMailHelper sendNamesTo:_party];
+        else if(_party.isFacebookNamesList)
+            [self sendNamesToFacebookEvent];
+    };
+    
+    [self presentViewController:buddiesVC animated:YES completion:nil];
 }
 
 -(void)sendNamesToFacebookEvent{
     NSString *eventId = _party.sendNamesTo;
     [_service attendToEvent:eventId completion:^(NSError *error) {
         if(!error){
-            [_service postOnEventFeed:eventId message:[PUBuddiesStorage storedBuddiesAndMyselfAsMailBody]
-                           completion:^(NSString *evId,NSString *postId, NSError *error) {
-                if(!error){
-                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://events/%@/",evId]];
-                    [[UIApplication sharedApplication] openURL:url];
-                }
-                [_sendNamesButton reset];                
-            }];
-        }else
-            [_sendNamesButton reset];
+            [self postOnEventFeed:eventId];
+        }else{
+           [_sendNamesButton reset];
+           [PUAlertUtil showAlertWithMessage:@"Ocorreu ao confirmar presença no evento!"];
+        }
+        
     }];
+}
+
+-(void)postOnEventFeed:(NSString*)eventId{
+    [_service postOnEventFeed:eventId message:[PUBuddiesStorage storedBuddiesAndMyselfAsMailBody]
+                   completion:^(NSString *evId,NSString *postId, NSError *error) {
+       
+       [_sendNamesButton reset];
+       if(!error)
+           [self showEventFeedOnFacebookApp:evId];
+       else
+           [PUAlertUtil showAlertWithMessage:@"Um erro ocorreu ao tentar enviar os nomes para o evento!"];
+   }];
+}
+
+-(void)showEventFeedOnFacebookApp:(NSString*)eventId{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://events/%@/",eventId]];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 -(IBAction)displayRouteToParty{

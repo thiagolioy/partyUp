@@ -234,7 +234,8 @@ static NSString *headerCellID = @"HeaderCellID";
    [[UIApplication sharedApplication] setStatusBarHidden:NO
                                            withAnimation:UIStatusBarAnimationFade];
     [self dismissViewControllerAnimated:YES completion:^{
-
+        if(_block)
+            _block();
     }];
 }
 
