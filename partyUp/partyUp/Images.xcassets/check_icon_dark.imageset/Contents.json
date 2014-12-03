@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "icon-cocktail.png"
+      "filename" : "check_icon_dark.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "check_icon_dark@2x.png"
     },
     {
       "idiom" : "universal",

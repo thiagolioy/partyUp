@@ -392,7 +392,7 @@
                                         <rect key="frame" x="1" y="1" width="578" height="42"/>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Send Names">
+                                        <state key="normal" title="Enviar Nomes">
                                             <color key="titleColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -417,7 +417,7 @@
                                         <rect key="frame" x="1" y="1" width="578" height="42"/>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Trace Route">
+                                        <state key="normal" title="Como Chegar?">
                                             <color key="titleColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -605,7 +605,7 @@
                                         <rect key="frame" x="1" y="1" width="578" height="42"/>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Buddies">
+                                        <state key="normal" title="Amigos">
                                             <color key="titleColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -630,7 +630,7 @@
                                         <rect key="frame" x="1" y="1" width="578" height="42"/>
                                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Logout">
+                                        <state key="normal" title="Sair">
                                             <color key="titleColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1008,7 +1008,7 @@
                                                     <action selector="dismissBuddiesModal:" destination="RTF-qu-7wA" eventType="touchUpInside" id="7ll-Uu-NvD"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove_icon_dark" translatesAutoresizingMaskIntoConstraints="NO" id="9gR-Rc-JGh">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_icon_dark" translatesAutoresizingMaskIntoConstraints="NO" id="9gR-Rc-JGh">
                                                 <rect key="frame" x="15" y="18" width="15" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="MsC-zM-IQ3"/>
@@ -1028,7 +1028,7 @@
                                             <constraint firstAttribute="width" constant="45" id="fuI-mg-XU1"/>
                                         </constraints>
                                     </view>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="hc5-ZA-3xe">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar Amigos" translatesAutoresizingMaskIntoConstraints="NO" id="hc5-ZA-3xe">
                                         <rect key="frame" x="5" y="3" width="550" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Cj6-KR-anv"/>
@@ -1170,7 +1170,7 @@
                                         <rect key="frame" x="1" y="1" width="248" height="48"/>
                                         <color key="backgroundColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Login with Facebook">
+                                        <state key="normal" title="Entrar com Facebook">
                                             <color key="titleColor" red="0.92549019607843142" green="0.93725490196078431" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1218,6 +1218,7 @@
     </scenes>
     <resources>
         <image name="add_icon_dark" width="21" height="21"/>
+        <image name="check_icon_dark" width="34" height="25"/>
         <image name="icon-user" width="24" height="24"/>
         <image name="partiesTabIconNormal" width="23" height="34"/>
         <image name="remove_icon_dark" width="17" height="17"/>
