@@ -78,43 +78,43 @@ static NSString *headerCellID = @"headerCellID";
     _placeService = [PUPlacesService new];
 }
 
--(void)cleanTableView{
-    _parties = @[];
-    _places = @[];
-    [_collectionView reloadData];
-}
-
--(void)fetchPartiesForPlace:(PUPlace*)place{
-    [self cleanTableView];
-    [_service fetchPartiesForPlace:place completion:^(NSArray *parties, NSError *error) {
-        if(!error){
-            [self successOnFetchParties:parties];
-        }
-    }];
-}
-
 -(void)fetchPlaces{
-    [self cleanTableView];
+    [self showLoadingState];
     [_activityIndicator startAnimating];
     [_placeService fetchPlacesNearMe:^(NSArray *places, NSError *error) {
         [_activityIndicator stopAnimating];
-        if(!error){
+        if(!error)
             [self successOnFetchPlaces:places];
-        }
-    }];;
+        else
+            [self showUnknownError];
+    }];
 }
 
 -(void)successOnFetchPlaces:(NSArray*)places{
-    if(places.count == 0)
+    if(places.count == 0){
+        [self showErrorState];
         [self noPlacesFound];
-    
+        return;
+    }
     [self splitSectionPlaces:places];
     [self refreshTableView];
 }
 
+-(void)showLoadingState{
+    _errorMsgContainer.hidden = YES;
+    _collectionView.hidden = YES;
+    [_activityIndicator startAnimating];
+}
 
+-(void)showErrorState{
+    _errorMsgContainer.hidden = NO;
+    _collectionView.hidden = YES;
+}
 
-
+-(void)showResultsState{
+    _errorMsgContainer.hidden = YES;
+    _collectionView.hidden = NO;
+}
 
 -(void)showErrorMsg:(NSString*)error{
     _errorMsgContainer.hidden = NO;
@@ -166,37 +166,68 @@ static NSString *headerCellID = @"headerCellID";
         [self refreshTableView];
 }
 
-
-
 -(void)hidesNavigationBackButton{
     self.parentViewController.navigationItem.hidesBackButton = YES;
 }
 
--(void)fetchParties{
-    [self cleanTableView];
+-(void)fetchPartiesForPlace:(PUPlace *)place{
+    [self showLoadingState];
     [_activityIndicator startAnimating];
+    [_service fetchPartiesForPlace:place completion:^(NSArray *parties, NSError *error) {
+        [_activityIndicator stopAnimating];
+        [self enablePartiesOrPlacesControlInteraction:YES];
+        if(!error)
+            [self successOnFetchParties:parties forPlace:place];
+        else
+            [self showUnknownError];
+    }];
+}
+
+-(void)showUnknownError{
+    [self showErrorMsg:@"Aconteceu um erro inesperado, tente mais tarde."];
+}
+
+-(void)fetchParties{
+    [self showLoadingState];
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         [_activityIndicator stopAnimating];
         [self enablePartiesOrPlacesControlInteraction:YES];
         if(!error)
             [self successOnFetchParties:parties];
         else
-            [self showErrorMsg:@"Aconteceu um erro inesperado, tente mais tarde."];
+            [self showUnknownError];
     }];
 }
 
--(void)noPartiesFound{
-    [self showErrorMsg:nil];
+-(void)noPartiesFoundFor:(PUPlace*)place{
+    NSString *msg = [NSString stringWithFormat:@"No momento não temos nenhuma festa cadastrada para %@",place.name];
+    [self showErrorMsg:msg];
+}
+
+-(void)noPartiesFoundNear{
+    [self showErrorMsg:@"No momento não temos nenhuma festa próximo a você"];
 }
 
 -(void)noPlacesFound{
-    [self showErrorMsg:@"Não encontramos nenhuma lugar cadastrado próximo a você!"];
+    [self showErrorMsg:@"Não encontramos nenhum lugar cadastrado próximo a você!"];
 }
 
 -(void)successOnFetchParties:(NSArray*)parties{
-    if(parties.count == 0)
-        [self noPartiesFound];
-    
+    if(parties.count == 0){
+        [self showErrorState];
+        [self noPartiesFoundNear];
+        return;
+    }
+    [self splitSectionParties:parties];
+    [self refreshTableView];
+}
+
+-(void)successOnFetchParties:(NSArray*)parties forPlace:(PUPlace*)place{
+    if(parties.count == 0){
+        [self showErrorState];
+        [self noPartiesFoundFor:place];
+        return;
+    }
     [self splitSectionParties:parties];
     [self refreshTableView];
 }
@@ -236,6 +267,7 @@ static NSString *headerCellID = @"headerCellID";
     _collectionView.delegate = self;
 }
 -(void)refreshTableView{
+    [self showResultsState];
     [_collectionView reloadData];
 }
 
@@ -305,6 +337,17 @@ static NSString *headerCellID = @"headerCellID";
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(_lastSegmentControlIndex != places)
+        return;
+    
+    _lastSegmentControlIndex = parties;
+    [self enablePartiesOrPlacesControlInteraction:NO];
+    [_partiesOrPlacesControl setSelectedSegmentIndex:_lastSegmentControlIndex];
+    PUPlace *place = [self placeAtIndexPath:indexPath];
+    [self fetchPartiesForPlace:place];
+}
+
 
 #pragma mark - CollectionView Methods
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -314,6 +357,7 @@ static NSString *headerCellID = @"headerCellID";
     else
         return _places.count;
 }
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     if(_lastSegmentControlIndex == parties){
