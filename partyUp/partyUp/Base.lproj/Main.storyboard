@@ -745,6 +745,43 @@
                                             <outlet property="profilePicture" destination="HYT-Zh-Wa5" id="e9A-U4-cjr"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PUInviteBuddyToListCellID" rowHeight="55" id="Z9u-6v-ht8" customClass="PUInviteBuddyToListCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z9u-6v-ht8" id="kiI-te-e44">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBM-iV-NgH">
+                                                    <rect key="frame" x="10" y="5" width="580" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adicione amigos na lista da festa." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o44-jR-AGe">
+                                                            <rect key="frame" x="10" y="15" width="560" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="lhb-Yy-Sbe"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="o44-jR-AGe" secondAttribute="trailing" constant="10" id="WiH-f5-Mmn"/>
+                                                        <constraint firstItem="o44-jR-AGe" firstAttribute="leading" secondItem="ZBM-iV-NgH" secondAttribute="leading" constant="10" id="bLN-34-nXY"/>
+                                                        <constraint firstAttribute="centerY" secondItem="o44-jR-AGe" secondAttribute="centerY" id="rzk-o4-Fj7"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ZBM-iV-NgH" secondAttribute="trailing" constant="10" id="4w6-pb-Ltk"/>
+                                                <constraint firstItem="ZBM-iV-NgH" firstAttribute="leading" secondItem="kiI-te-e44" secondAttribute="leading" constant="10" id="FZw-hv-JkK"/>
+                                                <constraint firstItem="ZBM-iV-NgH" firstAttribute="top" secondItem="kiI-te-e44" secondAttribute="top" constant="5" id="PPw-AQ-pXb"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZBM-iV-NgH" secondAttribute="bottom" id="fCZ-bK-dJV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BestBuddyCellID" rowHeight="55" id="QmT-Pr-ude" customClass="PUBestBuddyTableViewCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

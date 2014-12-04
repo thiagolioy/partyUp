@@ -12,6 +12,7 @@
 #import "PUHeaderTableViewCell.h"
 #import "PUSocialService.h"
 #import "PUBuddiesStorage.h"
+#import "PUInviteBuddyToListCell.h"
 
 @interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
@@ -31,6 +32,8 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 static NSString *buddiesCellID = @"BuddyCellID";
 static NSString *bestBuddiesCellID = @"BestBuddyCellID";
 static NSString *headerCellID = @"HeaderCellID";
+static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
+
 
 @implementation PUBuddiesListViewController
 
@@ -90,10 +93,14 @@ static NSString *headerCellID = @"HeaderCellID";
     return numberOfSections;
 }
 
+-(BOOL)hasBestBuddies{
+    return _bestBuddies.count == 0 ?  NO : YES;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(section == bestBuddies)
-        return _bestBuddies.count;
-    
+    if(section == bestBuddies){
+        return [self hasBestBuddies] ?  _bestBuddies.count : 1;
+    }
     return _buddies.count;
 }
 
@@ -125,11 +132,21 @@ static NSString *headerCellID = @"HeaderCellID";
     return cell;
 }
 
+- (PUInviteBuddyToListCell *)tableView:(UITableView *)tableView inviteBuddyCellAtIndexPath:(NSIndexPath *)indexPath{
+    PUInviteBuddyToListCell *cell = (PUInviteBuddyToListCell*)[tableView dequeueReusableCellWithIdentifier:inviteBuddyToListCellID];
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if(indexPath.section == bestBuddies)
-        return [self tableView:tableView bestBuddiesCellAtIndexPath:indexPath];
-    else
+    if(indexPath.section == bestBuddies){
+    
+        if([self hasBestBuddies])
+            return [self tableView:tableView bestBuddiesCellAtIndexPath:indexPath];
+        else
+            return [self tableView:tableView inviteBuddyCellAtIndexPath:indexPath];
+    
+    }else
         return [self tableView:tableView buddiesCellAtIndexPath:indexPath];
 }
 
@@ -142,7 +159,7 @@ static NSString *headerCellID = @"HeaderCellID";
     return [cell contentView];
 }
 -(BOOL)hasBestBuddies:(NSInteger)section{
-    return (section == bestBuddies && _bestBuddies.count > 0);
+    return (section == bestBuddies);
 }
 -(BOOL)hasBuddies:(NSInteger)section{
     return (section == otherBuddies && _buddies.count > 0);

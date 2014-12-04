@@ -67,6 +67,7 @@
 		3EB5EA1B1A2A696900C18AED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5EA1A1A2A696900C18AED /* MapKit.framework */; };
 		3EB5EA1E1A2A7BC100C18AED /* PUSendMailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA1D1A2A7BC100C18AED /* PUSendMailHelper.m */; };
 		3EB5EA261A2A8AD800C18AED /* UIAsyncButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA251A2A8AD800C18AED /* UIAsyncButton.m */; };
+		3EB8C57E1A30ADF40063E70C /* PUInviteBuddyToListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8C57D1A30ADF40063E70C /* PUInviteBuddyToListCell.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +179,8 @@
 		3EB5EA1D1A2A7BC100C18AED /* PUSendMailHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSendMailHelper.m; sourceTree = "<group>"; };
 		3EB5EA241A2A8AD800C18AED /* UIAsyncButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAsyncButton.h; sourceTree = "<group>"; };
 		3EB5EA251A2A8AD800C18AED /* UIAsyncButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAsyncButton.m; sourceTree = "<group>"; };
+		3EB8C57C1A30ADF40063E70C /* PUInviteBuddyToListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUInviteBuddyToListCell.h; sourceTree = "<group>"; };
+		3EB8C57D1A30ADF40063E70C /* PUInviteBuddyToListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUInviteBuddyToListCell.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-partyUp/Pods-partyUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -425,6 +428,8 @@
 				20F37F1D19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m */,
 				3EB5EA0E1A2A0B3F00C18AED /* PUHeaderTableViewCell.h */,
 				3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */,
+				3EB8C57C1A30ADF40063E70C /* PUInviteBuddyToListCell.h */,
+				3EB8C57D1A30ADF40063E70C /* PUInviteBuddyToListCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -643,6 +648,7 @@
 				20258BD719BE8DCA00FC5A5D /* PUPlacesService.m in Sources */,
 				20D960E719AFFB2000A893CF /* PUParty.m in Sources */,
 				3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */,
+				3EB8C57E1A30ADF40063E70C /* PUInviteBuddyToListCell.m in Sources */,
 				20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */,
 				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
