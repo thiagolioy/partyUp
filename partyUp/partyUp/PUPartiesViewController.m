@@ -18,6 +18,11 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
     NextWeek,
 };
 
+typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
+    parties,
+    places,
+};
+
 #define HEADER_HEIGHT 50.0f
 
 @interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -25,6 +30,8 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIView *errorMsgContainer;
 @property (strong, nonatomic) IBOutlet UILabel *errorMsg;
+@property (strong, nonatomic) UISegmentedControl *partiesOrPlacesControl;
+
 
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,strong)PUPartyService *service;
@@ -82,8 +89,36 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.parentViewController.navigationItem.title = @"Parties";
+    [self setUpSegmentControlOnNavigationBar];
 }
+-(void)setUpSegmentControlOnNavigationBar{
+    _partiesOrPlacesControl = [[UISegmentedControl alloc] initWithItems:@[@"Festas",@"Lugares"]];
+    [_partiesOrPlacesControl setWidth:100 forSegmentAtIndex:0];
+    [_partiesOrPlacesControl setWidth:100 forSegmentAtIndex:1];
+    [_partiesOrPlacesControl addTarget:self action:@selector(changeValueSegmentControl:) forControlEvents:UIControlEventValueChanged];
+    [_partiesOrPlacesControl setSelectedSegmentIndex:parties];
+    [self enablePartiesOrPlacesControlInteraction:[self hasParties]];
+    self.parentViewController.navigationItem.titleView = _partiesOrPlacesControl;
+}
+
+-(void)enablePartiesOrPlacesControlInteraction:(BOOL)enable{
+    _partiesOrPlacesControl.enabled = enable;
+    _partiesOrPlacesControl.userInteractionEnabled = enable;
+}
+
+-(void)changeValueSegmentControl:(id)sender{
+    NSInteger index = _partiesOrPlacesControl.selectedSegmentIndex;
+    if(index == parties){
+        NSLog(@"parties =)")
+        ;
+    }else{
+        NSLog(@"places=)")
+        ;
+    }
+    
+}
+
+
 
 -(void)hidesNavigationBackButton{
     self.parentViewController.navigationItem.hidesBackButton = YES;
@@ -92,6 +127,7 @@ static NSString *headerCellID = @"headerCellID";
 -(void)fetchParties{
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         [_activityIndicator stopAnimating];
+        [self enablePartiesOrPlacesControlInteraction:YES];
         if(!error)
             [self successOnFetchParties:parties];
         else
@@ -138,6 +174,10 @@ static NSString *headerCellID = @"headerCellID";
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(BOOL)hasParties{
+    return (_parties && _parties.count > 0);
 }
 
 -(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{

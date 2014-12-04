@@ -28,9 +28,14 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.parentViewController.navigationItem.title = @"Profile";
+    [self setUpNavigationBarTitle];
 }
 
+
+-(void)setUpNavigationBarTitle{
+    self.parentViewController.navigationItem.titleView = nil;
+    self.parentViewController.navigationItem.title = @"Profile";
+}
 
 - (void)didReceiveMemoryWarning
 {
