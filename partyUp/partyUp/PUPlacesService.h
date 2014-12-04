@@ -11,8 +11,6 @@
 typedef void (^PlacesCompletion)(NSArray *places, NSError *error);
 
 @interface PUPlacesService : NSObject
-@property(nonatomic,assign)NSInteger skip;
-@property(nonatomic,assign)NSInteger placesPerFetch;
 
 -(void)fetchPlacesNearMe:(PlacesCompletion)completion;
 -(void)fetchPlacesForQuery:(NSString*)query completion:(PlacesCompletion)completion;

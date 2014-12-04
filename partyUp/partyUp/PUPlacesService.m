@@ -16,12 +16,6 @@
     PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
     [placeQuery whereKey:@"canonicalName" containsString:[query uppercaseString]];
     [placeQuery orderByAscending:@"location"];
-    placeQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
-    placeQuery.maxCacheAge = 60 * 60 * 24;
-    
-    placeQuery.limit = _placesPerFetch;
-    if(_skip && _skip > 0)
-        placeQuery.skip = _skip;
     
     [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error){
@@ -41,16 +35,9 @@
             return;
         }
         
-            
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
         [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
         [placeQuery orderByAscending:@"location"];
-        placeQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
-        placeQuery.maxCacheAge = 60 * 60 * 24;
-        
-        placeQuery.limit = _placesPerFetch;
-        if(_skip && _skip > 0)
-            placeQuery.skip = _skip;
         
         [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if(error){

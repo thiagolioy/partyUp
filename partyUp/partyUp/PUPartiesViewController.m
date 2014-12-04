@@ -12,10 +12,20 @@
 #import "PUPartyService.h"
 #import "PUSearchSuggestionsService.h"
 #import "PUHeaderCell.h"
+#import "PUPlaceCell.h"
+#import "PUPlacesService.h"
+
+
 typedef NS_ENUM(NSUInteger, PartiesSections) {
     Today,
     ThisWeek,
     NextWeek,
+};
+
+typedef NS_ENUM(NSUInteger, PlacesSections) {
+    LessThan5km,
+    Between5kmAnd20km,
+    MoreThan20km,
 };
 
 typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
@@ -36,11 +46,15 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,strong)PUPartyService *service;
-@property(nonatomic,strong)NSMutableDictionary *sectionParties;
+
+
+@property(nonatomic,strong)NSArray *places;
+@property(nonatomic,strong)PUPlacesService *placeService;
 
 @end
 
 static NSString *partyCellID = @"partyCellID";
+static NSString *placeCellID = @"placeCellID";
 static NSString *headerCellID = @"headerCellID";
 
 @implementation PUPartiesViewController
@@ -51,7 +65,7 @@ static NSString *headerCellID = @"headerCellID";
     [super viewDidLoad];
     [self showStatusBar];
     [self hidesNavigationBackButton];
-    [self setUpPartyService];
+    [self setUpServices];
     [self fetchParties];
 }
 
@@ -59,23 +73,48 @@ static NSString *headerCellID = @"headerCellID";
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 }
 
--(void)setUpPartyService{
+-(void)setUpServices{
     _service = [PUPartyService new];
+    _placeService = [PUPlacesService new];
 }
 
--(void)cleanPartiesTableView{
+-(void)cleanTableView{
     _parties = @[];
+    _places = @[];
     [_collectionView reloadData];
 }
 
 -(void)fetchPartiesForPlace:(PUPlace*)place{
-    [self cleanPartiesTableView];
+    [self cleanTableView];
     [_service fetchPartiesForPlace:place completion:^(NSArray *parties, NSError *error) {
         if(!error){
             [self successOnFetchParties:parties];
         }
     }];
 }
+
+-(void)fetchPlaces{
+    [self cleanTableView];
+    [_activityIndicator startAnimating];
+    [_placeService fetchPlacesNearMe:^(NSArray *places, NSError *error) {
+        [_activityIndicator stopAnimating];
+        if(!error){
+            [self successOnFetchPlaces:places];
+        }
+    }];;
+}
+
+-(void)successOnFetchPlaces:(NSArray*)places{
+    if(places.count == 0)
+        [self noPlacesFound];
+    
+    [self splitSectionPlaces:places];
+    [self refreshTableView];
+}
+
+
+
+
 
 -(void)showErrorMsg:(NSString*)error{
     _errorMsgContainer.hidden = NO;
@@ -113,14 +152,14 @@ static NSString *headerCellID = @"headerCellID";
 -(void)changeValueSegmentControl:(id)sender{
     _lastSegmentControlIndex = _partiesOrPlacesControl.selectedSegmentIndex;
     if(_lastSegmentControlIndex == parties){
-        NSLog(@"parties =)")
-        ;
+        [self fetchParties];
     }else{
-        NSLog(@"places=)")
-        ;
+        [self fetchPlaces];
     }
     
 }
+
+
 
 
 
@@ -129,6 +168,8 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 -(void)fetchParties{
+    [self cleanTableView];
+    [_activityIndicator startAnimating];
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         [_activityIndicator stopAnimating];
         [self enablePartiesOrPlacesControlInteraction:YES];
@@ -143,14 +184,32 @@ static NSString *headerCellID = @"headerCellID";
     [self showErrorMsg:nil];
 }
 
+-(void)noPlacesFound{
+    [self showErrorMsg:@"Não encontramos nenhuma lugar cadastrado próximo a você!"];
+}
+
 -(void)successOnFetchParties:(NSArray*)parties{
     if(parties.count == 0)
         [self noPartiesFound];
     
     [self splitSectionParties:parties];
-    [self refreshPartiesTableView];
+    [self refreshTableView];
 }
 
+-(void)splitSectionPlaces:(NSArray*)places{
+    NSMutableArray *lessThan5km = [NSMutableArray array];
+    NSMutableArray *between5kmAnd20km = [NSMutableArray array];
+    NSMutableArray *moreThan20km = [NSMutableArray array];
+    for(PUPlace *p in places){
+        if(p.distanceInKm < 5)
+            [lessThan5km addObject:p];
+        else if(p.distanceInKm > 5 && p.distanceInKm < 20)
+            [between5kmAnd20km addObject:p];
+        else
+            [moreThan20km addObject:p];
+    }
+    _places = @[lessThan5km,between5kmAnd20km,moreThan20km];
+}
 
 -(void)splitSectionParties:(NSArray*)parties{
     NSMutableArray *todays = [NSMutableArray array];
@@ -171,7 +230,7 @@ static NSString *headerCellID = @"headerCellID";
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
 }
--(void)refreshPartiesTableView{
+-(void)refreshTableView{
     [_collectionView reloadData];
 }
 
@@ -189,18 +248,47 @@ static NSString *headerCellID = @"headerCellID";
     return [parties objectAtIndex:indexPath.row];
 }
 
+-(PUPlace*)placeAtIndexPath:(NSIndexPath*)indexPath{
+    NSArray *places = [_places objectAtIndex:indexPath.section];
+    return [places objectAtIndex:indexPath.row];
+}
+
 -(BOOL)hasItemsInSection:(NSInteger)section{
-    NSArray *parties = [_parties objectAtIndex:section];
-    return parties.count > 0;
+    
+    if(_lastSegmentControlIndex == parties){
+        NSArray *parties = [_parties objectAtIndex:section];
+        return parties.count > 0;
+    }else{
+        NSArray *places = [_places objectAtIndex:section];
+        return places.count > 0;
+    }
+    
+
 }
 
 -(NSString*)headerMessageForSection:(NSInteger)section{
-    if(section == Today)
-        return @"Hoje";
-    else if(section == ThisWeek)
-        return @"Essa Semana";
-    else
-        return @"Semana que vem";
+    
+    if(_lastSegmentControlIndex == parties){
+    
+        if(section == Today)
+            return @"Hoje";
+        else if(section == ThisWeek)
+            return @"Essa Semana";
+        else
+            return @"Semana que vem";
+    
+    }else{
+       
+        if(section == LessThan5km)
+            return @"Menos de 5km";
+        else if(section == Between5kmAnd20km)
+            return @"Entre 5km e 20 km";
+        else
+            return @"Mais de 20 km";
+    }
+    
+    
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -215,19 +303,44 @@ static NSString *headerCellID = @"headerCellID";
 
 #pragma mark - CollectionView Methods
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return _parties.count;
+    
+    if(_lastSegmentControlIndex == parties)
+        return _parties.count;
+    else
+        return _places.count;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSArray *parties =  [_parties objectAtIndex:section];
-    return parties.count;
+    
+    if(_lastSegmentControlIndex == parties){
+        NSArray *parties =  [_parties objectAtIndex:section];
+        return parties.count;
+    }else{
+        NSArray *places =  [_places objectAtIndex:section];
+        return places.count;
+    }
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(_lastSegmentControlIndex == parties)
+        return [self collectionView:collectionView partyCellAtIndexPath:indexPath];
+    else
+        return [self collectionView:collectionView placeCellAtIndexPath:indexPath];
+}
+
+-(PUPartyCell *)collectionView:(UICollectionView *)collectionView partyCellAtIndexPath:(NSIndexPath *)indexPath{
     PUPartyCell *cell = (PUPartyCell*)[collectionView dequeueReusableCellWithReuseIdentifier:partyCellID forIndexPath:indexPath];
     PUParty *party = [self partyAtIndexPath:indexPath];
     [cell fill:party];
     return cell;
 }
+
+-(PUPlaceCell *)collectionView:(UICollectionView *)collectionView placeCellAtIndexPath:(NSIndexPath *)indexPath{
+    PUPlaceCell *cell = (PUPlaceCell*)[collectionView dequeueReusableCellWithReuseIdentifier:placeCellID forIndexPath:indexPath];
+    PUPlace *place = [self placeAtIndexPath:indexPath];
+    [cell fill:place];
+    return cell;
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if(![self hasItemsInSection:section])
         return CGSizeMake(0, 0);

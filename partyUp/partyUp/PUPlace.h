@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface PUPlace : NSObject
+@property(nonatomic,strong)NSString *image;
 @property(nonatomic,strong)NSString *placeId;
 @property(nonatomic,strong)NSString *name;
 @property(nonatomic,strong)NSString *placeDescription;

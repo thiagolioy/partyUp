@@ -34,7 +34,6 @@
 		200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200055F619A4497D008377FF /* PUPartiesViewController.m */; };
 		201E887119A56160008C5532 /* PUProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201E887019A56160008C5532 /* PUProfileViewController.m */; };
 		20258BD719BE8DCA00FC5A5D /* PUPlacesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */; };
-		20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20258BD919BE943900FC5A5D /* PUPlacesViewController.m */; };
 		202845B119FD3426004D80EE /* PUPartyMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202845B019FD3426004D80EE /* PUPartyMoreInfoViewController.m */; };
 		202845B419FD45FD004D80EE /* NSString+Validators.m in Sources */ = {isa = PBXBuildFile; fileRef = 202845B319FD45FD004D80EE /* NSString+Validators.m */; };
 		20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20497C1619A839FC00CB942F /* PUBuddiesListViewController.m */; };
@@ -67,6 +66,7 @@
 		3EB5EA1E1A2A7BC100C18AED /* PUSendMailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA1D1A2A7BC100C18AED /* PUSendMailHelper.m */; };
 		3EB5EA261A2A8AD800C18AED /* UIAsyncButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA251A2A8AD800C18AED /* UIAsyncButton.m */; };
 		3EB8C57E1A30ADF40063E70C /* PUInviteBuddyToListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8C57D1A30ADF40063E70C /* PUInviteBuddyToListCell.m */; };
+		3EFEF1BC1A30E8030054CFE5 /* PUPlaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEF1BB1A30E8030054CFE5 /* PUPlaceCell.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -118,8 +118,6 @@
 		201E887019A56160008C5532 /* PUProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUProfileViewController.m; sourceTree = "<group>"; };
 		20258BD519BE8DCA00FC5A5D /* PUPlacesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlacesService.h; sourceTree = "<group>"; };
 		20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlacesService.m; sourceTree = "<group>"; };
-		20258BD819BE943900FC5A5D /* PUPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlacesViewController.h; sourceTree = "<group>"; };
-		20258BD919BE943900FC5A5D /* PUPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlacesViewController.m; sourceTree = "<group>"; };
 		202845AF19FD3426004D80EE /* PUPartyMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartyMoreInfoViewController.h; sourceTree = "<group>"; };
 		202845B019FD3426004D80EE /* PUPartyMoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartyMoreInfoViewController.m; sourceTree = "<group>"; };
 		202845B219FD45FD004D80EE /* NSString+Validators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validators.h"; sourceTree = "<group>"; };
@@ -178,6 +176,8 @@
 		3EB5EA251A2A8AD800C18AED /* UIAsyncButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAsyncButton.m; sourceTree = "<group>"; };
 		3EB8C57C1A30ADF40063E70C /* PUInviteBuddyToListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUInviteBuddyToListCell.h; sourceTree = "<group>"; };
 		3EB8C57D1A30ADF40063E70C /* PUInviteBuddyToListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUInviteBuddyToListCell.m; sourceTree = "<group>"; };
+		3EFEF1BA1A30E8030054CFE5 /* PUPlaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPlaceCell.h; sourceTree = "<group>"; };
+		3EFEF1BB1A30E8030054CFE5 /* PUPlaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPlaceCell.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-partyUp/Pods-partyUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,8 +366,6 @@
 				200055F619A4497D008377FF /* PUPartiesViewController.m */,
 				20497C2919A8531300CB942F /* PUPartyViewController.h */,
 				20497C2A19A8531300CB942F /* PUPartyViewController.m */,
-				20258BD819BE943900FC5A5D /* PUPlacesViewController.h */,
-				20258BD919BE943900FC5A5D /* PUPlacesViewController.m */,
 				202845AF19FD3426004D80EE /* PUPartyMoreInfoViewController.h */,
 				202845B019FD3426004D80EE /* PUPartyMoreInfoViewController.m */,
 			);
@@ -417,6 +415,8 @@
 				3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */,
 				209D78FE19A5A3E700FF0FF2 /* PUPartyCell.h */,
 				209D78FF19A5A3E700FF0FF2 /* PUPartyCell.m */,
+				3EFEF1BA1A30E8030054CFE5 /* PUPlaceCell.h */,
+				3EFEF1BB1A30E8030054CFE5 /* PUPlaceCell.m */,
 				20497C1819A8474A00CB942F /* PUBuddyTableViewCell.h */,
 				20497C1919A8474A00CB942F /* PUBuddyTableViewCell.m */,
 				20F9389719C903440069EE26 /* PUHeaderCell.h */,
@@ -636,6 +636,7 @@
 				20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */,
 				200055B019A43946008377FF /* main.m in Sources */,
 				20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */,
+				3EFEF1BC1A30E8030054CFE5 /* PUPlaceCell.m in Sources */,
 				20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */,
 				200055BA19A43946008377FF /* PULoginViewController.m in Sources */,
 				20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */,
@@ -651,7 +652,6 @@
 				20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */,
 				20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */,
 				3E8DE4E41A2F5696007EC179 /* PUAlertUtil.m in Sources */,
-				20258BDA19BE943900FC5A5D /* PUPlacesViewController.m in Sources */,
 				3EB5EA1E1A2A7BC100C18AED /* PUSendMailHelper.m in Sources */,
 				3EB5EA0D1A29FBB100C18AED /* PUBestBuddyTableViewCell.m in Sources */,
 				200055B419A43946008377FF /* PUAppDelegate.m in Sources */,
