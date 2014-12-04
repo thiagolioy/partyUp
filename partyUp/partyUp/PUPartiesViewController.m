@@ -122,11 +122,6 @@ static NSString *headerCellID = @"headerCellID";
         _errorMsg.text = error;
 }
 
--(void)refreshParties{
-    _parties = [NSMutableArray array];
-    [_collectionView reloadData];
-    [self fetchParties];
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     if(self.parentViewController.navigationItem.titleView == nil)
@@ -151,15 +146,25 @@ static NSString *headerCellID = @"headerCellID";
 
 -(void)changeValueSegmentControl:(id)sender{
     _lastSegmentControlIndex = _partiesOrPlacesControl.selectedSegmentIndex;
-    if(_lastSegmentControlIndex == parties){
-        [self fetchParties];
-    }else{
-        [self fetchPlaces];
-    }
-    
+    if(_lastSegmentControlIndex == parties)
+        [self didSelectPartiesOnSegmentControl];
+    else
+        [self didSelectPlacesOnSegmentControl];
 }
 
+-(void)didSelectPartiesOnSegmentControl{
+    if(_parties.count == 0)
+        [self fetchParties];
+    else
+        [self refreshTableView];
+}
 
+-(void)didSelectPlacesOnSegmentControl{
+    if(_places.count == 0)
+        [self fetchPlaces];
+    else
+        [self refreshTableView];
+}
 
 
 
