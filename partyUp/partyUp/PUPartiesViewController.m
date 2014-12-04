@@ -90,8 +90,11 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self setUpSegmentControlOnNavigationBar];
+    if(self.parentViewController.navigationItem.titleView == nil)
+        [self setUpSegmentControlOnNavigationBar];
 }
+
+
 -(void)setUpSegmentControlOnNavigationBar{
     _partiesOrPlacesControl = [[UISegmentedControl alloc] initWithItems:@[@"Festas",@"Lugares"]];
     [_partiesOrPlacesControl setWidth:100 forSegmentAtIndex:0];

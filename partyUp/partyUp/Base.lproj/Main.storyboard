@@ -82,7 +82,7 @@
                                                         <constraint firstItem="gjT-EB-VrL" firstAttribute="top" secondItem="Vfn-K3-hYq" secondAttribute="top" constant="5" id="p6Q-1Q-Yd2"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lQW-EB-1bS">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lQW-EB-1bS">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="190"/>
                                                 </imageView>
                                             </subviews>
@@ -1126,6 +1126,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Image_placeholder" width="600" height="378"/>
         <image name="add_icon_dark" width="21" height="21"/>
         <image name="icon-user" width="24" height="24"/>
         <image name="partiesTabIconNormal" width="23" height="34"/>

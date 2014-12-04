@@ -7,7 +7,7 @@
 //
 
 #import "PUPartyCell.h"
-#import "PUDownloader.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PUPartyCell()
 @property (strong, nonatomic) IBOutlet UIImageView *promoImage;
@@ -21,10 +21,8 @@
 @implementation PUPartyCell
 
 -(void)fill:(PUParty*)party{
-    [PUDownloader downloadImage:party.promoImage completion:^(UIImage *image, NSError *error) {
-        if(!error && image)
-            [_promoImage setImage:image];
-    }];
+    [_promoImage sd_setImageWithURL:[NSURL URLWithString:party.promoImage]
+                   placeholderImage:[UIImage imageNamed:@"Image_placeholder"]];
     _name.text = party.name;
     _placeName.text = party.place.name;
     _distanceInKm.text = [party.place prettyDistanceInKM];

@@ -7,13 +7,13 @@
 //
 
 #import "PUPartyViewController.h"
-#import "PUDownloader.h"
 #import "PUPartyMoreInfoViewController.h"
 #import <MapKit/MapKit.h>
 #import "PUSendMailHelper.h"
 #import "PUSocialService.h"
 #import "PUBuddiesStorage.h"
 #import "PUBuddiesListViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @interface PUPartyViewController ()
@@ -83,11 +83,8 @@
 }
 
 -(void)downloadPartyImage{
-    [PUDownloader downloadImage:_party.promoImage
-                     completion:^(UIImage *image, NSError *error) {
-                         if(!error && image)
-                             [_promoImage setImage:image];
-    }];
+    [_promoImage sd_setImageWithURL:[NSURL URLWithString:_party.promoImage]
+                   placeholderImage:[UIImage imageNamed:@"Image_placeholder"]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

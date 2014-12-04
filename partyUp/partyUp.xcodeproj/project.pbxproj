@@ -52,7 +52,6 @@
 		20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D960EA19AFFB5F00A893CF /* PUPlace.m */; };
 		20EBA8B719FC2FC700612C85 /* PUCustomTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA8B619FC2FC700612C85 /* PUCustomTabController.m */; };
 		20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */; };
-		20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F2740C19ABF71300BDBE5E /* PUDownloader.m */; };
 		20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F37F1D19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m */; };
 		20F37F2019ECD0D20080367B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F37F1F19ECD0D20080367B /* LaunchScreen.xib */; };
 		20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389819C903440069EE26 /* PUHeaderCell.m */; };
@@ -151,8 +150,6 @@
 		20EBA8B619FC2FC700612C85 /* PUCustomTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUCustomTabController.m; sourceTree = "<group>"; };
 		20F2740719ABF44200BDBE5E /* NSCalendar+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Convenience.h"; sourceTree = "<group>"; };
 		20F2740819ABF44200BDBE5E /* NSCalendar+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Convenience.m"; sourceTree = "<group>"; };
-		20F2740B19ABF71300BDBE5E /* PUDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUDownloader.h; sourceTree = "<group>"; };
-		20F2740C19ABF71300BDBE5E /* PUDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUDownloader.m; sourceTree = "<group>"; };
 		20F37F1C19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PULoginBackgroundCollectionViewCell.h; sourceTree = "<group>"; };
 		20F37F1D19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PULoginBackgroundCollectionViewCell.m; sourceTree = "<group>"; };
 		20F37F1F19ECD0D20080367B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -454,8 +451,6 @@
 			children = (
 				3E8DE4E21A2F5696007EC179 /* PUAlertUtil.h */,
 				3E8DE4E31A2F5696007EC179 /* PUAlertUtil.m */,
-				20F2740B19ABF71300BDBE5E /* PUDownloader.h */,
-				20F2740C19ABF71300BDBE5E /* PUDownloader.m */,
 				2051C52019FC2B3300C66ED3 /* PUCustomApperance.h */,
 				2051C52119FC2B3300C66ED3 /* PUCustomApperance.m */,
 				3EB5EA171A2A491D00C18AED /* PUBuddiesStorage.h */,
@@ -649,7 +644,6 @@
 				20D960E719AFFB2000A893CF /* PUParty.m in Sources */,
 				3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */,
 				3EB8C57E1A30ADF40063E70C /* PUInviteBuddyToListCell.m in Sources */,
-				20F2740D19ABF71300BDBE5E /* PUDownloader.m in Sources */,
 				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
 				20EBA8B719FC2FC700612C85 /* PUCustomTabController.m in Sources */,
