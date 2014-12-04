@@ -25,7 +25,7 @@
 +(instancetype)placeWithParseObj:(PFObject*)obj;
 -(void)distanceInKmTo:(PFGeoPoint*)point;
 -(double)distanceInKm;
--(CLLocation*)location;
 -(NSString*)prettyFormattedAddress;
 -(NSString*)prettyDistanceInKM;
+-(CLLocation*)clLocation;
 @end

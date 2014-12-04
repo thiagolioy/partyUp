@@ -21,8 +21,8 @@
 @implementation PUPlaceCell
 
 -(void)fill:(PUPlace *)place{
-//    [_promoImage sd_setImageWithURL:[NSURL URLWithString:place.image]
-//                   placeholderImage:[UIImage imageNamed:@"Image_placeholder"]];
+    [_promoImage sd_setImageWithURL:[NSURL URLWithString:place.image]
+                   placeholderImage:[UIImage imageNamed:@"Image_placeholder"]];
 
     _placeName.text = place.name;
     _distanceInKm.text = [place prettyDistanceInKM];

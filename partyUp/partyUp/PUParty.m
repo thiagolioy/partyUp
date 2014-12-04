@@ -17,7 +17,10 @@
     PUParty *party = [PUParty new];
     party.partyId = [obj objectId];
     party.name =  obj[@"name"];
-    party.promoImage =  obj[@"promoImage"];
+    
+    PFFile *imageFile = (PFFile*)obj[@"image"];
+    party.promoImage = imageFile.url;
+    
     party.date =  obj[@"date"];
     party.partyDescription =  obj[@"description"];
     party.malePrice =  obj[@"gentsPrice"];

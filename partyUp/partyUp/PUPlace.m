@@ -21,6 +21,10 @@
     place.name =  obj[@"name"];
     place.placeDescription =  obj[@"description"];
     
+    PFFile *imageFile = (PFFile*)obj[@"image"];
+    place.image = imageFile.url;
+    
+    
     place.street =  obj[@"street"];
     place.number =  obj[@"number"];
     place.complement =  obj[@"complement"];
@@ -58,7 +62,7 @@
 -(NSString*)prettyDistanceInKM{
     return [NSString stringWithFormat:@"%.2f km",_distanceInKm];
 }
--(CLLocation*)location{
+-(CLLocation*)clLocation{
     return [[CLLocation alloc] initWithLatitude:_location.latitude longitude:_location.longitude];
 }
 

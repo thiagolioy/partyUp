@@ -140,7 +140,7 @@
 -(IBAction)displayRouteToParty{
 
     MKMapItem *from = [MKMapItem mapItemForCurrentLocation];
-    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:_party.place.location.coordinate addressDictionary:nil];
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:_party.place.clLocation.coordinate addressDictionary:nil];
     MKMapItem *to = [[MKMapItem alloc] initWithPlacemark:placemark];
     to.name = _party.name;
     [self displayRouteFrom:from to:to];
