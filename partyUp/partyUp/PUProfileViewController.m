@@ -11,6 +11,7 @@
 #import "PUBuddiesStorage.h"
 #import "PUBestBuddyTableViewCell.h"
 #import "PUHeaderTableViewCell.h"
+#import "PUBuddiesListViewController.h"
 
 @interface PUProfileViewController ()
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
@@ -54,11 +55,16 @@
 }
 
 - (IBAction)logout:(id)sender {
-    [PFUser logOut];
-    [PUBuddiesStorage clearStorage];
-    UIViewController *vc =  [self.parentViewController parentViewController];
-    if([vc isKindOfClass:[UINavigationController class]])
-        [((UINavigationController*)vc) popToRootViewControllerAnimated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PUBuddiesListViewController *buddiesVC = [storyboard instantiateViewControllerWithIdentifier:@"PUBuddiesListViewController"];
+    [self presentViewController:buddiesVC animated:YES completion:nil];
+    
+//    
+//    [PFUser logOut];
+//    [PUBuddiesStorage clearStorage];
+//    UIViewController *vc =  [self.parentViewController parentViewController];
+//    if([vc isKindOfClass:[UINavigationController class]])
+//        [((UINavigationController*)vc) popToRootViewControllerAnimated:YES];
 }
 
 @end

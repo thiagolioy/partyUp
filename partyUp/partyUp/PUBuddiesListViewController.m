@@ -16,6 +16,7 @@
 @interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
 @property(nonatomic,strong)IBOutlet UIActivityIndicatorView *activityIndicator;
+@property(nonatomic,strong)IBOutlet UISearchBar *searchBar;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
 @property(nonatomic,strong)PUSocialService *service;
@@ -37,6 +38,7 @@ static NSString *headerCellID = @"HeaderCellID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setUpTapGesture];
     [self initSocialService];
     [self fetchBuddies];
     
@@ -58,8 +60,8 @@ static NSString *headerCellID = @"HeaderCellID";
         _buddies = [NSMutableArray array];
     if(!_bestBuddies)
         _bestBuddies = [NSMutableArray array];
-    
-    [_bestBuddies addObjectsFromArray:[self sortBuddiesByName:[PUBuddiesStorage storedBuddies]]];
+//    [self sortBuddiesByName:[PUBuddiesStorage storedBuddies]]
+    [_bestBuddies addObjectsFromArray:[PUBuddiesStorage storedBuddies]];
 }
 
 -(void)removeBestBuddiesOfBuddies{
@@ -156,6 +158,7 @@ static NSString *headerCellID = @"HeaderCellID";
 
 #pragma mark - Cell Delegates
 -(void)removeBuddy:(PUUser *)b{
+    [self dismissKeyboard];
     PUUser *buddy = [self findBuddy:b onList:_bestBuddies];
     if(buddy){
         [self demoteToBuddies:buddy];
@@ -180,6 +183,7 @@ static NSString *headerCellID = @"HeaderCellID";
 }
 
 -(void)addToBestBuddies:(PUUser *)b{
+    [self dismissKeyboard];
     PUUser *buddy = [self findBuddy:b onList:_buddies];
     if(buddy){
         [self promoteToBestBuddies:buddy];
@@ -188,7 +192,7 @@ static NSString *headerCellID = @"HeaderCellID";
 }
 
 -(void)refreshBuddiesList{
-    [self sortBuddiesLists];
+    //[self sortBuddiesLists];
     [self addReloadAnimationTo:_buddiesTableView];
     [_buddiesTableView reloadData];
 }
@@ -237,6 +241,20 @@ static NSString *headerCellID = @"HeaderCellID";
         if(_block)
             _block();
     }];
+}
+
+
+-(void)setUpTapGesture{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void) dismissKeyboard
+{
+    [_searchBar resignFirstResponder];
 }
 
 
