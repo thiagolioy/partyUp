@@ -111,11 +111,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZM-wu-3AG">
-                                                    <rect key="frame" x="0.0" y="190" width="300" height="50"/>
+                                                    <rect key="frame" x="0.0" y="190" width="300" height="85"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VillaMix" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahH-mX-l6y" userLabel="place">
                                                             <rect key="frame" x="10" y="5" width="195" height="20"/>
@@ -136,15 +136,51 @@
                                                             <color key="textColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="São Paulo - SP" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJE-Qk-NIe" userLabel="state">
+                                                            <rect key="frame" x="10" y="61" width="280" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="3e1-ia-NVC"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rua Elvira Ferraz 83,52" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FG-X1-ux6" userLabel="address">
+                                                            <rect key="frame" x="10" y="25" width="280" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="SM4-Xk-3UR"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Villa Olimpia" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qea-Jt-jX3" userLabel="neighborhood">
+                                                            <rect key="frame" x="10" y="43" width="280" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="vCB-38-6pC"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="ahH-mX-l6y" firstAttribute="top" secondItem="BZM-wu-3AG" secondAttribute="top" constant="5" id="01E-jo-evw"/>
+                                                        <constraint firstItem="rJE-Qk-NIe" firstAttribute="leading" secondItem="BZM-wu-3AG" secondAttribute="leading" constant="10" id="36U-pv-7JT"/>
+                                                        <constraint firstItem="Qea-Jt-jX3" firstAttribute="top" secondItem="8FG-X1-ux6" secondAttribute="bottom" id="5fh-aA-9X1"/>
                                                         <constraint firstItem="5JG-4r-5bL" firstAttribute="leading" secondItem="ahH-mX-l6y" secondAttribute="trailing" constant="5" id="7Sq-Uq-KKW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="rJE-Qk-NIe" secondAttribute="trailing" constant="10" id="A13-LC-2Ar"/>
+                                                        <constraint firstItem="Qea-Jt-jX3" firstAttribute="leading" secondItem="BZM-wu-3AG" secondAttribute="leading" constant="10" id="A7i-CO-QrZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Qea-Jt-jX3" secondAttribute="trailing" constant="10" id="CDc-DO-jo8"/>
                                                         <constraint firstAttribute="trailing" secondItem="5JG-4r-5bL" secondAttribute="trailing" constant="10" id="SvG-3T-w7Y"/>
+                                                        <constraint firstAttribute="trailing" secondItem="8FG-X1-ux6" secondAttribute="trailing" constant="10" id="VyJ-3O-5Bw"/>
                                                         <constraint firstItem="5JG-4r-5bL" firstAttribute="top" secondItem="BZM-wu-3AG" secondAttribute="top" constant="5" id="dPY-4e-EpS"/>
-                                                        <constraint firstAttribute="height" constant="50" id="gbm-2K-ftj"/>
+                                                        <constraint firstAttribute="height" constant="85" id="gbm-2K-ftj"/>
+                                                        <constraint firstItem="8FG-X1-ux6" firstAttribute="top" secondItem="ahH-mX-l6y" secondAttribute="bottom" id="l8I-gc-eSA"/>
+                                                        <constraint firstItem="8FG-X1-ux6" firstAttribute="leading" secondItem="BZM-wu-3AG" secondAttribute="leading" constant="10" id="nq5-Go-rBy"/>
                                                         <constraint firstItem="ahH-mX-l6y" firstAttribute="leading" secondItem="BZM-wu-3AG" secondAttribute="leading" constant="10" id="pPr-XE-UTX"/>
+                                                        <constraint firstItem="rJE-Qk-NIe" firstAttribute="top" secondItem="Qea-Jt-jX3" secondAttribute="bottom" id="sxF-AR-4iB"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="XEb-7W-Cvy">
@@ -166,10 +202,14 @@
                                             <constraint firstItem="BZM-wu-3AG" firstAttribute="leading" secondItem="gmf-Cp-Zpb" secondAttribute="leading" id="qsT-Oy-DKS"/>
                                             <constraint firstAttribute="trailing" secondItem="BZM-wu-3AG" secondAttribute="trailing" id="xgb-8L-WO6"/>
                                         </constraints>
+                                        <size key="customSize" width="300" height="275"/>
                                         <connections>
+                                            <outlet property="address" destination="8FG-X1-ux6" id="zf7-O0-TFb"/>
                                             <outlet property="distanceInKm" destination="5JG-4r-5bL" id="ejD-d5-8FP"/>
+                                            <outlet property="neighborhood" destination="Qea-Jt-jX3" id="vec-kO-wxr"/>
                                             <outlet property="placeName" destination="ahH-mX-l6y" id="uZw-ez-eiv"/>
                                             <outlet property="promoImage" destination="XEb-7W-Cvy" id="z1h-Qi-59L"/>
+                                            <outlet property="state" destination="rJE-Qk-NIe" id="XeA-uH-T1k"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

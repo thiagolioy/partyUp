@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 #define HEADER_HEIGHT 50.0f
 
-@interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIView *errorMsgContainer;
@@ -341,6 +341,13 @@ static NSString *headerCellID = @"headerCellID";
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(_lastSegmentControlIndex == parties){
+        return CGSizeMake(300, 240);
+    }else
+        return CGSizeMake(300, 275);
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if(![self hasItemsInSection:section])
         return CGSizeMake(0, 0);
@@ -348,6 +355,7 @@ static NSString *headerCellID = @"headerCellID";
     CGFloat width = self.view.bounds.size.width;
     return CGSizeMake(width, HEADER_HEIGHT);
 }
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 
     PUHeaderCell *headerView = (PUHeaderCell*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerCellID forIndexPath:indexPath];

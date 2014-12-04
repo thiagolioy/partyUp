@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *placeName;
 @property (strong, nonatomic) IBOutlet UILabel *distanceInKm;
 @property (strong, nonatomic) IBOutlet UILabel *address;
+@property (strong, nonatomic) IBOutlet UILabel *neighborhood;
+@property (strong, nonatomic) IBOutlet UILabel *state;
 @end
 
 @implementation PUPlaceCell
@@ -24,7 +26,9 @@
 
     _placeName.text = place.name;
     _distanceInKm.text = [place prettyDistanceInKM];
-//    _address.text = [place prettyFormattedAddress];
+    _address.text = [place prettyFormattedAddress];
+    _neighborhood.text = place.neighborhood;
+    _state.text = place.state;
 }
 
 @end
