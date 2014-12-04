@@ -30,8 +30,9 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIView *errorMsgContainer;
 @property (strong, nonatomic) IBOutlet UILabel *errorMsg;
-@property (strong, nonatomic) UISegmentedControl *partiesOrPlacesControl;
 
+@property (strong, nonatomic) UISegmentedControl *partiesOrPlacesControl;
+@property (assign, nonatomic) NSInteger lastSegmentControlIndex;
 
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,strong)PUPartyService *service;
@@ -96,7 +97,7 @@ static NSString *headerCellID = @"headerCellID";
     [_partiesOrPlacesControl setWidth:100 forSegmentAtIndex:0];
     [_partiesOrPlacesControl setWidth:100 forSegmentAtIndex:1];
     [_partiesOrPlacesControl addTarget:self action:@selector(changeValueSegmentControl:) forControlEvents:UIControlEventValueChanged];
-    [_partiesOrPlacesControl setSelectedSegmentIndex:parties];
+    [_partiesOrPlacesControl setSelectedSegmentIndex:_lastSegmentControlIndex];
     [self enablePartiesOrPlacesControlInteraction:[self hasParties]];
     self.parentViewController.navigationItem.titleView = _partiesOrPlacesControl;
 }
@@ -107,8 +108,8 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 -(void)changeValueSegmentControl:(id)sender{
-    NSInteger index = _partiesOrPlacesControl.selectedSegmentIndex;
-    if(index == parties){
+    _lastSegmentControlIndex = _partiesOrPlacesControl.selectedSegmentIndex;
+    if(_lastSegmentControlIndex == parties){
         NSLog(@"parties =)")
         ;
     }else{
