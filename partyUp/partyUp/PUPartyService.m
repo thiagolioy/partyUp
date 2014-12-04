@@ -29,7 +29,7 @@
         [query whereKey:@"date" lessThan:[NSCalendar oneWeekFromNow]];
         [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
         [query orderByAscending:@"date"];
-        
+        query.limit = 10;
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if(error){

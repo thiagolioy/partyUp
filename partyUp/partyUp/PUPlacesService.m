@@ -38,6 +38,7 @@
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
         [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
         [placeQuery orderByAscending:@"location"];
+        placeQuery.limit = 20;
         
         [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if(error){
