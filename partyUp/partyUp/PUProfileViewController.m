@@ -60,16 +60,11 @@
 }
 
 - (IBAction)logout:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PUBuddiesListViewController *buddiesVC = [storyboard instantiateViewControllerWithIdentifier:@"PUBuddiesListViewController"];
-    [self presentViewController:buddiesVC animated:YES completion:nil];
-    
-//    
-//    [PFUser logOut];
-//    [PUBuddiesStorage clearStorage];
-//    UIViewController *vc =  [self.parentViewController parentViewController];
-//    if([vc isKindOfClass:[UINavigationController class]])
-//        [((UINavigationController*)vc) popToRootViewControllerAnimated:YES];
+    [PFUser logOut];
+    [PUBuddiesStorage clearStorage];
+    UIViewController *vc =  [self.parentViewController parentViewController];
+    if([vc isKindOfClass:[UINavigationController class]])
+        [((UINavigationController*)vc) popToRootViewControllerAnimated:YES];
 }
 
 @end
