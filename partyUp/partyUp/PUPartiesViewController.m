@@ -66,11 +66,25 @@ static NSString *searchCellID = @"searchCellID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setUpSearchIconOnNavigation];
     [self showStatusBar];
     [self hidesNavigationBackButton];
     [self setUpServices];
     [self fetchParties];
+}
+
+-(void)setUpSearchIconOnNavigation{
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+                                                                            target:self action:@selector(clickOnSearchIcon)];
     
+    self.parentViewController.navigationItem.rightBarButtonItem = button;
+}
+
+-(void)clickOnSearchIcon{
+    NSIndexPath *searchCellIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    [_collectionView scrollToItemAtIndexPath:searchCellIndexPath
+                            atScrollPosition:UICollectionViewScrollPositionTop
+                                    animated:YES];
 }
 
 -(void)showStatusBar{
@@ -128,8 +142,9 @@ static NSString *searchCellID = @"searchCellID";
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    if(self.parentViewController.navigationItem.titleView == nil)
+    if(self.parentViewController.navigationItem.titleView == nil){
         [self setUpSegmentControlOnNavigationBar];
+    }
 }
 
 
