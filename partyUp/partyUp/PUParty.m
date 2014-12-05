@@ -63,5 +63,8 @@
     return [_sendNamesType isEqualToString:@"mail"];
 }
 
+-(NSString*)partyOrPlaceImageUrl{
+    return  _promoImage != nil ? _promoImage : _place.image;
+}
 
 @end

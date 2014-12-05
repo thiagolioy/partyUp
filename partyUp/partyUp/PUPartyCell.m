@@ -21,9 +21,7 @@
 @implementation PUPartyCell
 
 -(void)fill:(PUParty*)party{
-    NSString *imageUrl = party.promoImage != nil ? party.promoImage : party.place.image;
-
-    [_promoImage sd_setImageWithURL:[NSURL URLWithString:imageUrl]
+    [_promoImage sd_setImageWithURL:[NSURL URLWithString:[party partyOrPlaceImageUrl]]
                    placeholderImage:[UIImage imageNamed:@"Image_placeholder"]];
     _name.text = party.name;
     _placeName.text = party.place.name;

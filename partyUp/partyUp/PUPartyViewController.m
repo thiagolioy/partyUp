@@ -83,7 +83,7 @@
 }
 
 -(void)downloadPartyImage{
-    [_promoImage sd_setImageWithURL:[NSURL URLWithString:_party.promoImage]
+    [_promoImage sd_setImageWithURL:[NSURL URLWithString:[_party partyOrPlaceImageUrl]]
                    placeholderImage:[UIImage imageNamed:@"Image_placeholder"]];
 }
 

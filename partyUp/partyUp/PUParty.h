@@ -27,4 +27,6 @@
 
 -(BOOL)isFacebookNamesList;
 -(BOOL)isMailNamesList;
+
+-(NSString*)partyOrPlaceImageUrl;
 @end
