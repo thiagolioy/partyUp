@@ -107,6 +107,35 @@
                                             <segue destination="Hn6-BL-fiy" kind="show" identifier="showParty" id="LeR-5g-Cfy"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchCellID" id="gMk-6F-Jkm" userLabel="seachCell" customClass="PUSearchCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-XI-6m8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                    <subviews>
+                                                        <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="zlU-5f-L1N">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </searchBar>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="S8r-XI-6m8" secondAttribute="bottom" id="G2h-c7-I3e"/>
+                                            <constraint firstItem="S8r-XI-6m8" firstAttribute="top" secondItem="gMk-6F-Jkm" secondAttribute="top" id="Gcp-NP-LfX"/>
+                                            <constraint firstItem="S8r-XI-6m8" firstAttribute="leading" secondItem="gMk-6F-Jkm" secondAttribute="leading" id="WBk-FC-2CT"/>
+                                            <constraint firstAttribute="trailing" secondItem="S8r-XI-6m8" secondAttribute="trailing" id="rrd-If-CDu"/>
+                                        </constraints>
+                                        <size key="customSize" width="320" height="44"/>
+                                    </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="placeCellID" id="gmf-Cp-Zpb" userLabel="Place Cell" customClass="PUPlaceCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>

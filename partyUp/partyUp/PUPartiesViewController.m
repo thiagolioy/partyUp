@@ -14,6 +14,7 @@
 #import "PUHeaderCell.h"
 #import "PUPlaceCell.h"
 #import "PUPlacesService.h"
+#import "PUSearchCell.h"
 
 
 typedef NS_ENUM(NSUInteger, PartiesSections) {
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
     parties,
     places,
 };
+
 
 #define HEADER_HEIGHT 50.0f
 
@@ -56,6 +58,7 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 static NSString *partyCellID = @"partyCellID";
 static NSString *placeCellID = @"placeCellID";
 static NSString *headerCellID = @"headerCellID";
+static NSString *searchCellID = @"searchCellID";
 
 @implementation PUPartiesViewController
 
@@ -67,6 +70,7 @@ static NSString *headerCellID = @"headerCellID";
     [self hidesNavigationBackButton];
     [self setUpServices];
     [self fetchParties];
+    
 }
 
 -(void)showStatusBar{
@@ -291,17 +295,18 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 -(BOOL)hasItemsInSection:(NSInteger)section{
-    
+    NSInteger index = section -1;
     if(_lastSegmentControlIndex == parties){
-        NSArray *parties = [_parties objectAtIndex:section];
+        NSArray *parties = [_parties objectAtIndex:index];
         return parties.count > 0;
     }else{
-        NSArray *places = [_places objectAtIndex:section];
+        NSArray *places = [_places objectAtIndex:index];
         return places.count > 0;
     }
     
 
 }
+
 
 -(NSString*)headerMessageForSection:(NSInteger)section{
     
@@ -351,29 +356,54 @@ static NSString *headerCellID = @"headerCellID";
 
 #pragma mark - CollectionView Methods
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+
+    NSInteger numberOfSections = 1;//Added SearchSection
     
     if(_lastSegmentControlIndex == parties)
-        return _parties.count;
+        numberOfSections += _parties.count;
     else
-        return _places.count;
+        numberOfSections += _places.count;
+    
+    return numberOfSections;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    if(_lastSegmentControlIndex == parties){
-        NSArray *parties =  [_parties objectAtIndex:section];
-        return parties.count;
+    if(section == 0){
+        
+        return 1;
+   
     }else{
-        NSArray *places =  [_places objectAtIndex:section];
-        return places.count;
+        NSInteger index = section -1; //Due to have now the search section
+        if(_lastSegmentControlIndex == parties){
+            NSArray *parties =  [_parties objectAtIndex:index];
+            return parties.count;
+        }else{
+            NSArray *places =  [_places objectAtIndex:index];
+            return places.count;
+        }
+        
     }
+    
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(_lastSegmentControlIndex == parties)
-        return [self collectionView:collectionView partyCellAtIndexPath:indexPath];
-    else
-        return [self collectionView:collectionView placeCellAtIndexPath:indexPath];
+    if(indexPath.section == 0){
+        
+        return [self collectionView:collectionView searchCellAtIndexPath:indexPath];
+    
+    }else{
+    
+        if(_lastSegmentControlIndex == parties)
+            return [self collectionView:collectionView partyCellAtIndexPath:indexPath];
+        else
+            return [self collectionView:collectionView placeCellAtIndexPath:indexPath];
+    }
+}
+
+-(PUSearchCell *)collectionView:(UICollectionView *)collectionView searchCellAtIndexPath:(NSIndexPath *)indexPath{
+    PUSearchCell *cell = (PUSearchCell*)[collectionView dequeueReusableCellWithReuseIdentifier:searchCellID forIndexPath:indexPath];
+    return cell;
 }
 
 -(PUPartyCell *)collectionView:(UICollectionView *)collectionView partyCellAtIndexPath:(NSIndexPath *)indexPath{
@@ -391,14 +421,24 @@ static NSString *headerCellID = @"headerCellID";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(_lastSegmentControlIndex == parties){
-        return CGSizeMake(300, 240);
-    }else
-        return CGSizeMake(300, 275);
+    
+    if(indexPath.section == 0){
+        CGFloat width = self.view.bounds.size.width;
+        return CGSizeMake(width, 44);
+    }else{
+    
+        if(_lastSegmentControlIndex == parties){
+            return CGSizeMake(300, 240);
+        }else
+            return CGSizeMake(300, 275);
+        
+    }
+    
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    if(![self hasItemsInSection:section])
+    if(section == 0 || ![self hasItemsInSection:section])
         return CGSizeMake(0, 0);
     
     CGFloat width = self.view.bounds.size.width;
