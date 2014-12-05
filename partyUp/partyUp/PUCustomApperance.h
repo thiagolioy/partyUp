@@ -12,4 +12,5 @@
 
 +(void)customizeNavBar;
 +(void)customizeTabBar;
++(void)customizeSearchBar;
 @end

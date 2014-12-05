@@ -61,6 +61,7 @@
 -(void)customizeAppearance{
     [PUCustomApperance customizeNavBar];
     [PUCustomApperance customizeTabBar];
+    [PUCustomApperance customizeSearchBar];
 }
 
 @end

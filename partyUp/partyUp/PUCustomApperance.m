@@ -10,6 +10,7 @@
 
 #define NAV_TAB_BG [UIColor colorWithPatternImage:[UIImage imageNamed:@"navTabBg"]]
 #define DARK_GRAY [UIColor colorWithRed:38.0f/255.0f green:50.0f/255.0f blue:56.0f/255.0f alpha:1]
+#define LIGHT_GRAY [UIColor colorWithRed:236.0f/255.0f green:239.0f/255.0f blue:241.0f/255.0f alpha:1]
 
 @implementation PUCustomApperance
 
@@ -33,5 +34,12 @@
                                              forState:UIControlStateSelected];
     [[UITabBarItem appearance] setTitleTextAttributes:props
                                              forState:UIControlStateNormal];
+
+
+}
+
++(void)customizeSearchBar{
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTextColor:LIGHT_GRAY];
 }
 @end

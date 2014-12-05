@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PUSearchCell : UICollectionViewCell
+@protocol PUSearchCellDelegate <NSObject>
 
+-(void)search:(NSString*)query;
+
+@end
+
+@interface PUSearchCell : UICollectionViewCell
+@property(nonatomic,weak)IBOutlet UISearchBar *searchBar;
+@property(nonatomic,weak)id<PUSearchCellDelegate> delegate;
+
+-(void)config:(id<PUSearchCellDelegate>)delegate;
+-(void)resignSearchBar;
+-(void)requestFocus;
 @end

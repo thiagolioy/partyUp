@@ -13,18 +13,29 @@
 
 
 -(void)fetchPlacesForQuery:(NSString*)query completion:(PlacesCompletion)completion{
-    PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
-    [placeQuery whereKey:@"canonicalName" containsString:[query uppercaseString]];
-    [placeQuery orderByAscending:@"location"];
     
-    [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if(error){
             completion(nil,error);
             return;
         }
         
-        NSArray *places = [PUPlace placesWithObjects:objects];
-        completion(places,nil);
+        PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
+        [placeQuery whereKey:@"canonicalName" containsString:[query uppercaseString]];
+        [placeQuery orderByAscending:@"location"];
+        
+        [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if(error){
+                completion(nil,error);
+                return;
+            }
+            
+            NSArray *places = [PUPlace placesWithObjects:objects];
+            for(PUPlace *p in places)
+                [p distanceInKmTo:geoPoint];
+            completion(places,nil);
+        }];
+        
     }];
 }
 

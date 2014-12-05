@@ -37,7 +37,10 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 #define HEADER_HEIGHT 50.0f
 
-@interface PUPartiesViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface PUPartiesViewController ()<UICollectionViewDataSource,
+                                        UICollectionViewDelegate,
+                                        UICollectionViewDelegateFlowLayout,
+                                        PUSearchCellDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIView *errorMsgContainer;
@@ -48,6 +51,8 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,strong)PUPartyService *service;
+
+@property(nonatomic,strong)PUSearchCell *searchCell;
 
 
 @property(nonatomic,strong)NSArray *places;
@@ -85,6 +90,7 @@ static NSString *searchCellID = @"searchCellID";
     [_collectionView scrollToItemAtIndexPath:searchCellIndexPath
                             atScrollPosition:UICollectionViewScrollPositionTop
                                     animated:YES];
+    [self requestFocusOnSearchBar];
 }
 
 -(void)showStatusBar{
@@ -98,7 +104,6 @@ static NSString *searchCellID = @"searchCellID";
 
 -(void)fetchPlaces{
     [self showLoadingState];
-    [_activityIndicator startAnimating];
     [_placeService fetchPlacesNearMe:^(NSArray *places, NSError *error) {
         [_activityIndicator stopAnimating];
         if(!error)
@@ -164,6 +169,7 @@ static NSString *searchCellID = @"searchCellID";
 }
 
 -(void)changeValueSegmentControl:(id)sender{
+    [self resignSearchBar];
     _lastSegmentControlIndex = _partiesOrPlacesControl.selectedSegmentIndex;
     if(_lastSegmentControlIndex == parties)
         [self didSelectPartiesOnSegmentControl];
@@ -300,12 +306,14 @@ static NSString *searchCellID = @"searchCellID";
 }
 
 -(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
-    NSArray *parties = [_parties objectAtIndex:indexPath.section];
+    NSInteger index = indexPath.section -1;
+    NSArray *parties = [_parties objectAtIndex:index];
     return [parties objectAtIndex:indexPath.row];
 }
 
 -(PUPlace*)placeAtIndexPath:(NSIndexPath*)indexPath{
-    NSArray *places = [_places objectAtIndex:indexPath.section];
+    NSInteger index = indexPath.section -1;
+    NSArray *places = [_places objectAtIndex:index];
     return [places objectAtIndex:indexPath.row];
 }
 
@@ -349,6 +357,7 @@ static NSString *searchCellID = @"searchCellID";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [self resignSearchBar];
     if([@"showParty" isEqualToString:segue.identifier]){
         NSArray *paths = [_collectionView indexPathsForSelectedItems];
         PUParty *selectedParty = [self partyAtIndexPath:[paths firstObject]];
@@ -358,6 +367,7 @@ static NSString *searchCellID = @"searchCellID";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self resignSearchBar];
     if(_lastSegmentControlIndex != places)
         return;
     
@@ -418,6 +428,8 @@ static NSString *searchCellID = @"searchCellID";
 
 -(PUSearchCell *)collectionView:(UICollectionView *)collectionView searchCellAtIndexPath:(NSIndexPath *)indexPath{
     PUSearchCell *cell = (PUSearchCell*)[collectionView dequeueReusableCellWithReuseIdentifier:searchCellID forIndexPath:indexPath];
+    [cell config:self];
+    _searchCell = cell;
     return cell;
 }
 
@@ -465,6 +477,32 @@ static NSString *searchCellID = @"searchCellID";
     PUHeaderCell *headerView = (PUHeaderCell*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerCellID forIndexPath:indexPath];
     headerView.message.text = [self headerMessageForSection:indexPath.section];
     return headerView;
+}
+
+-(void)resignSearchBar{
+    [_searchCell resignSearchBar];
+}
+
+-(void)requestFocusOnSearchBar{
+    [_searchCell requestFocus];
+}
+
+-(void)search:(NSString *)query{
+    if(_lastSegmentControlIndex == parties){
+    
+    }else
+        [self fetchPlacesFor:query];
+}
+
+-(void)fetchPlacesFor:(NSString*)query{
+    [self showLoadingState];
+    [_placeService fetchPlacesForQuery:query completion:^(NSArray *places, NSError *error) {
+        [_activityIndicator stopAnimating];
+        if(!error)
+            [self successOnFetchPlaces:places];
+        else
+            [self showUnknownError];
+    }];
 }
 
 

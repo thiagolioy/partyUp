@@ -120,6 +120,9 @@
                                                         <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="zlU-5f-L1N">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="gMk-6F-Jkm" id="5gZ-LK-wAm"/>
+                                                            </connections>
                                                         </searchBar>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
@@ -135,6 +138,9 @@
                                             <constraint firstAttribute="trailing" secondItem="S8r-XI-6m8" secondAttribute="trailing" id="rrd-If-CDu"/>
                                         </constraints>
                                         <size key="customSize" width="320" height="44"/>
+                                        <connections>
+                                            <outlet property="searchBar" destination="zlU-5f-L1N" id="MFB-g9-Uc3"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="placeCellID" id="gmf-Cp-Zpb" userLabel="Place Cell" customClass="PUPlaceCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
