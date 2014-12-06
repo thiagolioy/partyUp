@@ -2,5 +2,6 @@ platform :ios, '7.1'
 target :partyUp do
 pod 'SVPullToRefresh'
 pod 'SDWebImage', '~>3.6'
+pod 'UIResponder+KeyboardCache'
 end
 

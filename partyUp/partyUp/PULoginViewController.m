@@ -11,6 +11,7 @@
 #import "PULoginBackgroundCollectionViewCell.h"
 #import "PUSocialService.h"
 #import "PUBuddiesStorage.h"
+#import <UIResponder+KeyboardCache.h>
 
 @interface PULoginViewController ()<UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIAsyncButton *loginButton;
@@ -31,7 +32,11 @@
     [self setUpContentMessages];
     [self setUpPageControl];
     [self checkIfUserAlreadyLoggedIn];
+    [self hackToRemoveSearchKeyboardDelayOnFirstShow];
+}
 
+-(void)hackToRemoveSearchKeyboardDelayOnFirstShow{
+    [UIResponder cacheKeyboard];
 }
 
 -(void)initSocialService{
