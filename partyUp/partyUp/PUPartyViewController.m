@@ -98,9 +98,10 @@
     PUBuddiesListViewController *buddiesVC = [storyboard instantiateViewControllerWithIdentifier:@"PUBuddiesListViewController"];
     
     buddiesVC.block = ^{
-        if(_party.isMailNamesList)
+        if(_party.isMailNamesList){
+            [_sendNamesButton reset];
             [PUSendMailHelper sendNamesTo:_party];
-        else if(_party.isFacebookNamesList)
+        }else if(_party.isFacebookNamesList)
             [self sendNamesToFacebookEvent];
     };
     
