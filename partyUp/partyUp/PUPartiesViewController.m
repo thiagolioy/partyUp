@@ -455,14 +455,21 @@ typedef NS_ENUM(NSUInteger, Sections) {
 }
 
 -(void)search:(NSString *)query{
-    if([self isPartiesSegmentSelected]){
-    
-    }else
+    if([self isPartiesSegmentSelected])
+        [self fetchPartiesFor:query];
+    else
         [self fetchPlacesFor:query];
 }
 
 -(void)fetchPartiesFor:(NSString*)query{
-//    [self showLoadingState];
+    [self showLoadingState];
+    [_service fetchPartiesForQuery:query completion:^(NSArray *parties, NSError *error) {
+        [_activityIndicator stopAnimating];
+        if(!error)
+            [self successOnFetchParties:parties];
+        else
+            [self showUnknownError];
+    }];
     
 }
 

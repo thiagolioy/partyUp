@@ -10,6 +10,39 @@
 
 @implementation PUPartyService
 
+-(void)fetchPartiesForQuery:(NSString*)queryText completion:(PartiesCompletion)completion{
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if(error){
+            completion(nil,error);
+            return;
+        }
+        
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Party"];
+        [query whereKey:@"canonicalName" containsString:[queryText uppercaseString]];
+        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+        query.maxCacheAge = 60 * 60 * 24;
+        [query includeKey:@"place"];
+        [query whereKey:@"date" lessThan:[NSCalendar oneWeekFromNow]];
+        [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
+        [query orderByAscending:@"date"];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if(error){
+                completion(nil,error);
+                return;
+            }
+            
+            NSArray *parties = [PUParty partiesWithParseObjects:objects];
+            for(PUParty *p in parties)
+                [p.place distanceInKmTo:geoPoint];
+            completion(parties,nil);
+        }];
+        
+    }];
+}
+
+
 -(void)fetchPartiesForPlace:(PUPlace*)place completion:(PartiesCompletion)completion{
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if(error){

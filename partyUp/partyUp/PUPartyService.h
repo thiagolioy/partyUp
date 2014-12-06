@@ -15,6 +15,7 @@ typedef void (^PartyCompletion)(PUParty *party, NSError *error);
 @interface PUPartyService : NSObject
 
 
+-(void)fetchPartiesForQuery:(NSString*)query completion:(PartiesCompletion)completion;
 -(void)fetchPartiesForPlace:(PUPlace*)place completion:(PartiesCompletion)completion;
 -(void)fetchPartiesNearMe:(PartiesCompletion)completion;
 
