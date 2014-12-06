@@ -180,13 +180,14 @@ typedef NS_ENUM(NSUInteger, Sections) {
 -(void)changeValueSegmentControl:(id)sender{
     [self resignSearchBar];
     _lastSegmentControlIndex = _partiesOrPlacesControl.selectedSegmentIndex;
-    if(_lastSegmentControlIndex == parties)
+    if([self isPartiesSegmentSelected])
         [self didSelectPartiesOnSegmentControl];
     else
         [self didSelectPlacesOnSegmentControl];
 }
 
 -(void)didSelectPartiesOnSegmentControl{
+    [_searchCell setPlaceholderText:@"Busque festas"];
     if(_parties.count == 0)
         [self fetchParties];
     else
@@ -194,6 +195,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
 }
 
 -(void)didSelectPlacesOnSegmentControl{
+    [_searchCell setPlaceholderText:@"Busque lugares"];
     if(_places.count == 0)
         [self fetchPlaces];
     else

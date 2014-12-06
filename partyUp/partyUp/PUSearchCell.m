@@ -23,6 +23,11 @@ static NSString *searchCellID = @"searchCellID";
     _delegate = delegate;
 }
 
+-(void)setPlaceholderText:(NSString*)text{
+    _searchBar.text = @"";
+    _searchBar.placeholder = text;
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 
 }
