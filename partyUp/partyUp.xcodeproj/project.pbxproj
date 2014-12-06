@@ -57,6 +57,7 @@
 		20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389B19C92D8A0069EE26 /* PUSearchSuggestionsService.m */; };
 		20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */; };
 		3E10FBCB1A31F3C20045A3D1 /* PUSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */; };
+		3E737C341A338CE20054B222 /* PUPartiesAndPlacesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */; };
 		3E8DE4E41A2F5696007EC179 /* PUAlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8DE4E31A2F5696007EC179 /* PUAlertUtil.m */; };
 		3EB5EA0D1A29FBB100C18AED /* PUBestBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */; };
 		3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */; };
@@ -160,6 +161,8 @@
 		20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchSuggestion.m; sourceTree = "<group>"; };
 		3E10FBC91A31F3C20045A3D1 /* PUSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUSearchCell.h; sourceTree = "<group>"; };
 		3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchCell.m; sourceTree = "<group>"; };
+		3E737C321A338CE10054B222 /* PUPartiesAndPlacesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartiesAndPlacesHelper.h; sourceTree = "<group>"; };
+		3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartiesAndPlacesHelper.m; sourceTree = "<group>"; };
 		3E8DE4E21A2F5696007EC179 /* PUAlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUAlertUtil.h; sourceTree = "<group>"; };
 		3E8DE4E31A2F5696007EC179 /* PUAlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUAlertUtil.m; sourceTree = "<group>"; };
 		3EB5EA0B1A29FBB100C18AED /* PUBestBuddyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBestBuddyTableViewCell.h; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 				3EB5EA181A2A491D00C18AED /* PUBuddiesStorage.m */,
 				3EB5EA1C1A2A7BC100C18AED /* PUSendMailHelper.h */,
 				3EB5EA1D1A2A7BC100C18AED /* PUSendMailHelper.m */,
+				3E737C321A338CE10054B222 /* PUPartiesAndPlacesHelper.h */,
+				3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				200055B019A43946008377FF /* main.m in Sources */,
 				20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */,
 				3EFEF1BC1A30E8030054CFE5 /* PUPlaceCell.m in Sources */,
+				3E737C341A338CE20054B222 /* PUPartiesAndPlacesHelper.m in Sources */,
 				20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */,
 				200055BA19A43946008377FF /* PULoginViewController.m in Sources */,
 				20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */,

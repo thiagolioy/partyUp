@@ -15,6 +15,7 @@
 #import "PUPlaceCell.h"
 #import "PUPlacesService.h"
 #import "PUSearchCell.h"
+#import "PUPartiesAndPlacesHelper.h"
 
 
 typedef NS_ENUM(NSUInteger, PartiesSections) {
@@ -127,7 +128,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
         [self noPlacesFound];
         return;
     }
-    [self splitSectionPlaces:places];
+    _places = [PUPartiesAndPlacesHelper splitPlacesSection:places];
     [self refreshTableView];
 }
 
@@ -251,7 +252,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
         [self noPartiesFoundNear];
         return;
     }
-    [self splitSectionParties:parties];
+    _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
     [self refreshTableView];
 }
 
@@ -261,38 +262,8 @@ typedef NS_ENUM(NSUInteger, Sections) {
         [self noPartiesFoundFor:place];
         return;
     }
-    [self splitSectionParties:parties];
+    _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
     [self refreshTableView];
-}
-
--(void)splitSectionPlaces:(NSArray*)places{
-    NSMutableArray *lessThan5km = [NSMutableArray array];
-    NSMutableArray *between5kmAnd20km = [NSMutableArray array];
-    NSMutableArray *moreThan20km = [NSMutableArray array];
-    for(PUPlace *p in places){
-        if(p.distanceInKm < 5)
-            [lessThan5km addObject:p];
-        else if(p.distanceInKm > 5 && p.distanceInKm < 20)
-            [between5kmAnd20km addObject:p];
-        else
-            [moreThan20km addObject:p];
-    }
-    _places = @[lessThan5km,between5kmAnd20km,moreThan20km];
-}
-
--(void)splitSectionParties:(NSArray*)parties{
-    NSMutableArray *todays = [NSMutableArray array];
-    NSMutableArray *thisWeek = [NSMutableArray array];
-    NSMutableArray *nextWeek = [NSMutableArray array];
-    for(PUParty *p in parties){
-        if([NSCalendar isToday:p.date])
-            [todays addObject:p];
-        else if([NSCalendar isThisWeek:p.date])
-            [thisWeek addObject:p];
-        else
-            [nextWeek addObject:p];
-    }
-    _parties = @[todays,thisWeek,nextWeek];
 }
 
 -(void)refreshTableView{
