@@ -10,4 +10,5 @@
 
 @interface PUHeaderCell : UICollectionReusableView
 @property(nonatomic,strong)IBOutlet UILabel *message;
++(NSString*)cellID;
 @end

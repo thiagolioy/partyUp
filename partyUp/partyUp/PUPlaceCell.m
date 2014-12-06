@@ -18,7 +18,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *state;
 @end
 
+static NSString *placeCellID = @"placeCellID";
+
 @implementation PUPlaceCell
+
++(NSString*)cellID{
+    return placeCellID;
+}
 
 -(void)fill:(PUPlace *)place{
     [_promoImage sd_setImageWithURL:[NSURL URLWithString:place.image]

@@ -11,8 +11,13 @@
 @interface PUSearchCell ()<UISearchBarDelegate>
 
 @end
+static NSString *searchCellID = @"searchCellID";
 
 @implementation PUSearchCell
+
++(NSString*)cellID{
+    return searchCellID;
+}
 
 -(void)config:(id<PUSearchCellDelegate>)delegate{
     _delegate = delegate;

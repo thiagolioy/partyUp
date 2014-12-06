@@ -21,4 +21,6 @@
 -(void)config:(id<PUSearchCellDelegate>)delegate;
 -(void)resignSearchBar;
 -(void)requestFocus;
+
++(NSString*)cellID;
 @end

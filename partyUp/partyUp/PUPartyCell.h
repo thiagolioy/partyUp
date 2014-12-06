@@ -11,5 +11,6 @@
 
 @interface PUPartyCell : UICollectionViewCell
 
++(NSString*)cellID;
 -(void)fill:(PUParty*)party;
 @end

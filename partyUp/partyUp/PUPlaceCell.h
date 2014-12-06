@@ -11,5 +11,6 @@
 
 @interface PUPlaceCell : UICollectionViewCell
 
++(NSString*)cellID;
 -(void)fill:(PUPlace*)place;
 @end

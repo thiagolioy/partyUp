@@ -17,8 +17,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *date;
 
 @end
+static NSString *partyCellID = @"partyCellID";
 
 @implementation PUPartyCell
+
++(NSString*)cellID{
+    return partyCellID;
+}
 
 -(void)fill:(PUParty*)party{
     [_promoImage sd_setImageWithURL:[NSURL URLWithString:[party partyOrPlaceImageUrl]]

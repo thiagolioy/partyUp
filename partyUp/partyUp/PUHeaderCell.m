@@ -8,6 +8,10 @@
 
 #import "PUHeaderCell.h"
 
-@implementation PUHeaderCell
+static NSString *headerCellID = @"headerCellID";
 
+@implementation PUHeaderCell
++(NSString*)cellID{
+    return headerCellID;
+}
 @end

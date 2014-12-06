@@ -22,13 +22,11 @@ typedef NS_ENUM(NSUInteger, PartiesSections) {
     ThisWeek,
     NextWeek,
 };
-
 typedef NS_ENUM(NSUInteger, PlacesSections) {
     LessThan5km,
     Between5kmAnd20km,
     MoreThan20km,
 };
-
 typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
     parties,
     places,
@@ -59,11 +57,6 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 @property(nonatomic,strong)PUPlacesService *placeService;
 
 @end
-
-static NSString *partyCellID = @"partyCellID";
-static NSString *placeCellID = @"placeCellID";
-static NSString *headerCellID = @"headerCellID";
-static NSString *searchCellID = @"searchCellID";
 
 @implementation PUPartiesViewController
 
@@ -427,21 +420,21 @@ static NSString *searchCellID = @"searchCellID";
 }
 
 -(PUSearchCell *)collectionView:(UICollectionView *)collectionView searchCellAtIndexPath:(NSIndexPath *)indexPath{
-    PUSearchCell *cell = (PUSearchCell*)[collectionView dequeueReusableCellWithReuseIdentifier:searchCellID forIndexPath:indexPath];
+    PUSearchCell *cell = (PUSearchCell*)[collectionView dequeueReusableCellWithReuseIdentifier:[PUSearchCell cellID] forIndexPath:indexPath];
     [cell config:self];
     _searchCell = cell;
     return cell;
 }
 
 -(PUPartyCell *)collectionView:(UICollectionView *)collectionView partyCellAtIndexPath:(NSIndexPath *)indexPath{
-    PUPartyCell *cell = (PUPartyCell*)[collectionView dequeueReusableCellWithReuseIdentifier:partyCellID forIndexPath:indexPath];
+    PUPartyCell *cell = (PUPartyCell*)[collectionView dequeueReusableCellWithReuseIdentifier:[PUPartyCell cellID] forIndexPath:indexPath];
     PUParty *party = [self partyAtIndexPath:indexPath];
     [cell fill:party];
     return cell;
 }
 
 -(PUPlaceCell *)collectionView:(UICollectionView *)collectionView placeCellAtIndexPath:(NSIndexPath *)indexPath{
-    PUPlaceCell *cell = (PUPlaceCell*)[collectionView dequeueReusableCellWithReuseIdentifier:placeCellID forIndexPath:indexPath];
+    PUPlaceCell *cell = (PUPlaceCell*)[collectionView dequeueReusableCellWithReuseIdentifier:[PUPlaceCell cellID] forIndexPath:indexPath];
     PUPlace *place = [self placeAtIndexPath:indexPath];
     [cell fill:place];
     return cell;
@@ -474,7 +467,7 @@ static NSString *searchCellID = @"searchCellID";
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 
-    PUHeaderCell *headerView = (PUHeaderCell*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerCellID forIndexPath:indexPath];
+    PUHeaderCell *headerView = (PUHeaderCell*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[PUHeaderCell cellID] forIndexPath:indexPath];
     headerView.message.text = [self headerMessageForSection:indexPath.section];
     return headerView;
 }
