@@ -52,7 +52,7 @@
         }
         
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
-        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
+        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:30];
         [placeQuery orderByAscending:@"location"];
         placeQuery.limit = 20;
         

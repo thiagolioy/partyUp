@@ -53,7 +53,7 @@
         }
         
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
-        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint];
+        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:30];
         
         PFQuery *query = [PFQuery queryWithClassName:@"Party"];
         [query includeKey:@"place"];
