@@ -32,6 +32,12 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
     places,
 };
 
+typedef NS_ENUM(NSUInteger, Sections) {
+    searchSection,
+    partiesSection,
+    placesSection,
+};
+
 
 #define HEADER_HEIGHT 50.0f
 
@@ -46,6 +52,9 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 @property (strong, nonatomic) UISegmentedControl *partiesOrPlacesControl;
 @property (assign, nonatomic) NSInteger lastSegmentControlIndex;
+
+@property(nonatomic,strong)NSArray *partiesSectionHeaders;
+@property(nonatomic,strong)NSArray *placesSectionHeaders;
 
 @property(nonatomic,strong)NSArray *parties;
 @property(nonatomic,strong)PUPartyService *service;
@@ -69,6 +78,12 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
     [self hidesNavigationBackButton];
     [self setUpServices];
     [self fetchParties];
+    [self setUpMessageHeaders];
+}
+
+-(void)setUpMessageHeaders{
+    _partiesSectionHeaders = @[ @"Hoje",@"Essa Semana",@"Semana que vem"];
+    _placesSectionHeaders = @[@"Menos de 5km",@"Entre 5km e 20 km",@"Mais de 20 km"];
 }
 
 -(void)setUpSearchIconOnNavigation{
@@ -140,9 +155,9 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    if(self.parentViewController.navigationItem.titleView == nil){
+    if(self.parentViewController.navigationItem.titleView == nil)
         [self setUpSegmentControlOnNavigationBar];
-    }
+    
 }
 
 
@@ -280,10 +295,6 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
     _parties = @[todays,thisWeek,nextWeek];
 }
 
--(void)setUpPartiesDataSourceAndDelegate{
-    _collectionView.dataSource = self;
-    _collectionView.delegate = self;
-}
 -(void)refreshTableView{
     [self showResultsState];
     [_collectionView reloadData];
@@ -298,20 +309,24 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
     return (_parties && _parties.count > 0);
 }
 
+-(NSInteger)indexForSectionDifferentThanSearch:(NSInteger)section{
+    return (section -1);
+}
+
 -(PUParty*)partyAtIndexPath:(NSIndexPath*)indexPath{
-    NSInteger index = indexPath.section -1;
+    NSInteger index = [self indexForSectionDifferentThanSearch:indexPath.section];
     NSArray *parties = [_parties objectAtIndex:index];
     return [parties objectAtIndex:indexPath.row];
 }
 
 -(PUPlace*)placeAtIndexPath:(NSIndexPath*)indexPath{
-    NSInteger index = indexPath.section -1;
+    NSInteger index = [self indexForSectionDifferentThanSearch:indexPath.section];
     NSArray *places = [_places objectAtIndex:index];
     return [places objectAtIndex:indexPath.row];
 }
 
 -(BOOL)hasItemsInSection:(NSInteger)section{
-    NSInteger index = section -1;
+    NSInteger index = [self indexForSectionDifferentThanSearch:section];
     if(_lastSegmentControlIndex == parties){
         NSArray *parties = [_parties objectAtIndex:index];
         return parties.count > 0;
@@ -323,30 +338,18 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 }
 
+-(BOOL)isPartiesSegmentSelected{
+    return _lastSegmentControlIndex == parties;
+}
+
+-(BOOL)isPlacesSegmentSelected{
+    return ![self isPartiesSegmentSelected];
+}
 
 -(NSString*)headerMessageForSection:(NSInteger)section{
-    
-    if(_lastSegmentControlIndex == parties){
-    
-        if(section == Today)
-            return @"Hoje";
-        else if(section == ThisWeek)
-            return @"Essa Semana";
-        else
-            return @"Semana que vem";
-    
-    }else{
-       
-        if(section == LessThan5km)
-            return @"Menos de 5km";
-        else if(section == Between5kmAnd20km)
-            return @"Entre 5km e 20 km";
-        else
-            return @"Mais de 20 km";
-    }
-    
-    
-
+    if([self isPartiesSegmentSelected])
+        return [_partiesSectionHeaders objectAtIndex:section];
+    return [_placesSectionHeaders objectAtIndex:section];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -361,7 +364,7 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self resignSearchBar];
-    if(_lastSegmentControlIndex != places)
+    if(![self isPlacesSegmentSelected])
         return;
     
     _lastSegmentControlIndex = parties;
@@ -375,9 +378,9 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 #pragma mark - CollectionView Methods
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
 
-    NSInteger numberOfSections = 1;//Added SearchSection
+    NSInteger numberOfSections = 1;
     
-    if(_lastSegmentControlIndex == parties)
+    if([self isPartiesSegmentSelected])
         numberOfSections += _parties.count;
     else
         numberOfSections += _places.count;
@@ -387,36 +390,36 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    if(section == 0){
-        
-        return 1;
-   
-    }else{
-        NSInteger index = section -1; //Due to have now the search section
-        if(_lastSegmentControlIndex == parties){
-            NSArray *parties =  [_parties objectAtIndex:index];
-            return parties.count;
-        }else{
-            NSArray *places =  [_places objectAtIndex:index];
-            return places.count;
-        }
-        
-    }
-    
+    if(section == searchSection)
+        return [self numberOfItemsInSearchSection];
+
+    NSInteger index = [self indexForSectionDifferentThanSearch:section];
+    if([self isPartiesSegmentSelected])
+        return [self numberOfItemsInPartiesSection:index];
+    else
+        return [self numberOfItemsInPlacesSection:index];
+
+}
+-(NSInteger)numberOfItemsInSearchSection{
+    return 1;
+}
+-(NSInteger)numberOfItemsInPartiesSection:(NSInteger)index{
+    return ((NSArray*)[_parties objectAtIndex:index]).count;
+}
+-(NSInteger)numberOfItemsInPlacesSection:(NSInteger)index{
+    return ((NSArray*)[_places objectAtIndex:index]).count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 0){
-        
+   
+    if(indexPath.section == searchSection)
         return [self collectionView:collectionView searchCellAtIndexPath:indexPath];
-    
-    }else{
-    
-        if(_lastSegmentControlIndex == parties)
-            return [self collectionView:collectionView partyCellAtIndexPath:indexPath];
-        else
-            return [self collectionView:collectionView placeCellAtIndexPath:indexPath];
-    }
+
+    if([self isPartiesSegmentSelected])
+        return [self collectionView:collectionView partyCellAtIndexPath:indexPath];
+    else
+        return [self collectionView:collectionView placeCellAtIndexPath:indexPath];
+
 }
 
 -(PUSearchCell *)collectionView:(UICollectionView *)collectionView searchCellAtIndexPath:(NSIndexPath *)indexPath{
@@ -442,19 +445,16 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if(indexPath.section == 0){
+    if(indexPath.section == searchSection){
         CGFloat width = self.view.bounds.size.width;
         return CGSizeMake(width, 44);
-    }else{
-    
-        if(_lastSegmentControlIndex == parties){
-            return CGSizeMake(300, 240);
-        }else
-            return CGSizeMake(300, 275);
-        
     }
     
-    
+    if([self isPartiesSegmentSelected])
+        return CGSizeMake(300, 240);
+    else
+        return CGSizeMake(300, 275);
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
@@ -468,7 +468,8 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 
     PUHeaderCell *headerView = (PUHeaderCell*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[PUHeaderCell cellID] forIndexPath:indexPath];
-    headerView.message.text = [self headerMessageForSection:indexPath.section];
+    NSInteger index = [self indexForSectionDifferentThanSearch:indexPath.section];
+    headerView.message.text = [self headerMessageForSection:index];
     return headerView;
 }
 
@@ -481,10 +482,15 @@ typedef NS_ENUM(NSUInteger, partiesOrPlacesControl) {
 }
 
 -(void)search:(NSString *)query{
-    if(_lastSegmentControlIndex == parties){
+    if([self isPartiesSegmentSelected]){
     
     }else
         [self fetchPlacesFor:query];
+}
+
+-(void)fetchPartiesFor:(NSString*)query{
+//    [self showLoadingState];
+    
 }
 
 -(void)fetchPlacesFor:(NSString*)query{
