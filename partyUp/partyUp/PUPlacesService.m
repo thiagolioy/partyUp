@@ -20,8 +20,13 @@
             return;
         }
         
-        PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
-        [placeQuery whereKey:@"canonicalName" containsString:[query uppercaseString]];
+        PFQuery *queryName = [PFQuery queryWithClassName:@"Place"];
+        [queryName whereKey:@"canonicalName" containsString:[query uppercaseString]];
+        
+        PFQuery *queryState = [PFQuery queryWithClassName:@"Place"];
+        [queryState whereKey:@"canonicalCity" containsString:[query uppercaseString]];
+
+        PFQuery *placeQuery = [PFQuery orQueryWithSubqueries:@[queryName,queryState]];
         [placeQuery orderByAscending:@"location"];
         
         [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
