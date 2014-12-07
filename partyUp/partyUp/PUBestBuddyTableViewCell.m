@@ -17,8 +17,14 @@
 @property (strong, nonatomic) PUUser *buddy;
 
 @end
+static NSString *bestBuddiesCellID = @"BestBuddyCellID";
 
 @implementation PUBestBuddyTableViewCell
+
++(NSString*)cellID{
+    return bestBuddiesCellID;
+}
+
 -(void)fill:(PUUser*)buddy{
     _buddy = buddy;
     [_profilePicture roundIt:20.0f];

@@ -30,12 +30,6 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
     numberOfSections
 };
 
-static NSString *buddiesCellID = @"BuddyCellID";
-static NSString *bestBuddiesCellID = @"BestBuddyCellID";
-static NSString *headerCellID = @"HeaderCellID";
-static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
-
-
 @implementation PUBuddiesListViewController
 
 
@@ -119,7 +113,7 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 }
 
 - (PUBuddyTableViewCell *)tableView:(UITableView *)tableView buddiesCellAtIndexPath:(NSIndexPath *)indexPath{
-    PUBuddyTableViewCell *cell = (PUBuddyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:buddiesCellID];
+    PUBuddyTableViewCell *cell = (PUBuddyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:[PUBuddyTableViewCell cellID]];
    
     PUUser *buddy = [self buddyAtIndexPath:indexPath];
     [cell fill:buddy andDelegate:self];
@@ -127,7 +121,7 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 }
 
 - (PUBestBuddyTableViewCell *)tableView:(UITableView *)tableView bestBuddiesCellAtIndexPath:(NSIndexPath *)indexPath{
-    PUBestBuddyTableViewCell *cell = (PUBestBuddyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:bestBuddiesCellID];
+    PUBestBuddyTableViewCell *cell = (PUBestBuddyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:[PUBestBuddyTableViewCell cellID]];
     
     PUUser *buddy = [self buddyAtIndexPath:indexPath];
     [cell fill:buddy withDelegate:self];
@@ -135,7 +129,7 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 }
 
 - (PUInviteBuddyToListCell *)tableView:(UITableView *)tableView inviteBuddyCellAtIndexPath:(NSIndexPath *)indexPath{
-    PUInviteBuddyToListCell *cell = (PUInviteBuddyToListCell*)[tableView dequeueReusableCellWithIdentifier:inviteBuddyToListCellID];
+    PUInviteBuddyToListCell *cell = (PUInviteBuddyToListCell*)[tableView dequeueReusableCellWithIdentifier:[PUInviteBuddyToListCell cellID]];
     return cell;
 }
 
@@ -153,7 +147,7 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    PUHeaderTableViewCell *cell = (PUHeaderTableViewCell*)[tableView dequeueReusableCellWithIdentifier:headerCellID];
+    PUHeaderTableViewCell *cell = (PUHeaderTableViewCell*)[tableView dequeueReusableCellWithIdentifier:[PUHeaderTableViewCell cellID]];
     if([self hasBestBuddies:section])
         cell.message.text = @"Na lista";
     else if([self hasBuddies:section])
@@ -248,20 +242,20 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
     [searchBar resignFirstResponder];
 }
 
--(NSArray*)filterBy:(NSString*)query onList:(NSArray*)list{
+-(NSArray*)filterList:(NSArray*)list by:(NSString*)query{
     if(!query || query.length == 0)
         return list;
     
     NSMutableArray *filteredList = [NSMutableArray array];
     for(PUUser *f in list){
-        if([self matchName:f.name query:query]){
+        if([self match:f.name withQuery:query]){
             [filteredList addObject:f];
         }
     }
     return (NSArray*)filteredList;
 }
 
--(BOOL)matchName:(NSString*)name query:(NSString*)query{
+-(BOOL)match:(NSString*)name withQuery:(NSString*)query{
     return ([name rangeOfString:query options:NSCaseInsensitiveSearch|
                                          NSDiacriticInsensitiveSearch|
                             NSAnchoredSearch].location != NSNotFound);
@@ -274,11 +268,11 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 }
 
 -(NSArray*)filteredBuddies{
-    return (NSArray*)[self filterBy:_searchTerm onList:_buddies];
+    return (NSArray*)[self filterList:_buddies by:_searchTerm];
 }
 
 -(NSArray*)filteredBestBuddies{
-    return (NSArray*)[self filterBy:_searchTerm onList:_bestBuddies];
+    return (NSArray*)[self filterList:_bestBuddies by:_searchTerm];
 }
 
 

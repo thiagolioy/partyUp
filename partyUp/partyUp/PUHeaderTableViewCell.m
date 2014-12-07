@@ -8,7 +8,13 @@
 
 #import "PUHeaderTableViewCell.h"
 
+static NSString *headerCellID = @"HeaderCellID";
+
 @implementation PUHeaderTableViewCell
+
++(NSString*)cellID{
+    return headerCellID;
+}
 
 - (void)awakeFromNib {
     // Initialization code

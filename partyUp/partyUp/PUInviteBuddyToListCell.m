@@ -8,7 +8,13 @@
 
 #import "PUInviteBuddyToListCell.h"
 
+static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
+
 @implementation PUInviteBuddyToListCell
+
++(NSString*)cellID{
+    return inviteBuddyToListCellID;
+}
 
 - (void)awakeFromNib {
     // Initialization code

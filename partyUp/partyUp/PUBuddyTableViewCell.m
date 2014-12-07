@@ -15,7 +15,13 @@
 @property (strong, nonatomic) id<PUBuddyTableViewCellDelegate> delegate;
 @end
 
+static NSString *buddiesCellID = @"BuddyCellID";
+
 @implementation PUBuddyTableViewCell
+
++(NSString*)cellID{
+    return  buddiesCellID;
+}
 
 -(void)fill:(PUUser*)buddy{
     _buddy = buddy;

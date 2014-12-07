@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PUHeaderTableViewCell : UITableViewCell
++(NSString*)cellID;
 @property(nonatomic,weak)IBOutlet UILabel *message;
 @end
