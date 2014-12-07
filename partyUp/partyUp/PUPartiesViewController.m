@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
                                         PUSearchCellDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @property (strong, nonatomic) IBOutlet UIView *errorMsgContainer;
 @property (strong, nonatomic) IBOutlet UILabel *errorMsg;
 
@@ -65,8 +66,12 @@ typedef NS_ENUM(NSUInteger, Sections) {
 
 @property(nonatomic,strong)NSArray *places;
 @property(nonatomic,strong)PUPlacesService *placeService;
+@property(nonatomic,strong)UIRefreshControl *refreshControl;
 
 @end
+
+
+#define LIGHT_GRAY [UIColor colorWithRed:236.0f/255.0f green:239.0f/255.0f blue:241.0f/255.0f alpha:1]
 
 @implementation PUPartiesViewController
 
@@ -79,6 +84,22 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [self setUpServices];
     [self fetchParties];
     [self setUpMessageHeaders];
+    [self setUpPullToRefresh];
+}
+
+-(void)setUpPullToRefresh{
+    _refreshControl = [[UIRefreshControl alloc] init];
+    _refreshControl.tintColor = LIGHT_GRAY;
+    [_refreshControl addTarget:self action:@selector(refreshCollectionAction) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:_refreshControl];
+    self.collectionView.alwaysBounceVertical = YES;
+}
+
+-(void)refreshCollectionAction{
+    if([self isPartiesSegmentSelected])
+        [self fetchParties];
+    else
+        [self fetchPlaces];
 }
 
 -(void)setUpMessageHeaders{
@@ -111,9 +132,11 @@ typedef NS_ENUM(NSUInteger, Sections) {
 }
 
 -(void)fetchPlaces{
-    [self showLoadingState];
+    if(![_refreshControl isRefreshing])
+        [self showLoadingState];
     [_placeService fetchPlacesNearMe:^(NSArray *places, NSError *error) {
         [_activityIndicator stopAnimating];
+        [_refreshControl endRefreshing];
         if(!error)
             [self successOnFetchPlaces:places];
         else
@@ -229,9 +252,11 @@ typedef NS_ENUM(NSUInteger, Sections) {
 }
 
 -(void)fetchParties{
-    [self showLoadingState];
+    if(![_refreshControl isRefreshing])
+        [self showLoadingState];
     [_service fetchPartiesNearMe:^(NSArray *parties, NSError *error) {
         [_activityIndicator stopAnimating];
+        [_refreshControl endRefreshing];
         [self enablePartiesOrPlacesControlInteraction:YES];
         if(!error)
             [self successOnFetchParties:parties];
