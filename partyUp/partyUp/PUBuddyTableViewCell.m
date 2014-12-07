@@ -25,7 +25,7 @@ static NSString *buddiesCellID = @"BuddyCellID";
 
 -(void)fill:(PUUser*)buddy{
     _buddy = buddy;
-    [_profilePicture roundIt:20.0f];
+    [_profilePicture roundIt:18.0f];
     _profilePicture.profileID = buddy.userId;
     _name.text = buddy.name;
 }

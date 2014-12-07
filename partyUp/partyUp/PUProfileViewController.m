@@ -44,7 +44,7 @@
 
 
 -(void)setUpCircleMaskOnPicture{
-    [_profilePicture roundIt:16.0f];
+    [_profilePicture roundIt:18.0f];
 }
 
 
