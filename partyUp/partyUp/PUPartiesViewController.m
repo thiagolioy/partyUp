@@ -74,7 +74,6 @@ typedef NS_ENUM(NSUInteger, Sections) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setUpSearchIconOnNavigation];
     [self showStatusBar];
     [self hidesNavigationBackButton];
     [self setUpServices];
@@ -163,7 +162,8 @@ typedef NS_ENUM(NSUInteger, Sections) {
 -(void)viewWillAppear:(BOOL)animated{
     if(self.parentViewController.navigationItem.titleView == nil)
         [self setUpSegmentControlOnNavigationBar];
-    
+    if(self.parentViewController.navigationItem.rightBarButtonItem == nil)
+        [self setUpSearchIconOnNavigation];
 }
 
 

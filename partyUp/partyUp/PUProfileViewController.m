@@ -34,6 +34,7 @@
 
 -(void)setUpNavigationBarTitle{
     self.parentViewController.navigationItem.titleView = nil;
+    self.parentViewController.navigationItem.rightBarButtonItem = nil;
     self.parentViewController.navigationItem.title = @"Profile";
 }
 
