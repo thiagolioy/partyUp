@@ -59,6 +59,7 @@
 		3E10FBCB1A31F3C20045A3D1 /* PUSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */; };
 		3E737C341A338CE20054B222 /* PUPartiesAndPlacesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */; };
 		3E7AC3D91A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */; };
+		3E7AC3DC1A34B6A500ABEE55 /* PUErrorFeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */; };
 		3E8DE4E41A2F5696007EC179 /* PUAlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8DE4E31A2F5696007EC179 /* PUAlertUtil.m */; };
 		3EB5EA0D1A29FBB100C18AED /* PUBestBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */; };
 		3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */; };
@@ -166,6 +167,8 @@
 		3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartiesAndPlacesHelper.m; sourceTree = "<group>"; };
 		3E7AC3D71A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PUReloadAnimations.h"; sourceTree = "<group>"; };
 		3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PUReloadAnimations.m"; sourceTree = "<group>"; };
+		3E7AC3DA1A34B6A500ABEE55 /* PUErrorFeedbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUErrorFeedbackCell.h; sourceTree = "<group>"; };
+		3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUErrorFeedbackCell.m; sourceTree = "<group>"; };
 		3E8DE4E21A2F5696007EC179 /* PUAlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUAlertUtil.h; sourceTree = "<group>"; };
 		3E8DE4E31A2F5696007EC179 /* PUAlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUAlertUtil.m; sourceTree = "<group>"; };
 		3EB5EA0B1A29FBB100C18AED /* PUBestBuddyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBestBuddyTableViewCell.h; sourceTree = "<group>"; };
@@ -440,6 +443,8 @@
 				3EB8C57D1A30ADF40063E70C /* PUInviteBuddyToListCell.m */,
 				3E10FBC91A31F3C20045A3D1 /* PUSearchCell.h */,
 				3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */,
+				3E7AC3DA1A34B6A500ABEE55 /* PUErrorFeedbackCell.h */,
+				3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -665,6 +670,7 @@
 				20497C2F19A86C1800CB942F /* PUPartyService.m in Sources */,
 				20F2740919ABF44200BDBE5E /* NSCalendar+Convenience.m in Sources */,
 				20EBA8B719FC2FC700612C85 /* PUCustomTabController.m in Sources */,
+				3E7AC3DC1A34B6A500ABEE55 /* PUErrorFeedbackCell.m in Sources */,
 				3EB5EA131A2A3DAC00C18AED /* PUSocialService.m in Sources */,
 				20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */,
 				20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */,

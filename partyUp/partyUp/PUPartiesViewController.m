@@ -16,6 +16,7 @@
 #import "PUPlacesService.h"
 #import "PUSearchCell.h"
 #import "PUPartiesAndPlacesHelper.h"
+#import "PUErrorFeedbackCell.h"
 
 
 typedef NS_ENUM(NSUInteger, PartiesSections) {
@@ -49,9 +50,6 @@ typedef NS_ENUM(NSUInteger, Sections) {
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-@property (strong, nonatomic) IBOutlet UIView *errorMsgContainer;
-@property (strong, nonatomic) IBOutlet UILabel *errorMsg;
-
 @property (strong, nonatomic) UISegmentedControl *partiesOrPlacesControl;
 @property (assign, nonatomic) NSInteger lastSegmentControlIndex;
 
@@ -67,6 +65,8 @@ typedef NS_ENUM(NSUInteger, Sections) {
 @property(nonatomic,strong)NSArray *places;
 @property(nonatomic,strong)PUPlacesService *placeService;
 @property(nonatomic,strong)UIRefreshControl *refreshControl;
+
+@property(nonatomic,assign)BOOL hasErrorFeedback;
 
 @end
 
@@ -151,34 +151,33 @@ typedef NS_ENUM(NSUInteger, Sections) {
         return;
     }
     _places = [PUPartiesAndPlacesHelper splitPlacesSection:places];
+    [self showResultsState];
     [self refreshTableView];
 }
 
 -(void)showLoadingState{
-    _errorMsgContainer.hidden = YES;
     _collectionView.hidden = YES;
     [_activityIndicator startAnimating];
 }
 
 -(BOOL)isShowingErrorState{
-    return  !_errorMsgContainer.isHidden;
+    return  YES;
 }
 
 -(void)showErrorState{
-    _errorMsgContainer.hidden = NO;
+    _hasErrorFeedback = YES;
     _collectionView.hidden = NO;
     [self refreshTableView];
 }
 
 -(void)showResultsState{
-    _errorMsgContainer.hidden = YES;
+    _hasErrorFeedback = NO;
     _collectionView.hidden = NO;
 }
 
 -(void)showErrorMsg:(NSString*)error{
-    _errorMsgContainer.hidden = NO;
-    if(error)
-        _errorMsg.text = error;
+    //what to do?
+    
 }
 
 
@@ -285,6 +284,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
         return;
     }
     _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
+    [self showResultsState];
     [self refreshTableView];
 }
 
@@ -295,11 +295,11 @@ typedef NS_ENUM(NSUInteger, Sections) {
         return;
     }
     _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
+    [self showResultsState];
     [self refreshTableView];
 }
 
 -(void)refreshTableView{
-    [self showResultsState];
     [_collectionView reloadData];
 }
 
@@ -377,14 +377,22 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [self fetchPartiesForPlace:place];
 }
 
+-(BOOL)shouldShowErrorFeedback{
+    return _hasErrorFeedback;
+}
+
+-(BOOL)shouldShowResults{
+    return ![self shouldShowErrorFeedback];
+}
 
 #pragma mark - CollectionView Methods
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
 
     NSInteger numberOfSections = 1;
     
-    if(![self isShowingErrorState]){
-        
+    if([self shouldShowErrorFeedback])
+        numberOfSections++;
+    else{
         if([self isPartiesSegmentSelected])
             numberOfSections += _parties.count;
         else
@@ -399,13 +407,20 @@ typedef NS_ENUM(NSUInteger, Sections) {
     if(section == searchSection)
         return [self numberOfItemsInSearchSection];
     
-    NSInteger index = [self indexForSectionDifferentThanSearch:section];
-    if([self isPartiesSegmentSelected])
-        return [self numberOfItemsInPartiesSection:index];
-    else
-        return [self numberOfItemsInPlacesSection:index];
-
+    if([self shouldShowErrorFeedback])
+        return [self numberOfItemsInErrorFeedback];
+    else{
+        NSInteger index = [self indexForSectionDifferentThanSearch:section];
+        if([self isPartiesSegmentSelected])
+            return [self numberOfItemsInPartiesSection:index];
+        else
+            return [self numberOfItemsInPlacesSection:index];
+    }
 }
+-(NSInteger)numberOfItemsInErrorFeedback{
+    return 1;
+}
+
 -(NSInteger)numberOfItemsInSearchSection{
     return 1;
 }
@@ -421,11 +436,19 @@ typedef NS_ENUM(NSUInteger, Sections) {
     if(indexPath.section == searchSection)
         return [self collectionView:collectionView searchCellAtIndexPath:indexPath];
 
-    if([self isPartiesSegmentSelected])
-        return [self collectionView:collectionView partyCellAtIndexPath:indexPath];
-    else
-        return [self collectionView:collectionView placeCellAtIndexPath:indexPath];
+    if([self shouldShowErrorFeedback])
+        return [self collectionView:collectionView errorFeedbackCellAtIndexPath:indexPath];
+    else{
+        if([self isPartiesSegmentSelected])
+            return [self collectionView:collectionView partyCellAtIndexPath:indexPath];
+        else
+            return [self collectionView:collectionView placeCellAtIndexPath:indexPath];
+    }
+}
 
+-(PUErrorFeedbackCell *)collectionView:(UICollectionView *)collectionView errorFeedbackCellAtIndexPath:(NSIndexPath *)indexPath{
+    PUErrorFeedbackCell *cell = (PUErrorFeedbackCell*)[collectionView dequeueReusableCellWithReuseIdentifier:[PUErrorFeedbackCell cellID] forIndexPath:indexPath];
+    return cell;
 }
 
 -(PUSearchCell *)collectionView:(UICollectionView *)collectionView searchCellAtIndexPath:(NSIndexPath *)indexPath{
@@ -456,15 +479,20 @@ typedef NS_ENUM(NSUInteger, Sections) {
         return CGSizeMake(width, 44);
     }
     
-    if([self isPartiesSegmentSelected])
-        return CGSizeMake(300, 240);
-    else
-        return CGSizeMake(300, 275);
+    if([self shouldShowErrorFeedback])
+        return [PUErrorFeedbackCell cellSize];
+    else{
+        if([self isPartiesSegmentSelected])
+            return CGSizeMake(300, 240);
+        else
+            return CGSizeMake(300, 275);
+    }
+    
 
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    if(section == 0 || ![self hasItemsInSection:section])
+    if(section == 0 ||  [self shouldShowErrorFeedback] ||![self hasItemsInSection:section] )
         return CGSizeMake(0, 0);
     
     CGFloat width = self.view.bounds.size.width;
