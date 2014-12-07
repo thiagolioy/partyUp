@@ -138,9 +138,14 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [_activityIndicator startAnimating];
 }
 
+-(BOOL)isShowingErrorState{
+    return  !_errorMsgContainer.isHidden;
+}
+
 -(void)showErrorState{
     _errorMsgContainer.hidden = NO;
-    _collectionView.hidden = YES;
+    _collectionView.hidden = NO;
+    [self refreshTableView];
 }
 
 -(void)showResultsState{
@@ -353,10 +358,13 @@ typedef NS_ENUM(NSUInteger, Sections) {
 
     NSInteger numberOfSections = 1;
     
-    if([self isPartiesSegmentSelected])
-        numberOfSections += _parties.count;
-    else
-        numberOfSections += _places.count;
+    if(![self isShowingErrorState]){
+        
+        if([self isPartiesSegmentSelected])
+            numberOfSections += _parties.count;
+        else
+            numberOfSections += _places.count;
+    }
     
     return numberOfSections;
 }
@@ -365,7 +373,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
     
     if(section == searchSection)
         return [self numberOfItemsInSearchSection];
-
+    
     NSInteger index = [self indexForSectionDifferentThanSearch:section];
     if([self isPartiesSegmentSelected])
         return [self numberOfItemsInPartiesSection:index];
