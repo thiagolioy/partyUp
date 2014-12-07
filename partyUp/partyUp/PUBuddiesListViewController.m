@@ -204,17 +204,8 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 }
 
 -(void)refreshBuddiesList{
-    [self addReloadAnimationTo:_buddiesTableView];
+    [_buddiesTableView triggerReloadAnimation];
     [_buddiesTableView reloadData];
-}
-
--(void)addReloadAnimationTo:(UITableView*)tableView{
-    CATransition* swapAnimation = [CATransition animation];
-    swapAnimation.type = kCATransitionFade;
-    swapAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    swapAnimation.fillMode = kCAFillModeBoth;
-    swapAnimation.duration = .6f;
-    [tableView.layer addAnimation:swapAnimation forKey:@"UITableViewReloadDataAnimationKey"];
 }
 
 -(PUUser*)findBuddy:(PUUser*)buddy onList:(NSArray*)buddies{
