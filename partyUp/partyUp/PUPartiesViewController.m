@@ -60,7 +60,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
 @property(nonatomic,strong)PUPartyService *service;
 
 @property(nonatomic,strong)PUSearchCell *searchCell;
-
+@property(nonatomic,strong)PUErrorFeedbackCell *errorFeedbackCell;
 
 @property(nonatomic,strong)NSArray *places;
 @property(nonatomic,strong)PUPlacesService *placeService;
@@ -155,6 +155,17 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [self refreshTableView];
 }
 
+-(void)successOnFetchPlaces:(NSArray*)places forQuery:(NSString *)query{
+    if(places.count == 0){
+        [self showErrorState];
+        [self noPlacesFoundWith:query];
+        return;
+    }
+    _places = [PUPartiesAndPlacesHelper splitPlacesSection:places];
+    [self showResultsState];
+    [self refreshTableView];
+}
+
 -(void)showLoadingState{
     _collectionView.hidden = YES;
     [_activityIndicator startAnimating];
@@ -176,8 +187,8 @@ typedef NS_ENUM(NSUInteger, Sections) {
 }
 
 -(void)showErrorMsg:(NSString*)error{
-    //what to do?
-    
+    if(_errorFeedbackCell)
+        _errorFeedbackCell.errorMsg.text = error;
 }
 
 
@@ -269,13 +280,36 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [self showErrorMsg:msg];
 }
 
+-(void)noPartiesFoundWith:(NSString*)query{
+    NSString *msg = [NSString stringWithFormat:@"Não encontramos nenhuma festa com a busca \"%@\"",query];
+    [self showErrorMsg:msg];
+}
+
+
 -(void)noPartiesFoundNear{
     [self showErrorMsg:@"No momento não temos nenhuma festa próximo a você"];
+}
+
+-(void)noPlacesFoundWith:(NSString*)query{
+    NSString *msg = [NSString stringWithFormat:@"Não encontramos nenhum lugar com a busca \"%@\"",query];
+    [self showErrorMsg:msg];
 }
 
 -(void)noPlacesFound{
     [self showErrorMsg:@"Não encontramos nenhum lugar cadastrado próximo a você!"];
 }
+
+-(void)successOnFetchParties:(NSArray*)parties forQuery:(NSString*)query{
+    if(parties.count == 0){
+        [self showErrorState];
+        [self noPartiesFoundWith:query];
+        return;
+    }
+    _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
+    [self showResultsState];
+    [self refreshTableView];
+}
+
 
 -(void)successOnFetchParties:(NSArray*)parties{
     if(parties.count == 0){
@@ -448,6 +482,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
 
 -(PUErrorFeedbackCell *)collectionView:(UICollectionView *)collectionView errorFeedbackCellAtIndexPath:(NSIndexPath *)indexPath{
     PUErrorFeedbackCell *cell = (PUErrorFeedbackCell*)[collectionView dequeueReusableCellWithReuseIdentifier:[PUErrorFeedbackCell cellID] forIndexPath:indexPath];
+    _errorFeedbackCell = cell;
     return cell;
 }
 
@@ -527,7 +562,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [_service fetchPartiesForQuery:query completion:^(NSArray *parties, NSError *error) {
         [_activityIndicator stopAnimating];
         if(!error)
-            [self successOnFetchParties:parties];
+            [self successOnFetchParties:parties forQuery:query];
         else
             [self showUnknownError];
     }];
@@ -539,7 +574,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [_placeService fetchPlacesForQuery:query completion:^(NSArray *places, NSError *error) {
         [_activityIndicator stopAnimating];
         if(!error)
-            [self successOnFetchPlaces:places];
+            [self successOnFetchPlaces:places forQuery:query];
         else
             [self showUnknownError];
     }];
