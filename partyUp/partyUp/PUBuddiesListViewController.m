@@ -14,13 +14,14 @@
 #import "PUBuddiesStorage.h"
 #import "PUInviteBuddyToListCell.h"
 
-@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate>
+@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
 @property(nonatomic,strong)IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic,strong)IBOutlet UISearchBar *searchBar;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
 @property(nonatomic,strong)PUSocialService *service;
+@property(nonatomic,strong)NSString *searchTerm;
 @end
 
 typedef NS_ENUM(NSUInteger, BuddiesSections) {
@@ -44,15 +45,17 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
     [self setUpTapGesture];
     [self initSocialService];
     [self fetchBuddies];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-    
+    [self hideStatusBar];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)hideStatusBar{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
 
 -(void)initSocialService{
@@ -63,7 +66,6 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
         _buddies = [NSMutableArray array];
     if(!_bestBuddies)
         _bestBuddies = [NSMutableArray array];
-//    [self sortBuddiesByName:[PUBuddiesStorage storedBuddies]]
     [_bestBuddies addObjectsFromArray:[PUBuddiesStorage storedBuddies]];
 }
 
@@ -94,14 +96,14 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 }
 
 -(BOOL)hasBestBuddies{
-    return _bestBuddies.count == 0 ?  NO : YES;
+    return [self filteredBestBuddies].count == 0 ?  NO : YES;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == bestBuddies){
-        return [self hasBestBuddies] ?  _bestBuddies.count : 1;
+        return [self hasBestBuddies] ?  [self filteredBestBuddies].count : 1;
     }
-    return _buddies.count;
+    return [self filteredBuddies].count;
 }
 
 -(PUUser*)buddyAtIndexPath:(NSIndexPath*)indexPath{
@@ -111,9 +113,9 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 
 -(NSArray*)buddiesForSection:(NSInteger)section{
     if(section == bestBuddies)
-        return (NSArray*)_bestBuddies;
+        return [self filteredBestBuddies];
     
-    return (NSArray*)_buddies;
+    return [self filteredBuddies];
 }
 
 - (PUBuddyTableViewCell *)tableView:(UITableView *)tableView buddiesCellAtIndexPath:(NSIndexPath *)indexPath{
@@ -162,7 +164,7 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
     return (section == bestBuddies);
 }
 -(BOOL)hasBuddies:(NSInteger)section{
-    return (section == otherBuddies && _buddies.count > 0);
+    return (section == otherBuddies && [self filteredBuddies].count > 0);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -182,7 +184,6 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
         [self refreshBuddiesList];
     }
 }
-
 
 -(void)promoteToBestBuddies:(PUUser*)buddy{
     [self transferBuddy:buddy from:_buddies to:_bestBuddies];
@@ -209,7 +210,6 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 }
 
 -(void)refreshBuddiesList{
-    //[self sortBuddiesLists];
     [self addReloadAnimationTo:_buddiesTableView];
     [_buddiesTableView reloadData];
 }
@@ -222,27 +222,6 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
     swapAnimation.duration = .6f;
     [tableView.layer addAnimation:swapAnimation forKey:@"UITableViewReloadDataAnimationKey"];
 }
-
--(void)sortBuddiesLists{
-    _buddies = [NSMutableArray arrayWithArray:[self sortBuddiesByName:(NSArray*)_buddies]];
-    _bestBuddies = [NSMutableArray arrayWithArray:[self sortBuddiesByName:(NSArray*)_bestBuddies]];
-}
-
--(NSArray*)sortBuddiesByName:(NSArray*)list{
-    NSInteger options = NSCaseInsensitiveSearch
-    | NSNumericSearch              // Numbers are compared using numeric value
-    | NSDiacriticInsensitiveSearch // Ignores diacritics (â == á == a)
-    | NSWidthInsensitiveSearch;
-    
-    //sort facebookFriendsArray using name
-    return [NSMutableArray arrayWithArray:
-                            [list sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        NSString *firstName = [(PUUser*)a name];
-        NSString *secondName = [(PUUser*)b name];
-        return [firstName compare:secondName options:options];
-    }]];
-}
-
 
 -(PUUser*)findBuddy:(PUUser*)buddy onList:(NSArray*)buddies{
     for(PUUser *b in buddies)
@@ -260,6 +239,48 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
     }];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    _searchTerm = searchText;
+    [self refreshBuddiesList];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+}
+
+-(NSArray*)filterBy:(NSString*)query onList:(NSArray*)list{
+    if(!query || query.length == 0)
+        return list;
+    
+    NSMutableArray *filteredList = [NSMutableArray array];
+    for(PUUser *f in list){
+        if([self matchName:f.name query:query]){
+            [filteredList addObject:f];
+        }
+    }
+    return (NSArray*)filteredList;
+}
+
+-(BOOL)matchName:(NSString*)name query:(NSString*)query{
+    return ([name rangeOfString:query options:NSCaseInsensitiveSearch|
+                                         NSDiacriticInsensitiveSearch|
+                            NSAnchoredSearch].location != NSNotFound);
+        
+}
+
+-(void)cleanSearch{
+    _searchBar.text = @"";
+    _searchTerm = @"";
+}
+
+-(NSArray*)filteredBuddies{
+    return (NSArray*)[self filterBy:_searchTerm onList:_buddies];
+}
+
+-(NSArray*)filteredBestBuddies{
+    return (NSArray*)[self filterBy:_searchTerm onList:_bestBuddies];
+}
+
 
 -(void)setUpTapGesture{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -271,6 +292,8 @@ static NSString *inviteBuddyToListCellID = @"PUInviteBuddyToListCellID";
 
 - (void) dismissKeyboard
 {
+    [self cleanSearch];
+    [self refreshBuddiesList];
     [_searchBar resignFirstResponder];
 }
 

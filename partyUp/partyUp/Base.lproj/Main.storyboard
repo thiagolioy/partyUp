@@ -1053,7 +1053,10 @@
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar Amigos" translatesAutoresizingMaskIntoConstraints="NO" id="hc5-ZA-3xe">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="RTF-qu-7wA" id="0Wj-jR-0uv"/>
+                                        </connections>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
