@@ -138,33 +138,43 @@ typedef NS_ENUM(NSUInteger, Sections) {
         [_activityIndicator stopAnimating];
         [_refreshControl endRefreshing];
         if(!error)
-            [self successOnFetchPlaces:places];
+            [self successOnFetch:places forQuery:nil orPlace:nil];
         else
             [self showUnknownError];
     }];
 }
 
--(void)successOnFetchPlaces:(NSArray*)places{
-    if(places.count == 0){
+-(NSString*)errorFeedbackMsgForQuery:(NSString*)query orPlace:(PUPlace*)place{
+    NSString *msg = @"";
+    if([self isPartiesSegmentSelected])
+       msg = @"Não encontramos nenhuma festa";
+    else
+       msg = @"Não encontramos nenhum lugar";
+    
+    if(query)
+        return [NSString stringWithFormat:@"%@ para \"%@\".",msg,query];
+    else if(place)
+        return [NSString stringWithFormat:@"%@ para \"%@\".",msg,place.name];
+    else
+        return [NSString stringWithFormat:@"%@ próximo a você.",msg];;
+}
+
+-(void)successOnFetch:(NSArray*)list forQuery:(NSString*)query orPlace:(PUPlace*)place{
+    if(list.count == 0){
         [self showErrorState];
-        [self noPlacesFound];
+        NSString *msg = [self errorFeedbackMsgForQuery:query orPlace:place];
+        [self showErrorMsg:msg];
         return;
     }
-    _places = [PUPartiesAndPlacesHelper splitPlacesSection:places];
+    if([self isPartiesSegmentSelected])
+        _parties = [PUPartiesAndPlacesHelper splitPartiesSection:list];
+    else
+        _places = [PUPartiesAndPlacesHelper splitPlacesSection:list];
+    
     [self showResultsState];
     [self refreshTableView];
 }
 
--(void)successOnFetchPlaces:(NSArray*)places forQuery:(NSString *)query{
-    if(places.count == 0){
-        [self showErrorState];
-        [self noPlacesFoundWith:query];
-        return;
-    }
-    _places = [PUPartiesAndPlacesHelper splitPlacesSection:places];
-    [self showResultsState];
-    [self refreshTableView];
-}
 
 -(void)showLoadingState{
     _collectionView.hidden = YES;
@@ -251,7 +261,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
         [_activityIndicator stopAnimating];
         [self enablePartiesOrPlacesControlInteraction:YES];
         if(!error)
-            [self successOnFetchParties:parties forPlace:place];
+            [self successOnFetch:parties forQuery:nil orPlace:place];
         else
             [self showUnknownError];
     }];
@@ -269,69 +279,13 @@ typedef NS_ENUM(NSUInteger, Sections) {
         [_refreshControl endRefreshing];
         [self enablePartiesOrPlacesControlInteraction:YES];
         if(!error)
-            [self successOnFetchParties:parties];
+            [self successOnFetch:parties forQuery:nil orPlace:nil];
         else
             [self showUnknownError];
     }];
 }
 
--(void)noPartiesFoundFor:(PUPlace*)place{
-    NSString *msg = [NSString stringWithFormat:@"No momento não temos nenhuma festa cadastrada para %@",place.name];
-    [self showErrorMsg:msg];
-}
 
--(void)noPartiesFoundWith:(NSString*)query{
-    NSString *msg = [NSString stringWithFormat:@"Não encontramos nenhuma festa com a busca \"%@\"",query];
-    [self showErrorMsg:msg];
-}
-
-
--(void)noPartiesFoundNear{
-    [self showErrorMsg:@"No momento não temos nenhuma festa próximo a você"];
-}
-
--(void)noPlacesFoundWith:(NSString*)query{
-    NSString *msg = [NSString stringWithFormat:@"Não encontramos nenhum lugar com a busca \"%@\"",query];
-    [self showErrorMsg:msg];
-}
-
--(void)noPlacesFound{
-    [self showErrorMsg:@"Não encontramos nenhum lugar cadastrado próximo a você!"];
-}
-
--(void)successOnFetchParties:(NSArray*)parties forQuery:(NSString*)query{
-    if(parties.count == 0){
-        [self showErrorState];
-        [self noPartiesFoundWith:query];
-        return;
-    }
-    _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
-    [self showResultsState];
-    [self refreshTableView];
-}
-
-
--(void)successOnFetchParties:(NSArray*)parties{
-    if(parties.count == 0){
-        [self showErrorState];
-        [self noPartiesFoundNear];
-        return;
-    }
-    _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
-    [self showResultsState];
-    [self refreshTableView];
-}
-
--(void)successOnFetchParties:(NSArray*)parties forPlace:(PUPlace*)place{
-    if(parties.count == 0){
-        [self showErrorState];
-        [self noPartiesFoundFor:place];
-        return;
-    }
-    _parties = [PUPartiesAndPlacesHelper splitPartiesSection:parties];
-    [self showResultsState];
-    [self refreshTableView];
-}
 
 -(void)refreshTableView{
     [_collectionView reloadData];
@@ -562,7 +516,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [_service fetchPartiesForQuery:query completion:^(NSArray *parties, NSError *error) {
         [_activityIndicator stopAnimating];
         if(!error)
-            [self successOnFetchParties:parties forQuery:query];
+            [self successOnFetch:parties forQuery:query orPlace:nil];
         else
             [self showUnknownError];
     }];
@@ -574,7 +528,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [_placeService fetchPlacesForQuery:query completion:^(NSArray *places, NSError *error) {
         [_activityIndicator stopAnimating];
         if(!error)
-            [self successOnFetchPlaces:places forQuery:query];
+            [self successOnFetch:places forQuery:query orPlace:nil];
         else
             [self showUnknownError];
     }];
