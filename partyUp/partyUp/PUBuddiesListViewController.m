@@ -216,6 +216,7 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 }
 
 -(IBAction)dismissBuddiesModal:(id)sender{
+    [self dismissKeyboard];
    [[UIApplication sharedApplication] setStatusBarHidden:NO
                                            withAnimation:UIStatusBarAnimationFade];
     [self dismissViewControllerAnimated:YES completion:^{
