@@ -8,4 +8,7 @@ Pods/
 partyUp.xcworkspace/
 partyUp.xcarchive
 releases
-
+*.mobileprovision
+*.zip
+.DS_Store
+*.ipa

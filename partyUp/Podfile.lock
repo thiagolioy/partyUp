@@ -1,6 +1,6 @@
 PODS:
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - SVPullToRefresh (0.4.1)
   - UIResponder+KeyboardCache (0.1)
@@ -15,4 +15,4 @@ SPEC CHECKSUMS:
   SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
   UIResponder+KeyboardCache: e267fd88f3414e8e7ccf7644f25c4701812a1d2b
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0
