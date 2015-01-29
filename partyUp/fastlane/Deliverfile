@@ -1,0 +1,49 @@
+########################################
+# App Metadata
+########################################
+
+
+# This folder has to include one folder for each language
+# More information about automatic screenshot upload:
+# https://github.com/KrauseFx/deliver#upload-screenshots-to-itunes-connect
+screenshots_path "./screenshots"
+
+
+# version '1.2' # you can pass this if you want to verify the version number with the ipa file
+#
+# title({
+#   "en-US" => "Your App Name"
+# })
+#
+# changelog({
+#   "en-US" => "iPhone 6 (Plus) Support"
+# })
+
+
+
+########################################
+# Building and Testing
+########################################
+
+ipa do
+    system("cd ..;ipa build --verbose") # build your project using Shenzhen
+    "../partyUp.ipa" # Tell 'Deliver' where it can find the finished ipa file
+end
+
+
+beta_ipa do
+    # system("ipa build --verbose") # customize this to build beta version
+    # "./ad_hoc_build.ipa" # upload ipa file using `deliver --beta`
+
+    system("cd ..;ipa build --verbose")
+    "../partyUp.ipa"
+end
+
+# unit_tests do
+#   If you use fastlane (http://github.com/krausefx/fastlane), run the tests there
+#   system("xctool test")
+# end
+
+success do
+  # system("say 'Successfully deployed a new version.'")
+end

@@ -1,0 +1,24 @@
+before_all do
+  cocoapods
+end
+
+lane :inhouse do
+  increment_build_number
+  sigh :development
+  build_ipa
+end
+
+
+after_all do |lane|
+  # This block is called, only if the executed lane was successful
+  # slack({
+  #   message: "Successfully deployed new App Update for [App](http://link.com).",
+  #   success: true,
+  #   channel: 'development'
+  # })
+end
+
+
+error do |lane, exception|
+  # Something bad happened
+end

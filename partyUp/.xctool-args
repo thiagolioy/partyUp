@@ -1,0 +1,7 @@
+[
+  "-workspace", "partyUp.xcworkspace",
+  "-scheme", "partyUp",
+  "-configuration", "Debug",
+  "-sdk", "iphonesimulator",
+  "-arch", "i386"
+]
