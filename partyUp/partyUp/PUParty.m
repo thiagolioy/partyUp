@@ -23,8 +23,8 @@
     
     party.date =  obj[@"date"];
     party.partyDescription =  obj[@"description"];
-    party.malePrice =  obj[@"gentsPrice"];
-    party.femalePrice =  obj[@"ladysPrice"];
+    party.malePrice =  obj[@"malePrice"];
+    party.femalePrice =  obj[@"femalePrice"];
     party.sendNamesType =  obj[@"sendNamesType"];
     party.sendNamesTo =  obj[@"sendNamesTo"];
     
