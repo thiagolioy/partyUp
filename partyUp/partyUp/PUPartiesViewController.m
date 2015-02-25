@@ -202,10 +202,17 @@ typedef NS_ENUM(NSUInteger, Sections) {
         _errorFeedbackCell.errorMsg.text = error;
 }
 
+-(void)refreshDataAfterRadiusUpdate{
+    if([self isPartiesSegmentSelected])
+        [self fetchParties];
+    else
+        [self fetchPlaces];
+}
+
 - (void) addNotifications {
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(fetchParties)
+                                             selector:@selector(refreshDataAfterRadiusUpdate)
                                                  name:@"UPDATED_RADIUS_DISTANCE"
                                                object:nil];
     

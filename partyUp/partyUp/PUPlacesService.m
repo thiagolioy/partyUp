@@ -45,6 +45,9 @@
 }
 
 -(void)fetchPlacesNearMe:(PlacesCompletion)completion{
+    NSNumber *radiusDistance = (NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:@"radiusDistance"];
+    if(!radiusDistance)
+        radiusDistance = [NSNumber numberWithInt:30];
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if(error){
             completion(nil,error);
@@ -52,7 +55,7 @@
         }
         
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
-        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:30];
+        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:[radiusDistance intValue]];
         [placeQuery orderByAscending:@"location"];
         placeQuery.limit = 20;
         

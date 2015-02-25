@@ -27,7 +27,15 @@
 {
     [super viewDidLoad];
     [self setUpCircleMaskOnPicture];
+    [self setupRadiusSliderDefaultValue];
     [self recoverUserFromCache];
+}
+
+-(void)setupRadiusSliderDefaultValue{
+    NSNumber *radiusDistance = (NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:@"radiusDistance"];
+    if(!radiusDistance)
+        radiusDistance = [NSNumber numberWithInt:30];
+    [_radiusSlider setValue:[radiusDistance intValue] animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
