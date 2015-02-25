@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ZA-be-4zU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ZA-be-4zU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -756,6 +756,61 @@
                                     <constraint firstAttribute="centerY" secondItem="6CA-LN-gN7" secondAttribute="centerY" id="oFx-Wq-1Xm"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAK-Hk-hnI">
+                                <rect key="frame" x="10" y="140" width="580" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raio de festas:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBB-7n-SRA">
+                                        <rect key="frame" x="10" y="14" width="125" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="4xr-Lz-AGo"/>
+                                            <constraint firstAttribute="width" constant="125" id="ILu-TB-ykD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2C9-23-kwn">
+                                        <rect key="frame" x="135" y="15" width="435" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="D83-7g-TBS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="0.14901960784313725" green="0.19607843137254902" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="JBB-7n-SRA" firstAttribute="leading" secondItem="OAK-Hk-hnI" secondAttribute="leading" constant="10" id="Jb4-ed-QfW"/>
+                                    <constraint firstAttribute="height" constant="50" id="aRn-Y8-exk"/>
+                                    <constraint firstAttribute="centerY" secondItem="2C9-23-kwn" secondAttribute="centerY" id="eeq-QD-SFd"/>
+                                    <constraint firstAttribute="centerY" secondItem="JBB-7n-SRA" secondAttribute="centerY" id="gmX-NY-tem"/>
+                                    <constraint firstAttribute="trailing" secondItem="2C9-23-kwn" secondAttribute="trailing" constant="10" id="l1w-69-W1g"/>
+                                    <constraint firstItem="2C9-23-kwn" firstAttribute="leading" secondItem="JBB-7n-SRA" secondAttribute="trailing" id="spK-BR-1FQ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uog-Bh-42l">
+                                <rect key="frame" x="10" y="200" width="580" height="50"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SWe-2Y-YZy">
+                                        <rect key="frame" x="8" y="10" width="564" height="31"/>
+                                        <color key="tintColor" red="0.070588235289999995" green="0.090196078430000007" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Sh6-rl-Igm"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="changeRadiusDistance:" destination="JeS-Z1-Aiw" eventType="valueChanged" id="w32-Fg-98O"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8wL-jT-HK6"/>
+                                    <constraint firstAttribute="centerY" secondItem="SWe-2Y-YZy" secondAttribute="centerY" id="RIS-jP-lua"/>
+                                    <constraint firstItem="SWe-2Y-YZy" firstAttribute="leading" secondItem="uog-Bh-42l" secondAttribute="leading" constant="10" id="amB-P4-H0b"/>
+                                    <constraint firstAttribute="trailing" secondItem="SWe-2Y-YZy" secondAttribute="trailing" constant="10" id="leF-dX-8uZ"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XW8-1T-IYg" userLabel="Logout">
                                 <rect key="frame" x="10" y="497" width="580" height="44"/>
                                 <subviews>
@@ -784,9 +839,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="OAK-Hk-hnI" firstAttribute="leading" secondItem="NGu-49-foK" secondAttribute="leading" constant="10" id="8Hz-no-e7O"/>
                             <constraint firstItem="zYd-1s-QgU" firstAttribute="top" secondItem="NGu-49-foK" secondAttribute="top" constant="80" id="8X0-Zr-QjN"/>
+                            <constraint firstAttribute="trailing" secondItem="OAK-Hk-hnI" secondAttribute="trailing" constant="10" id="9Xi-DZ-HM4"/>
                             <constraint firstItem="XW8-1T-IYg" firstAttribute="leading" secondItem="NGu-49-foK" secondAttribute="leading" constant="10" id="Ddf-bU-lWi"/>
                             <constraint firstItem="uRu-9n-BeN" firstAttribute="top" secondItem="XW8-1T-IYg" secondAttribute="bottom" constant="10" id="MwS-sf-afo"/>
+                            <constraint firstAttribute="trailing" secondItem="uog-Bh-42l" secondAttribute="trailing" constant="10" id="PPM-9z-JB6"/>
+                            <constraint firstItem="uog-Bh-42l" firstAttribute="top" secondItem="OAK-Hk-hnI" secondAttribute="bottom" constant="10" id="SwA-j9-DPV"/>
+                            <constraint firstItem="OAK-Hk-hnI" firstAttribute="top" secondItem="zYd-1s-QgU" secondAttribute="bottom" constant="10" id="WTB-eg-wdS"/>
+                            <constraint firstItem="uog-Bh-42l" firstAttribute="leading" secondItem="NGu-49-foK" secondAttribute="leading" constant="10" id="YAd-5O-yCM"/>
                             <constraint firstAttribute="trailing" secondItem="XW8-1T-IYg" secondAttribute="trailing" constant="10" id="gaU-4Q-xJ5"/>
                             <constraint firstItem="zYd-1s-QgU" firstAttribute="leading" secondItem="NGu-49-foK" secondAttribute="leading" constant="10" id="kCu-Ck-pre"/>
                             <constraint firstAttribute="trailing" secondItem="zYd-1s-QgU" secondAttribute="trailing" constant="10" id="oQX-I8-yG4"/>
@@ -796,6 +857,8 @@
                     <connections>
                         <outlet property="profileName" destination="Srj-ml-veH" id="DFW-dO-EVx"/>
                         <outlet property="profilePicture" destination="6CA-LN-gN7" id="Nke-m0-C7n"/>
+                        <outlet property="radiusDistance" destination="2C9-23-kwn" id="9US-sY-fIb"/>
+                        <outlet property="radiusSlider" destination="SWe-2Y-YZy" id="SCV-yn-4Dk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oET-ah-kze" userLabel="First Responder" sceneMemberID="firstResponder"/>

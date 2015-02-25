@@ -82,9 +82,10 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [self showStatusBar];
     [self hidesNavigationBackButton];
     [self setUpServices];
-    [self fetchParties];
     [self setUpMessageHeaders];
     [self setUpPullToRefresh];
+    [self fetchParties];
+    [self addNotifications];
 }
 
 -(void)setUpPullToRefresh{
@@ -201,6 +202,22 @@ typedef NS_ENUM(NSUInteger, Sections) {
         _errorFeedbackCell.errorMsg.text = error;
 }
 
+- (void) addNotifications {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(fetchParties)
+                                                 name:@"UPDATED_RADIUS_DISTANCE"
+                                               object:nil];
+    
+    
+}
+-(void) removeNotifications {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UPDATED_RADIUS_DISTANCE"
+                                                  object:nil];
+}
+
 
 -(void)viewWillAppear:(BOOL)animated{
     if(self.parentViewController.navigationItem.titleView == nil)
@@ -288,6 +305,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    [self removeNotifications];
 }
 
 -(BOOL)hasParties{

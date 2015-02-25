@@ -14,11 +14,14 @@
 #import "PUBuddiesListViewController.h"
 
 @interface PUProfileViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *radiusDistance;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (strong, nonatomic) IBOutlet UILabel *profileName;
+@property (strong, nonatomic) IBOutlet UISlider *radiusSlider;
 @end
 
 @implementation PUProfileViewController
+
 
 - (void)viewDidLoad
 {
@@ -29,6 +32,20 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self setUpNavigationBarTitle];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    NSNumber *distance = [NSNumber numberWithInt:[self radiusDistanceAsInt]];
+    [[NSUserDefaults standardUserDefaults] setObject:distance forKey:@"radiusDistance"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATED_RADIUS_DISTANCE" object:nil];
+}
+
+-(int)radiusDistanceAsInt{
+    return (int)_radiusSlider.value;
+}
+
+- (IBAction)changeRadiusDistance:(id)sender {
+    _radiusDistance.text =  [NSString stringWithFormat:@"%d km",[self radiusDistanceAsInt]];
 }
 
 

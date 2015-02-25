@@ -79,6 +79,10 @@
     }];
 }
 -(void)fetchPartiesNearMe:(PartiesCompletion)completion{
+    NSNumber *radiusDistance = (NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:@"radiusDistance"];
+    if(!radiusDistance)
+        radiusDistance = [NSNumber numberWithInt:30];
+    
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if(error){
             completion(nil,error);
@@ -86,7 +90,7 @@
         }
         
         PFQuery *placeQuery = [PFQuery queryWithClassName:@"Place"];
-        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:30];
+        [placeQuery whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:[radiusDistance intValue]];
         
         PFQuery *query = [PFQuery queryWithClassName:@"Party"];
         [query includeKey:@"place"];
