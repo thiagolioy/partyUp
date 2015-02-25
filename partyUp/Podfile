@@ -3,5 +3,8 @@ target :partyUp do
 pod 'SVPullToRefresh'
 pod 'SDWebImage', '~>3.6'
 pod 'UIResponder+KeyboardCache'
+pod 'Facebook-iOS-SDK'
+pod 'Parse'
+pod 'ParseFacebookUtils'
 end
 
