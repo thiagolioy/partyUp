@@ -236,18 +236,12 @@ typedef NS_ENUM(NSUInteger, Sections) {
 
 -(void)didSelectPartiesOnSegmentControl{
     [_searchCell setPlaceholderText:@"Busque festas"];
-    if(_parties.count == 0)
-        [self fetchParties];
-    else
-        [self refreshTableView];
+    [self fetchParties];
 }
 
 -(void)didSelectPlacesOnSegmentControl{
     [_searchCell setPlaceholderText:@"Busque lugares"];
-    if(_places.count == 0)
-        [self fetchPlaces];
-    else
-        [self refreshTableView];
+    [self fetchPlaces];
 }
 
 -(void)hidesNavigationBackButton{
