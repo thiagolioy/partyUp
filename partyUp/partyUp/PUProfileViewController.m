@@ -13,11 +13,13 @@
 #import "PUHeaderTableViewCell.h"
 #import "PUBuddiesListViewController.h"
 
+
 @interface PUProfileViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *radiusDistance;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (strong, nonatomic) IBOutlet UILabel *profileName;
 @property (strong, nonatomic) IBOutlet UISlider *radiusSlider;
+@property (assign, nonatomic) int radiusInitialValue;
 @end
 
 @implementation PUProfileViewController
@@ -29,12 +31,18 @@
     [self setUpCircleMaskOnPicture];
     [self setupRadiusSliderDefaultValue];
     [self recoverUserFromCache];
+    [self trackPage];
+}
+
+-(void)trackPage{
+    [[AnalyticsTriggerManager sharedManager] openScreen:@"/profile"];
 }
 
 -(void)setupRadiusSliderDefaultValue{
     NSNumber *radiusDistance = (NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:@"radiusDistance"];
     if(!radiusDistance)
         radiusDistance = [NSNumber numberWithInt:30];
+    _radiusInitialValue = [radiusDistance intValue];
     [_radiusSlider setValue:[radiusDistance intValue] animated:YES];
 }
 
@@ -44,8 +52,15 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     NSNumber *distance = [NSNumber numberWithInt:[self radiusDistanceAsInt]];
+    if([self didChangeRadius])
+        [[AnalyticsTriggerManager sharedManager] changePartyOrPlaceRadius:[distance intValue]];
+    
     [[NSUserDefaults standardUserDefaults] setObject:distance forKey:@"radiusDistance"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATED_RADIUS_DISTANCE" object:nil];
+}
+
+-(BOOL)didChangeRadius{
+    return _radiusInitialValue != [self radiusDistanceAsInt];
 }
 
 -(int)radiusDistanceAsInt{
@@ -86,6 +101,7 @@
 }
 
 - (IBAction)logout:(id)sender {
+    [[AnalyticsTriggerManager sharedManager] logout];
     [PFUser logOut];
     [PUBuddiesStorage clearStorage];
     UIViewController *vc =  [self.parentViewController parentViewController];

@@ -9,6 +9,7 @@
 #import "PUPushNotificationManager.h"
 #import "PUBuddiesStorage.h"
 
+
 @implementation PUPushNotificationManager
 
 +(void)notifyFriend:(NSString*)friendID addedToEvent:(NSString*)eventName{

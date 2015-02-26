@@ -35,6 +35,7 @@ static NSString *buddiesCellID = @"BuddyCellID";
 }
 
 -(IBAction)addBuddy:(id)sender{
+    [[AnalyticsTriggerManager sharedManager] addFriendToEvent];
     if(_delegate){
         [_delegate addToBestBuddies:_buddy];
     }

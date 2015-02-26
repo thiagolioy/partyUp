@@ -232,6 +232,8 @@ typedef NS_ENUM(NSUInteger, Sections) {
         [self setUpSegmentControlOnNavigationBar];
     if(self.parentViewController.navigationItem.rightBarButtonItem == nil)
         [self setUpSearchIconOnNavigation];
+    
+    [self trackPage];
 }
 
 
@@ -241,8 +243,18 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [_partiesOrPlacesControl setWidth:100 forSegmentAtIndex:1];
     [_partiesOrPlacesControl addTarget:self action:@selector(changeValueSegmentControl:) forControlEvents:UIControlEventValueChanged];
     [_partiesOrPlacesControl setSelectedSegmentIndex:_lastSegmentControlIndex];
+    
+
     [self enablePartiesOrPlacesControlInteraction:[self hasParties]];
     self.parentViewController.navigationItem.titleView = _partiesOrPlacesControl;
+}
+
+-(void)trackPage{
+    NSString *msg = @"/parties";
+    if(![self isPartiesSegmentSelected])
+        msg = @"/places";
+    
+    [[AnalyticsTriggerManager sharedManager] openScreen:msg];
 }
 
 -(void)enablePartiesOrPlacesControlInteraction:(BOOL)enable{
@@ -251,6 +263,7 @@ typedef NS_ENUM(NSUInteger, Sections) {
 }
 
 -(void)changeValueSegmentControl:(id)sender{
+    [self trackPage];
     [self resignSearchBar];
     _lastSegmentControlIndex = _partiesOrPlacesControl.selectedSegmentIndex;
     if([self isPartiesSegmentSelected])

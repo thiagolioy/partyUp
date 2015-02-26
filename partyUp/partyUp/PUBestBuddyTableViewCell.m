@@ -38,6 +38,7 @@ static NSString *bestBuddiesCellID = @"BestBuddyCellID";
 }
 
 -(IBAction)clickOnRemoveIcon:(id)sender{
+    [[AnalyticsTriggerManager sharedManager] removeFriendFromEvent];
     if(_delegate)
         [_delegate removeBuddy:_buddy];
 }

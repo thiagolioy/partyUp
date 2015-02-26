@@ -18,6 +18,7 @@
     [PUPushNotificationManager registerForNotifications:application];
     [PUPushNotificationManager trackOpenAppOnPush:application launchingOptions:launchOptions];
     [PUPushNotificationManager handleParseNotificationPayload:launchOptions];
+    [[AnalyticsTriggerManager sharedManager] setupService];
     [self customizeAppearance];
     
     return YES;

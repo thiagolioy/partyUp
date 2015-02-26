@@ -40,6 +40,7 @@
     [self fillNavigationBarWithPartyName];
     [self fillPartyInfo];
     [self initSocialService];
+    [self trackPage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +48,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)trackPage{
+    NSString *msg = [NSString stringWithFormat:@"party/%@",_party.partyId];
+    [[AnalyticsTriggerManager sharedManager] openScreen:msg];
+}
+
+
 
 
 -(void)initSocialService{
@@ -94,6 +102,7 @@
     }
 }
 -(IBAction)sendNamesToParty{
+    [[AnalyticsTriggerManager sharedManager] sendNamesEvent];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PUBuddiesListViewController *buddiesVC = [storyboard instantiateViewControllerWithIdentifier:@"PUBuddiesListViewController"];
     
@@ -147,6 +156,7 @@
 }
 
 -(IBAction)displayRouteToParty{
+    [[AnalyticsTriggerManager sharedManager] findOutRouteToEvent];
     MKMapItem *from = [MKMapItem mapItemForCurrentLocation];
     MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:_party.place.clLocation.coordinate addressDictionary:nil];
     MKMapItem *to = [[MKMapItem alloc] initWithPlacemark:placemark];

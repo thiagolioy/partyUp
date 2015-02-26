@@ -121,7 +121,9 @@
 }
 
 -(void)proceedToParties{
-   [PUPushNotificationManager linkUserOnCurrentInstallation:[PUBuddiesStorage myself]];
+   PUUser *myself = [PUBuddiesStorage myself];
+   [PUPushNotificationManager linkUserOnCurrentInstallation:myself];
+   [[AnalyticsTriggerManager sharedManager] login:myself];
    [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
 }
 #pragma mark - CollectionView Methods

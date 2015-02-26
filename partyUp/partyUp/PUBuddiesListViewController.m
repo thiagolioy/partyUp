@@ -40,7 +40,14 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
     [self initSocialService];
     [self fetchBuddies];
     [self hideStatusBar];
+    [self trackPage];
 }
+
+-(void)trackPage{
+    [[AnalyticsTriggerManager sharedManager] openScreen:@"/friends"];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
