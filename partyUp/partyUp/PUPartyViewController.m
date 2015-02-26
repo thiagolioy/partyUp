@@ -125,7 +125,7 @@
             [self postOnEventFeed:eventId];
         }else{
            [_sendNamesButton reset];
-           [PUAlertUtil showAlertWithMessage:@"Ocorreu ao confirmar presença no evento!"];
+           [PUAlertUtil showAlertWithMessage:@"Ocorreu um erro ao confirmar presença no evento!"];
         }
         
     }];
