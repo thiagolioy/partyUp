@@ -151,7 +151,7 @@
 }
 
 -(void)showEventFeedOnFacebookApp:(NSString*)eventId{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://events/%@/",eventId]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@/",eventId]];
     [[UIApplication sharedApplication] openURL:url];
 }
 
