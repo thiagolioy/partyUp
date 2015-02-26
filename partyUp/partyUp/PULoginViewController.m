@@ -12,6 +12,7 @@
 #import "PUSocialService.h"
 #import "PUBuddiesStorage.h"
 #import <UIResponder+KeyboardCache.h>
+#import "PUPushNotificationManager.h"
 
 @interface PULoginViewController ()<UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIAsyncButton *loginButton;
@@ -120,6 +121,7 @@
 }
 
 -(void)proceedToParties{
+   [PUPushNotificationManager linkUserOnCurrentInstallation:[PUBuddiesStorage myself]];
    [self performSegueWithIdentifier:@"proceedToParties" sender:nil];
 }
 #pragma mark - CollectionView Methods

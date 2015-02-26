@@ -7,12 +7,36 @@
 //
 
 #import "PUPushNotificationManager.h"
+#import "PUBuddiesStorage.h"
 
 @implementation PUPushNotificationManager
+
++(void)notifyFriend:(NSString*)friendID addedToEvent:(NSString*)eventName{
+    
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"user_id" equalTo:friendID];
+    
+    PUUser *myself = [PUBuddiesStorage myself];
+    NSString *msg = [NSString stringWithFormat:@"%@ acabou de te adicionar na lista do evento %@",myself.name,eventName];
+    
+    
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:pushQuery];
+    [push setMessage:msg];
+    [push sendPushInBackground];
+}
 
 +(void)subscribeToChannel:(NSString*)channel{
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation addUniqueObject:channel forKey:@"channels"];
+    [currentInstallation saveInBackground];
+}
+
++(void)linkUserOnCurrentInstallation:(PUUser*)user{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    
+    [currentInstallation setObject:user.userId forKey:@"user_id"];
+    [currentInstallation setObject:user.name forKey:@"user_name"];
     [currentInstallation saveInBackground];
 }
 

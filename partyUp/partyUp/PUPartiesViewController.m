@@ -383,8 +383,6 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [_partiesOrPlacesControl setSelectedSegmentIndex:_lastSegmentControlIndex];
     PUPlace *place = [self placeAtIndexPath:indexPath];
     
-    [PUPushNotificationManager subscribeToChannel:place.name];
-    
     [self fetchPartiesForPlace:place];
 }
 

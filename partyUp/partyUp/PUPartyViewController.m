@@ -40,11 +40,6 @@
     [self fillNavigationBarWithPartyName];
     [self fillPartyInfo];
     [self initSocialService];
-    [self subscribeToPartyChannel];
-}
-
--(void)subscribeToPartyChannel{
-    [PUPushNotificationManager subscribeToChannel:_party.place.name];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,6 +100,7 @@
     buddiesVC.block = ^{
         if(_party.isMailNamesList){
             [_sendNamesButton reset];
+           [self notifyBuddies];
             [PUSendMailHelper sendNamesTo:_party];
         }else if(_party.isFacebookNamesList)
             [self sendNamesToFacebookEvent];
@@ -126,14 +122,21 @@
     }];
 }
 
+-(void)notifyBuddies{
+    NSArray *buddies = [PUBuddiesStorage storedBuddies];
+    for(PUUser *buddy in buddies)
+        [PUPushNotificationManager notifyFriend:buddy.userId addedToEvent:_party.name];
+}
+
 -(void)postOnEventFeed:(NSString*)eventId{
     [_service postOnEventFeed:eventId message:[PUBuddiesStorage storedBuddiesAndMyselfAsMailBody]
                    completion:^(NSString *evId,NSString *postId, NSError *error) {
        
        [_sendNamesButton reset];
-       if(!error)
+       if(!error){
+           [self notifyBuddies];
            [self showEventFeedOnFacebookApp:evId];
-       else
+       }else
            [PUAlertUtil showAlertWithMessage:@"Um erro ocorreu ao tentar enviar os nomes para o evento!"];
    }];
 }
