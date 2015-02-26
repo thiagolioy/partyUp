@@ -73,19 +73,6 @@
 }
 
 
--(void)oAuthExceptionHandler{
-    FBRequest *request = [FBRequest requestForMe];
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        if (!error) {
-            
-        } else if ([error.userInfo[FBErrorParsedJSONResponseKey][@"body"][@"error"][@"type"] isEqualToString:@"OAuthException"]) {
-            NSLog(@"The facebook session was invalidated");
-        } else {
-            NSLog(@"Some other error: %@", error);
-        }
-    }];
-}
-
 -(void)checkIfUserAlreadyLoggedIn{
     if ([PFUser currentUser] &&
         [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
@@ -100,6 +87,8 @@
     [PFFacebookUtils logInWithPermissions:permissions  block:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            [_loginButton reset];
+            [PUAlertUtil showAlertWithMessage:@"Por favor, verifique suas permissões na conta do facebook."];
         } else {
             if (user.isNew) {
                 NSLog(@"User signed up and logged in through Facebook!");
