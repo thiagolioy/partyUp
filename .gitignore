@@ -12,3 +12,4 @@ releases
 *.zip
 .DS_Store
 *.ipa
+**/fastlane/report.xml

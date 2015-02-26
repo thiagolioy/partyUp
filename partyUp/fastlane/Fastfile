@@ -2,10 +2,25 @@ before_all do
   cocoapods
 end
 
-lane :inhouse do
+lane :up_tf do
   increment_build_number
-  sigh :development
+  sigh :adhoc
   build_ipa
+  upload_testflight
+end
+
+def upload_testflight
+  system("deliver testflight ../releases/partyUp.ipa -u lioyufrj@gmail.com -a 917468380")
+end
+
+
+def build_ipa
+  ipa({
+    workspace: "partyUp.xcworkspace",
+    configuration: "Release",
+    scheme: "partyUp",
+    destination: "./releases"
+  })
 end
 
 
