@@ -34,7 +34,13 @@
     [self setUpPageControl];
     [self checkIfUserAlreadyLoggedIn];
     [self hackToRemoveSearchKeyboardDelayOnFirstShow];
+    [self trackPage];
 }
+
+-(void)trackPage{
+    [[AnalyticsTriggerManager sharedManager] openScreen:@"/login"];
+}
+
 
 -(void)hackToRemoveSearchKeyboardDelayOnFirstShow{
     [UIResponder cacheKeyboard];
