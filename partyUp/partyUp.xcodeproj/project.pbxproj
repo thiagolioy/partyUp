@@ -57,6 +57,7 @@
 		3E737C341A338CE20054B222 /* PUPartiesAndPlacesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */; };
 		3E7AC3D91A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */; };
 		3E7AC3DC1A34B6A500ABEE55 /* PUErrorFeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */; };
+		3E8D1BFE1A9ED4440097D362 /* PUPushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */; };
 		3E8DE4E41A2F5696007EC179 /* PUAlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8DE4E31A2F5696007EC179 /* PUAlertUtil.m */; };
 		3EB5EA0D1A29FBB100C18AED /* PUBestBuddyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0C1A29FBB100C18AED /* PUBestBuddyTableViewCell.m */; };
 		3EB5EA101A2A0B3F00C18AED /* PUHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5EA0F1A2A0B3F00C18AED /* PUHeaderTableViewCell.m */; };
@@ -163,6 +164,8 @@
 		3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PUReloadAnimations.m"; sourceTree = "<group>"; };
 		3E7AC3DA1A34B6A500ABEE55 /* PUErrorFeedbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUErrorFeedbackCell.h; sourceTree = "<group>"; };
 		3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUErrorFeedbackCell.m; sourceTree = "<group>"; };
+		3E8D1BFC1A9ED4440097D362 /* PUPushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPushNotificationManager.h; sourceTree = "<group>"; };
+		3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPushNotificationManager.m; sourceTree = "<group>"; };
 		3E8DE4E21A2F5696007EC179 /* PUAlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUAlertUtil.h; sourceTree = "<group>"; };
 		3E8DE4E31A2F5696007EC179 /* PUAlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUAlertUtil.m; sourceTree = "<group>"; };
 		3EB5EA0B1A29FBB100C18AED /* PUBestBuddyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUBestBuddyTableViewCell.h; sourceTree = "<group>"; };
@@ -272,6 +275,7 @@
 		200055A919A43946008377FF /* partyUp */ = {
 			isa = PBXGroup;
 			children = (
+				3E8D1BFB1A9ED3CB0097D362 /* utils */,
 				20D960E819AFFB2700A893CF /* model */,
 				20F2740A19ABF6FD00BDBE5E /* helpers */,
 				20497C2C19A86BFC00CB942F /* services */,
@@ -469,6 +473,15 @@
 			name = helpers;
 			sourceTree = "<group>";
 		};
+		3E8D1BFB1A9ED3CB0097D362 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				3E8D1BFC1A9ED4440097D362 /* PUPushNotificationManager.h */,
+				3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		3EB5EA231A2A8ABE00C18AED /* components */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +652,7 @@
 				20497C1719A839FC00CB942F /* PUBuddiesListViewController.m in Sources */,
 				3EB5EA161A2A3E3D00C18AED /* PUUser.m in Sources */,
 				201E887119A56160008C5532 /* PUProfileViewController.m in Sources */,
+				3E8D1BFE1A9ED4440097D362 /* PUPushNotificationManager.m in Sources */,
 				202845B419FD45FD004D80EE /* NSString+Validators.m in Sources */,
 				202845B119FD3426004D80EE /* PUPartyMoreInfoViewController.m in Sources */,
 				20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */,

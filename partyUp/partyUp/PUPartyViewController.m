@@ -14,7 +14,7 @@
 #import "PUBuddiesStorage.h"
 #import "PUBuddiesListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "PUPushNotificationManager.h"
 
 @interface PUPartyViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *promoImage;
@@ -40,6 +40,11 @@
     [self fillNavigationBarWithPartyName];
     [self fillPartyInfo];
     [self initSocialService];
+    [self subscribeToPartyChannel];
+}
+
+-(void)subscribeToPartyChannel{
+    [PUPushNotificationManager subscribeToChannel:_party.place.name];
 }
 
 - (void)didReceiveMemoryWarning

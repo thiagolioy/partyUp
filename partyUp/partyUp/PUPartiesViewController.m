@@ -17,6 +17,7 @@
 #import "PUSearchCell.h"
 #import "PUPartiesAndPlacesHelper.h"
 #import "PUErrorFeedbackCell.h"
+#import "PUPushNotificationManager.h"
 
 
 typedef NS_ENUM(NSUInteger, PartiesSections) {
@@ -381,6 +382,9 @@ typedef NS_ENUM(NSUInteger, Sections) {
     [self enablePartiesOrPlacesControlInteraction:NO];
     [_partiesOrPlacesControl setSelectedSegmentIndex:_lastSegmentControlIndex];
     PUPlace *place = [self placeAtIndexPath:indexPath];
+    
+    [PUPushNotificationManager subscribeToChannel:place.name];
+    
     [self fetchPartiesForPlace:place];
 }
 
