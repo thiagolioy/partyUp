@@ -23,10 +23,16 @@
         PFQuery *queryName = [PFQuery queryWithClassName:@"Place"];
         [queryName whereKey:@"canonicalName" containsString:[query uppercaseString]];
         
+        PFQuery *queryCity= [PFQuery queryWithClassName:@"Place"];
+        [queryCity whereKey:@"canonicalCity" containsString:[query uppercaseString]];
+        
+        PFQuery *queryNeighborhood = [PFQuery queryWithClassName:@"Place"];
+        [queryNeighborhood whereKey:@"canonicalNeighborhood" containsString:[query uppercaseString]];
+        
         PFQuery *queryState = [PFQuery queryWithClassName:@"Place"];
-        [queryState whereKey:@"canonicalCity" containsString:[query uppercaseString]];
+        [queryState whereKey:@"canonicalState" containsString:[query uppercaseString]];
 
-        PFQuery *placeQuery = [PFQuery orQueryWithSubqueries:@[queryName,queryState]];
+        PFQuery *placeQuery = [PFQuery orQueryWithSubqueries:@[queryName,queryCity,queryNeighborhood,queryState]];
         [placeQuery orderByAscending:@"location"];
         
         [placeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
