@@ -16,7 +16,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PUPushNotificationManager.h"
 
-@interface PUPartyViewController ()
+#import "PUImagePartyCell.h"
+#import "PUAddressPartyCell.h"
+#import "PUDetailPartyCell.h"
+#import "PUControllPartyCell.h"
+
+@interface PUPartyViewController () <UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *promoImage;
 @property (strong, nonatomic) IBOutlet UILabel *price;
 @property (strong, nonatomic) IBOutlet UILabel *date;
@@ -27,10 +32,19 @@
 @property (strong, nonatomic) IBOutlet UILabel *placeState;
 @property (strong, nonatomic) IBOutlet UIView *moreInfoView;
 @property (strong, nonatomic) IBOutlet UIAsyncButton *sendNamesButton;
+@property (strong, nonatomic) IBOutlet UITableView *partyTableView;
 
 @property (strong, nonatomic) PUSocialService *service;
 
 @end
+
+typedef NS_ENUM(char , PaymentTableSection) {
+    ImageSection,
+    AdressSection,
+    DetailSection,
+    ControllSection,
+    NumberOfSections
+};
 
 @implementation PUPartyViewController
 
@@ -38,9 +52,9 @@
 {
     [super viewDidLoad];
     [self fillNavigationBarWithPartyName];
-    [self fillPartyInfo];
     [self initSocialService];
     [self trackPage];
+    [self initTableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,8 +68,69 @@
     [[AnalyticsTriggerManager sharedManager] openScreen:msg];
 }
 
+-(void)initTableView{
+    _partyTableView.dataSource = self;
+    _partyTableView.delegate = self;
+    [_partyTableView reloadData];
+}
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return NumberOfSections;
+}
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section) {
+        case ImageSection:
+            return [self imageCellForRowAtIndexPath:indexPath];
+            break;
+        
+        case AdressSection:
+            return [self addressCellForRowAtIndexPath:indexPath];
+            break;
+            
+        case DetailSection:
+            return [self detailCellForRowAtIndexPath:indexPath];
+            break;
+            
+        case ControllSection:
+            return [self controllCellForRowAtIndexPath:indexPath];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+-(PUImagePartyCell *)imageCellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    static NSString *imageCellIdentifier = @"ImageCell";
+    PUImagePartyCell *cell = (PUImagePartyCell *)[_partyTableView dequeueReusableCellWithIdentifier:imageCellIdentifier];
+    [cell fillCell:_party];
+    return cell;
+}
+
+-(PUAddressPartyCell *)addressCellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    static NSString *addressIdentifier = @"AddressCell";
+    PUAddressPartyCell *cell = (PUAddressPartyCell *)[_partyTableView dequeueReusableCellWithIdentifier:addressIdentifier];
+    [cell fillCell:_party];
+    return cell;
+}
+
+-(PUDetailPartyCell *)detailCellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    static NSString *detailCellIdentifier = @"DetailCell";
+    PUDetailPartyCell *cell = (PUDetailPartyCell *)[_partyTableView dequeueReusableCellWithIdentifier:detailCellIdentifier];
+    return cell;
+}
+
+-(PUControllPartyCell *)controllCellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    static NSString *controllCellIdentifier = @"ControllCell";
+    PUControllPartyCell *cell = (PUControllPartyCell *)[_partyTableView dequeueReusableCellWithIdentifier:controllCellIdentifier];
+    return cell;
+}
 
 -(void)initSocialService{
     _service = [PUSocialService new];
@@ -63,36 +138,6 @@
 
 -(void)fillNavigationBarWithPartyName{
     self.title = _party.name;
-}
-
--(void)fillPartyInfo{
-    [self downloadPartyImage];
-    [self fillPartyPrice];
-    [self fillPartyDate];
-    [self fillPartyAddress];
-    [self shouldShowMoreInfoView];
-}
--(void)shouldShowMoreInfoView{
-    _moreInfoView.hidden = ![_party.partyDescription isValid];
-}
-
--(void)fillPartyAddress{
-    _placeDistance.text = [_party.place prettyDistanceInKM];
-    _placeName.text = _party.place.name;
-    _placeAddress.text = [_party.place prettyFormattedAddress];
-    _placeNeighborhood.text = _party.place.neighborhood;
-    _placeState.text = _party.place.state;
-}
--(void)fillPartyPrice{
-    _price.text = [_party prettyFormattedPrices];
-}
--(void)fillPartyDate{
-   _date.text = [_party prettyFormattedDate];
-}
-
--(void)downloadPartyImage{
-    [_promoImage sd_setImageWithURL:[NSURL URLWithString:[_party partyOrPlaceImageUrl]]
-                   placeholderImage:[UIImage imageNamed:@"Image_placeholder"]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
