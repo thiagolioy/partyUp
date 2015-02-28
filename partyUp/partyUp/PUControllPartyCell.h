@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PUParty.h"
+
+@protocol PUControllPartyCellDelegate
+@required - (void)presentViewController:(UIViewController *)viewControllerToPresent;
+@end
 
 @interface PUControllPartyCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIAsyncButton *sendNamesButton;
+@property (strong, nonatomic) id<PUControllPartyCellDelegate> delegate;
+
+-(void)fillCell:(PUParty*)party andDelegate:(id<PUControllPartyCellDelegate>)delegate;
 
 @end

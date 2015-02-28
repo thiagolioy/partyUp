@@ -18,6 +18,7 @@
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
 @property(nonatomic,strong)IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic,strong)IBOutlet UISearchBar *searchBar;
+@property(nonatomic,strong)IBOutlet UIButton *sendBuddiesButton;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
 @property(nonatomic,strong)PUSocialService *service;
@@ -227,8 +228,12 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
    [[UIApplication sharedApplication] setStatusBarHidden:NO
                                            withAnimation:UIStatusBarAnimationFade];
     [self dismissViewControllerAnimated:YES completion:^{
-        if(_block)
-            _block();
+        if(_block){
+            if (sender == _sendBuddiesButton)
+                _block(YES);
+            else
+                _block(NO);
+        }
     }];
 }
 

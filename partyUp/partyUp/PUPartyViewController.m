@@ -8,33 +8,14 @@
 
 #import "PUPartyViewController.h"
 #import "PUPartyMoreInfoViewController.h"
-#import <MapKit/MapKit.h>
-#import "PUSendMailHelper.h"
-#import "PUSocialService.h"
-#import "PUBuddiesStorage.h"
-#import "PUBuddiesListViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import "PUPushNotificationManager.h"
 
 #import "PUImagePartyCell.h"
 #import "PUAddressPartyCell.h"
 #import "PUDetailPartyCell.h"
 #import "PUControllPartyCell.h"
 
-@interface PUPartyViewController () <UITableViewDataSource,UITableViewDelegate>
-@property (strong, nonatomic) IBOutlet UIImageView *promoImage;
-@property (strong, nonatomic) IBOutlet UILabel *price;
-@property (strong, nonatomic) IBOutlet UILabel *date;
-@property (strong, nonatomic) IBOutlet UILabel *placeName;
-@property (strong, nonatomic) IBOutlet UILabel *placeAddress;
-@property (strong, nonatomic) IBOutlet UILabel *placeDistance;
-@property (strong, nonatomic) IBOutlet UILabel *placeNeighborhood;
-@property (strong, nonatomic) IBOutlet UILabel *placeState;
-@property (strong, nonatomic) IBOutlet UIView *moreInfoView;
-@property (strong, nonatomic) IBOutlet UIAsyncButton *sendNamesButton;
+@interface PUPartyViewController () <UITableViewDataSource,UITableViewDelegate,PUControllPartyCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *partyTableView;
-
-@property (strong, nonatomic) PUSocialService *service;
 
 @end
 
@@ -52,7 +33,6 @@ typedef NS_ENUM(char , PaymentTableSection) {
 {
     [super viewDidLoad];
     [self fillNavigationBarWithPartyName];
-    [self initSocialService];
     [self trackPage];
     [self initTableView];
 }
@@ -129,11 +109,8 @@ typedef NS_ENUM(char , PaymentTableSection) {
 -(PUControllPartyCell *)controllCellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString *controllCellIdentifier = @"ControllCell";
     PUControllPartyCell *cell = (PUControllPartyCell *)[_partyTableView dequeueReusableCellWithIdentifier:controllCellIdentifier];
+    [cell fillCell:_party andDelegate:self];
     return cell;
-}
-
--(void)initSocialService{
-    _service = [PUSocialService new];
 }
 
 -(void)fillNavigationBarWithPartyName{
@@ -146,77 +123,17 @@ typedef NS_ENUM(char , PaymentTableSection) {
         dest.party = _party;
     }
 }
--(IBAction)sendNamesToParty{
-    [[AnalyticsTriggerManager sharedManager] sendNamesEvent];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PUBuddiesListViewController *buddiesVC = [storyboard instantiateViewControllerWithIdentifier:@"PUBuddiesListViewController"];
-    
-    buddiesVC.block = ^{
-        if(_party.isMailNamesList){
-            [_sendNamesButton reset];
-           [self notifyBuddies];
-            [PUSendMailHelper sendNamesTo:_party];
-        }else if(_party.isFacebookNamesList)
-            [self sendNamesToFacebookEvent];
-    };
-    
-    [self presentViewController:buddiesVC animated:YES completion:nil];
+
+-(void)presentViewController:(UIViewController *)viewControllerToPresent{
+    [self presentViewController:viewControllerToPresent animated:YES completion:nil];
 }
 
--(void)sendNamesToFacebookEvent{
-    NSString *eventId = _party.sendNamesTo;
-    [_service attendToEvent:eventId completion:^(NSError *error) {
-        if(!error){
-            [self postOnEventFeed:eventId];
-        }else{
-           [_sendNamesButton reset];
-           [PUAlertUtil showAlertWithMessage:@"Ocorreu um erro ao confirmar presença no evento!"];
-        }
-        
-    }];
+-(void)viewWillDisappear:(BOOL)animated{
+    [_partyTableView reloadData];
 }
 
--(void)notifyBuddies{
-    NSArray *buddies = [PUBuddiesStorage storedBuddies];
-    for(PUUser *buddy in buddies)
-        [PUPushNotificationManager notifyFriend:buddy.userId addedToEvent:_party.name];
-}
-
--(void)postOnEventFeed:(NSString*)eventId{
-    [_service postOnEventFeed:eventId message:[PUBuddiesStorage storedBuddiesAndMyselfAsMailBody]
-                   completion:^(NSString *evId,NSString *postId, NSError *error) {
-       
-       [_sendNamesButton reset];
-       if(!error){
-           [self notifyBuddies];
-           [self showEventFeedOnFacebookApp:evId];
-       }else
-           [PUAlertUtil showAlertWithMessage:@"Um erro ocorreu ao tentar enviar os nomes para o evento!"];
-   }];
-}
-
--(void)showEventFeedOnFacebookApp:(NSString*)eventId{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@/",eventId]];
-    [[UIApplication sharedApplication] openURL:url];
-}
-
--(IBAction)displayRouteToParty{
-    [[AnalyticsTriggerManager sharedManager] findOutRouteToEvent];
-    MKMapItem *from = [MKMapItem mapItemForCurrentLocation];
-    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:_party.place.clLocation.coordinate addressDictionary:nil];
-    MKMapItem *to = [[MKMapItem alloc] initWithPlacemark:placemark];
-    to.name = _party.name;
-    [self displayRouteFrom:from to:to];
-    
-    
-}
-
-- (void)displayRouteFrom:(MKMapItem*)from to:(MKMapItem*)to {
-    NSDictionary* options = @{
-                              MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving
-                              };
-    [MKMapItem openMapsWithItems: @[from,to] launchOptions: options];
-
+-(void)viewWillAppear:(BOOL)animated{
+    [_partyTableView reloadData];
 }
 
 @end
