@@ -50,6 +50,7 @@
     PUBuddiesListViewController *buddiesVC = [storyboard instantiateViewControllerWithIdentifier:@"PUBuddiesListViewController"];
     
     buddiesVC.block = ^(BOOL needSave){
+        [_sendNamesButton showLoader];
         if (!needSave) {
             [_sendNamesButton reset];
         }else{
