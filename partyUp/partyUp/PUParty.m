@@ -60,7 +60,7 @@
 
 -(NSString*)prettyFormattedDatetime{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy às hh:mm"];
+    [formatter setDateFormat:@"dd/MM/yyyy hh:mm"];
     NSString *stringFromDate = [formatter stringFromDate:_date];
     return stringFromDate;
 }
