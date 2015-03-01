@@ -57,6 +57,7 @@
 		3E737C341A338CE20054B222 /* PUPartiesAndPlacesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */; };
 		3E7AC3D91A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */; };
 		3E7AC3DC1A34B6A500ABEE55 /* PUErrorFeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */; };
+		3E845DDA1AA367D10000FEAA /* PUCurrencyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E845DD91AA367D10000FEAA /* PUCurrencyUtil.m */; };
 		3E8D1BFE1A9ED4440097D362 /* PUPushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */; };
 		3E8D1C021A9EE25C0097D362 /* GAService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D1C011A9EE25C0097D362 /* GAService.m */; };
 		3E8D1C071A9EE3BF0097D362 /* EmptyAnalyticsTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D1C041A9EE3BF0097D362 /* EmptyAnalyticsTracker.m */; };
@@ -171,6 +172,8 @@
 		3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PUReloadAnimations.m"; sourceTree = "<group>"; };
 		3E7AC3DA1A34B6A500ABEE55 /* PUErrorFeedbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUErrorFeedbackCell.h; sourceTree = "<group>"; };
 		3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUErrorFeedbackCell.m; sourceTree = "<group>"; };
+		3E845DD81AA367D10000FEAA /* PUCurrencyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUCurrencyUtil.h; sourceTree = "<group>"; };
+		3E845DD91AA367D10000FEAA /* PUCurrencyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUCurrencyUtil.m; sourceTree = "<group>"; };
 		3E8D1BFC1A9ED4440097D362 /* PUPushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPushNotificationManager.h; sourceTree = "<group>"; };
 		3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPushNotificationManager.m; sourceTree = "<group>"; };
 		3E8D1C001A9EE25C0097D362 /* GAService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAService.h; sourceTree = "<group>"; };
@@ -501,6 +504,8 @@
 			children = (
 				3E8D1BFC1A9ED4440097D362 /* PUPushNotificationManager.h */,
 				3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */,
+				3E845DD81AA367D10000FEAA /* PUCurrencyUtil.h */,
+				3E845DD91AA367D10000FEAA /* PUCurrencyUtil.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -707,6 +712,7 @@
 				3E8D1BFE1A9ED4440097D362 /* PUPushNotificationManager.m in Sources */,
 				202845B419FD45FD004D80EE /* NSString+Validators.m in Sources */,
 				202845B119FD3426004D80EE /* PUPartyMoreInfoViewController.m in Sources */,
+				3E845DDA1AA367D10000FEAA /* PUCurrencyUtil.m in Sources */,
 				20497C1F19A84DEB00CB942F /* UIView+roundMask.m in Sources */,
 				3E8D1C081A9EE3BF0097D362 /* AnalyticsTriggerManager.m in Sources */,
 				200055B019A43946008377FF /* main.m in Sources */,

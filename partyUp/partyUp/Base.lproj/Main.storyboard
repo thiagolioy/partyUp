@@ -391,7 +391,7 @@
                                                             <rect key="frame" x="0.0" y="180" width="580" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M: 60$ F: 40$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQw-F7-kW9">
-                                                                    <rect key="frame" x="10" y="10" width="470" height="21"/>
+                                                                    <rect key="frame" x="10" y="10" width="430" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="Kwe-PZ-eK4"/>
                                                                     </constraints>
@@ -400,9 +400,9 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23/04/2014" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3r-k5-aLI">
-                                                                    <rect key="frame" x="490" y="10" width="80" height="21"/>
+                                                                    <rect key="frame" x="450" y="10" width="120" height="21"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="80" id="Znm-Jv-Xma"/>
+                                                                        <constraint firstAttribute="width" constant="120" id="Znm-Jv-Xma"/>
                                                                         <constraint firstAttribute="height" constant="21" id="jAc-IZ-IcG"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
