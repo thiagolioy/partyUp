@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ZA-be-4zU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ZA-be-4zU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -1222,7 +1222,7 @@
                                         </constraints>
                                     </view>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar Amigos" translatesAutoresizingMaskIntoConstraints="NO" id="hc5-ZA-3xe">
-                                        <rect key="frame" x="50" y="0.0" width="500" height="50"/>
+                                        <rect key="frame" x="50" y="0.0" width="540" height="50"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="RTF-qu-7wA" id="0Wj-jR-0uv"/>
@@ -1234,7 +1234,7 @@
                                     <constraint firstAttribute="bottom" secondItem="hc5-ZA-3xe" secondAttribute="bottom" id="6wo-GN-ydb"/>
                                     <constraint firstAttribute="height" constant="50" id="GJd-by-RAQ"/>
                                     <constraint firstItem="hc5-ZA-3xe" firstAttribute="leading" secondItem="qYG-ue-uX3" secondAttribute="leading" constant="50" id="Ouf-mh-Nsi"/>
-                                    <constraint firstAttribute="trailing" secondItem="hc5-ZA-3xe" secondAttribute="trailing" constant="50" id="SPs-xm-U00"/>
+                                    <constraint firstAttribute="trailing" secondItem="hc5-ZA-3xe" secondAttribute="trailing" constant="10" id="SPs-xm-U00"/>
                                     <constraint firstAttribute="centerY" secondItem="OoL-Fc-x2J" secondAttribute="centerY" id="XAI-CJ-HX8"/>
                                     <constraint firstItem="OoL-Fc-x2J" firstAttribute="leading" secondItem="qYG-ue-uX3" secondAttribute="leading" id="bYk-eV-wVS"/>
                                     <constraint firstItem="hc5-ZA-3xe" firstAttribute="top" secondItem="qYG-ue-uX3" secondAttribute="top" id="k2K-FD-IKO"/>
