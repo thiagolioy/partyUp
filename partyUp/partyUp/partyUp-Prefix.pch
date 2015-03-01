@@ -20,4 +20,5 @@
     #import "UIAsyncButton.h"
     #import "PUAlertUtil.h"
     #import "AnalyticsTriggerManager.h"
+    #import "PUCurrencyUtil.h"
 #endif

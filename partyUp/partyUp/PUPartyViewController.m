@@ -13,6 +13,7 @@
 #import "PUAddressPartyCell.h"
 #import "PUDetailPartyCell.h"
 #import "PUControllPartyCell.h"
+#import "PUPriceCell.h"
 
 @interface PUPartyViewController () <UITableViewDataSource,UITableViewDelegate,PUControllPartyCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *partyTableView;
@@ -22,6 +23,7 @@
 typedef NS_ENUM(char , PaymentTableSection) {
     ImageSection,
     AdressSection,
+    PriceSection,
     DetailSection,
     ControllSection,
     NumberOfSections
@@ -33,9 +35,7 @@ typedef NS_ENUM(char , PaymentTableSection) {
 {
     [super viewDidLoad];
     [self fillNavigationBarWithPartyName];
-    [self trackPage];
-    [self initTableView];
-}
+    [self trackPage];}
 
 - (void)didReceiveMemoryWarning
 {
@@ -48,11 +48,7 @@ typedef NS_ENUM(char , PaymentTableSection) {
     [[AnalyticsTriggerManager sharedManager] openScreen:msg];
 }
 
--(void)initTableView{
-    _partyTableView.dataSource = self;
-    _partyTableView.delegate = self;
-    [_partyTableView reloadData];
-}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return NumberOfSections;
@@ -70,6 +66,9 @@ typedef NS_ENUM(char , PaymentTableSection) {
         
         case AdressSection:
             return [self addressCellForRowAtIndexPath:indexPath];
+            break;
+        case PriceSection:
+            return [self priceCellForRowAtIndexPath:indexPath];
             break;
             
         case DetailSection:
@@ -90,6 +89,13 @@ typedef NS_ENUM(char , PaymentTableSection) {
     static NSString *imageCellIdentifier = @"ImageCell";
     PUImagePartyCell *cell = (PUImagePartyCell *)[_partyTableView dequeueReusableCellWithIdentifier:imageCellIdentifier];
     [cell fillCell:_party];
+    return cell;
+}
+
+-(PUPriceCell *)priceCellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    static NSString *priceIdentifier = @"PriceCell";
+    PUPriceCell *cell = (PUPriceCell *)[_partyTableView dequeueReusableCellWithIdentifier:priceIdentifier];
+//    [cell fillCell:_party];
     return cell;
 }
 

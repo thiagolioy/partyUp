@@ -21,11 +21,11 @@
 }
 
 -(void)fillCell:(PUParty *)party{
-    _nameLabel.text = party.name;
+    _nameLabel.text = party.place.name;
     _distanceLabel.text = [party.place prettyDistanceInKM];
     _addressLabel.text = [party.place prettyFormattedAddress];
-    _neighnorhoodLabel.text = [party.place neighborhood];
-    _stateLabel.text = [party.place state];
+//    _neighnorhoodLabel.text = [party.place neighborhood];
+//    _stateLabel.text = [party.place state];
 }
 
 @end

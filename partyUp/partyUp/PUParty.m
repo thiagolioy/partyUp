@@ -42,9 +42,11 @@
 -(NSString*)prettyFormattedPrices{
     NSString *prettyPrices = @"";
     if([_malePrice isValid])
-        prettyPrices = [NSString stringWithFormat:@"M: %@",_malePrice];
+        prettyPrices = [NSString stringWithFormat:@"M: %@",
+                        [PUCurrencyUtil currencyWithValue:[_malePrice floatValue]]];
     if([_femalePrice isValid])
-        prettyPrices = [NSString stringWithFormat:@"%@  F: %@",prettyPrices,_femalePrice];
+        prettyPrices = [NSString stringWithFormat:@"%@  F: %@",prettyPrices,
+                        [PUCurrencyUtil currencyWithValue:[_femalePrice floatValue]]];
     
     return prettyPrices;
 }
@@ -52,6 +54,13 @@
 -(NSString*)prettyFormattedDate{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *stringFromDate = [formatter stringFromDate:_date];
+    return stringFromDate;
+}
+
+-(NSString*)prettyFormattedDatetime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy hh:mm"];
     NSString *stringFromDate = [formatter stringFromDate:_date];
     return stringFromDate;
 }

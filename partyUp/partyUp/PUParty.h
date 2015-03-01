@@ -23,6 +23,7 @@
 +(instancetype)partyWithParseObj:(PFObject*)obj;
 +(NSArray*)partiesWithParseObjects:(NSArray*)objects;
 -(NSString*)prettyFormattedDate;
+-(NSString*)prettyFormattedDatetime;
 -(NSString*)prettyFormattedPrices;
 
 -(BOOL)isFacebookNamesList;
