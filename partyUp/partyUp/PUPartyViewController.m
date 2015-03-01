@@ -67,6 +67,7 @@ typedef NS_ENUM(char , PaymentTableSection) {
         case AdressSection:
             return [self addressCellForRowAtIndexPath:indexPath];
             break;
+            
         case PriceSection:
             return [self priceCellForRowAtIndexPath:indexPath];
             break;
@@ -95,7 +96,7 @@ typedef NS_ENUM(char , PaymentTableSection) {
 -(PUPriceCell *)priceCellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString *priceIdentifier = @"PriceCell";
     PUPriceCell *cell = (PUPriceCell *)[_partyTableView dequeueReusableCellWithIdentifier:priceIdentifier];
-//    [cell fillCell:_party];
+    [cell fillCell:_party];
     return cell;
 }
 

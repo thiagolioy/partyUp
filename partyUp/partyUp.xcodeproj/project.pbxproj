@@ -77,6 +77,7 @@
 		74F62C021AA0083900B88394 /* PUAddressPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F62C011AA0083900B88394 /* PUAddressPartyCell.m */; };
 		74F62C091AA0089100B88394 /* PUDetailPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F62C081AA0089100B88394 /* PUDetailPartyCell.m */; };
 		74F62C0C1AA00EE800B88394 /* PUControllPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F62C0B1AA00EE800B88394 /* PUControllPartyCell.m */; };
+		74F62C0F1AA3839D00B88394 /* PUPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F62C0E1AA3839D00B88394 /* PUPriceCell.m */; };
 		B63746A85D87482DB775A280 /* libPods-partyUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */; };
 /* End PBXBuildFile section */
 
@@ -174,8 +175,6 @@
 		3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUErrorFeedbackCell.m; sourceTree = "<group>"; };
 		3E845DD81AA367D10000FEAA /* PUCurrencyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUCurrencyUtil.h; sourceTree = "<group>"; };
 		3E845DD91AA367D10000FEAA /* PUCurrencyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUCurrencyUtil.m; sourceTree = "<group>"; };
-		3E845DDC1AA36C690000FEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Base; path = Base.lproj/PUPriceCell.h; sourceTree = "<group>"; };
-		3E845DDE1AA36C690000FEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Base; path = Base.lproj/PUPriceCell.m; sourceTree = "<group>"; };
 		3E8D1BFC1A9ED4440097D362 /* PUPushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPushNotificationManager.h; sourceTree = "<group>"; };
 		3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPushNotificationManager.m; sourceTree = "<group>"; };
 		3E8D1C001A9EE25C0097D362 /* GAService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAService.h; sourceTree = "<group>"; };
@@ -213,6 +212,8 @@
 		74F62C081AA0089100B88394 /* PUDetailPartyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUDetailPartyCell.m; sourceTree = "<group>"; };
 		74F62C0A1AA00EE800B88394 /* PUControllPartyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUControllPartyCell.h; sourceTree = "<group>"; };
 		74F62C0B1AA00EE800B88394 /* PUControllPartyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUControllPartyCell.m; sourceTree = "<group>"; };
+		74F62C0D1AA3839D00B88394 /* PUPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPriceCell.h; sourceTree = "<group>"; };
+		74F62C0E1AA3839D00B88394 /* PUPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPriceCell.m; sourceTree = "<group>"; };
 		B09A68A00BEE43AAAD723D57 /* libPods-partyUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-partyUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8390E582CE32D49B7CAF53B /* Pods-partyUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-partyUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-partyUp/Pods-partyUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -537,8 +538,6 @@
 		74F62BFC1AA0078600B88394 /* party */ = {
 			isa = PBXGroup;
 			children = (
-				3E845DDB1AA36C690000FEAA /* PUPriceCell.h */,
-				3E845DDD1AA36C690000FEAA /* PUPriceCell.m */,
 				74F62BFD1AA0080900B88394 /* PUImagePartyCell.h */,
 				74F62BFE1AA0080900B88394 /* PUImagePartyCell.m */,
 				74F62C001AA0083900B88394 /* PUAddressPartyCell.h */,
@@ -547,6 +546,8 @@
 				74F62C081AA0089100B88394 /* PUDetailPartyCell.m */,
 				74F62C0A1AA00EE800B88394 /* PUControllPartyCell.h */,
 				74F62C0B1AA00EE800B88394 /* PUControllPartyCell.m */,
+				74F62C0D1AA3839D00B88394 /* PUPriceCell.h */,
+				74F62C0E1AA3839D00B88394 /* PUPriceCell.m */,
 			);
 			name = party;
 			sourceTree = "<group>";
@@ -707,6 +708,7 @@
 			files = (
 				200055F719A4497D008377FF /* PUPartiesViewController.m in Sources */,
 				20497C1A19A8474A00CB942F /* PUBuddyTableViewCell.m in Sources */,
+				74F62C0F1AA3839D00B88394 /* PUPriceCell.m in Sources */,
 				3EB5EA261A2A8AD800C18AED /* UIAsyncButton.m in Sources */,
 				209D790019A5A3E700FF0FF2 /* PUPartyCell.m in Sources */,
 				74F62C021AA0083900B88394 /* PUAddressPartyCell.m in Sources */,
@@ -795,22 +797,6 @@
 				200055CC19A43946008377FF /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3E845DDB1AA36C690000FEAA /* PUPriceCell.h */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E845DDC1AA36C690000FEAA /* Base */,
-			);
-			name = PUPriceCell.h;
-			sourceTree = "<group>";
-		};
-		3E845DDD1AA36C690000FEAA /* PUPriceCell.m */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E845DDE1AA36C690000FEAA /* Base */,
-			);
-			name = PUPriceCell.m;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
