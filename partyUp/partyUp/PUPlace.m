@@ -55,7 +55,11 @@
     if([_number isValid])
         prettyAddress = [NSString stringWithFormat:@"%@ %@",prettyAddress,_number];
     if([_complement isValid])
-        prettyAddress = [NSString stringWithFormat:@"%@, %@",prettyAddress,_complement];
+        prettyAddress = [NSString stringWithFormat:@"%@/%@",prettyAddress,_complement];
+    if([_neighborhood isValid])
+        prettyAddress = [NSString stringWithFormat:@"%@, %@",prettyAddress,_neighborhood];
+    if([_city isValid])
+        prettyAddress = [NSString stringWithFormat:@"%@, %@",prettyAddress,_city];
     
     return prettyAddress;
 }
