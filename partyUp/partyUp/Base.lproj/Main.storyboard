@@ -117,7 +117,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-XI-6m8">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <subviews>
-                                                        <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Busque festas" translatesAutoresizingMaskIntoConstraints="NO" id="zlU-5f-L1N">
+                                                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Busque festas" translatesAutoresizingMaskIntoConstraints="NO" id="zlU-5f-L1N">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
@@ -126,6 +126,12 @@
                                                         </searchBar>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="zlU-5f-L1N" secondAttribute="bottom" id="JB7-kc-LJA"/>
+                                                        <constraint firstItem="zlU-5f-L1N" firstAttribute="leading" secondItem="S8r-XI-6m8" secondAttribute="leading" id="hvR-zj-xVq"/>
+                                                        <constraint firstAttribute="trailing" secondItem="zlU-5f-L1N" secondAttribute="trailing" id="vLy-T3-2Aw"/>
+                                                        <constraint firstItem="zlU-5f-L1N" firstAttribute="top" secondItem="S8r-XI-6m8" secondAttribute="top" id="zqB-Pa-7H4"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
