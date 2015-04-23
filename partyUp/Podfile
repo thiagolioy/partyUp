@@ -7,5 +7,6 @@ pod 'Facebook-iOS-SDK'
 pod 'Parse'
 pod 'ParseFacebookUtils'
 pod 'GoogleAnalytics-iOS-SDK'
+pod 'DBEnvironmentConfiguration'
+pod "FDKeychain", "~> 1.0.0"
 end
-

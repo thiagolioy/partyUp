@@ -54,6 +54,8 @@
 		20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389B19C92D8A0069EE26 /* PUSearchSuggestionsService.m */; };
 		20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */; };
 		3E10FBCB1A31F3C20045A3D1 /* PUSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */; };
+		3E2F405D1AE88A15001C532E /* environments.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E2F405C1AE88A15001C532E /* environments.json */; };
+		3E2F40601AE88AB2001C532E /* PUEnvironmentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F405F1AE88AB2001C532E /* PUEnvironmentUtil.m */; };
 		3E737C341A338CE20054B222 /* PUPartiesAndPlacesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */; };
 		3E7AC3D91A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */; };
 		3E7AC3DC1A34B6A500ABEE55 /* PUErrorFeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */; };
@@ -167,6 +169,9 @@
 		20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchSuggestion.m; sourceTree = "<group>"; };
 		3E10FBC91A31F3C20045A3D1 /* PUSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUSearchCell.h; sourceTree = "<group>"; };
 		3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchCell.m; sourceTree = "<group>"; };
+		3E2F405C1AE88A15001C532E /* environments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = environments.json; sourceTree = "<group>"; };
+		3E2F405E1AE88AB2001C532E /* PUEnvironmentUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUEnvironmentUtil.h; sourceTree = "<group>"; };
+		3E2F405F1AE88AB2001C532E /* PUEnvironmentUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUEnvironmentUtil.m; sourceTree = "<group>"; };
 		3E737C321A338CE10054B222 /* PUPartiesAndPlacesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPartiesAndPlacesHelper.h; sourceTree = "<group>"; };
 		3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPartiesAndPlacesHelper.m; sourceTree = "<group>"; };
 		3E7AC3D71A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PUReloadAnimations.h"; sourceTree = "<group>"; };
@@ -323,6 +328,7 @@
 				200055AC19A43946008377FF /* InfoPlist.strings */,
 				200055AF19A43946008377FF /* main.m */,
 				200055B119A43946008377FF /* partyUp-Prefix.pch */,
+				3E2F405C1AE88A15001C532E /* environments.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -509,6 +515,8 @@
 				3E8D1BFD1A9ED4440097D362 /* PUPushNotificationManager.m */,
 				3E845DD81AA367D10000FEAA /* PUCurrencyUtil.h */,
 				3E845DD91AA367D10000FEAA /* PUCurrencyUtil.m */,
+				3E2F405E1AE88AB2001C532E /* PUEnvironmentUtil.h */,
+				3E2F405F1AE88AB2001C532E /* PUEnvironmentUtil.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -652,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20F37F2019ECD0D20080367B /* LaunchScreen.xib in Resources */,
+				3E2F405D1AE88A15001C532E /* environments.json in Resources */,
 				200055BC19A43946008377FF /* Images.xcassets in Resources */,
 				200055AE19A43946008377FF /* InfoPlist.strings in Resources */,
 				200055B719A43946008377FF /* Main.storyboard in Resources */,
@@ -744,6 +753,7 @@
 				20EBA8B719FC2FC700612C85 /* PUCustomTabController.m in Sources */,
 				3E7AC3DC1A34B6A500ABEE55 /* PUErrorFeedbackCell.m in Sources */,
 				3EB5EA131A2A3DAC00C18AED /* PUSocialService.m in Sources */,
+				3E2F40601AE88AB2001C532E /* PUEnvironmentUtil.m in Sources */,
 				20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */,
 				20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */,
 				3E8DE4E41A2F5696007EC179 /* PUAlertUtil.m in Sources */,

@@ -1,7 +1,9 @@
 PODS:
   - Bolts (1.1.3)
+  - DBEnvironmentConfiguration (0.2.0)
   - Facebook-iOS-SDK (3.23.0):
     - Bolts (~> 1.0)
+  - FDKeychain (1.0.1)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
@@ -17,7 +19,9 @@ PODS:
   - UIResponder+KeyboardCache (0.1)
 
 DEPENDENCIES:
+  - DBEnvironmentConfiguration
   - Facebook-iOS-SDK
+  - FDKeychain (~> 1.0.0)
   - GoogleAnalytics-iOS-SDK
   - Parse
   - ParseFacebookUtils
@@ -26,13 +30,15 @@ DEPENDENCIES:
   - UIResponder+KeyboardCache
 
 SPEC CHECKSUMS:
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  Facebook-iOS-SDK: 3d65f685348b789e46a9aacf92bfa85b60b63755
-  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  Parse: f725f76ef200c5127420690fc6882e57c3813923
-  ParseFacebookUtils: bb14e63862f920cc3f3864b0e373d6771b765255
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
-  UIResponder+KeyboardCache: e267fd88f3414e8e7ccf7644f25c4701812a1d2b
+  Bolts: e431c88fd02115d4a34016c2100bbfa4d2d5b146
+  DBEnvironmentConfiguration: 49b45d992b01dc99a60d108b543a81453d4253ac
+  Facebook-iOS-SDK: fcb0fd5bcdb50f1fe9ce27bf6b8cdf1aa5b2b0ed
+  FDKeychain: 153d311d5753a52f4ed4817574a466903730c1e7
+  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  Parse: 26354b8e2d22082f2aa95e7055c3254b91f27437
+  ParseFacebookUtils: 877130f8887ff55829344f2128247ff579a17616
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  UIResponder+KeyboardCache: dc1b7ff925c25ddb58b289bc71a3724c269767ef
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.3

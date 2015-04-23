@@ -9,11 +9,14 @@
 #import "PUAppDelegate.h"
 #import "PUCustomApperance.h"
 #import "PUPushNotificationManager.h"
+#import "PUEnvironmentUtil.h"
+
 
 @implementation PUAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [PUEnvironmentUtil setupEnvironmentMappings];
     [self setUpParse:launchOptions forApplication:application];
     [PUPushNotificationManager registerForNotifications:application];
     [PUPushNotificationManager trackOpenAppOnPush:application launchingOptions:launchOptions];
@@ -66,8 +69,8 @@
 
 #pragma mark - Configuration Methods
 -(void)setUpParse:(NSDictionary *)launchOptions forApplication:(UIApplication *)application{
-    [Parse setApplicationId:@"5sjv0ulSUoP2jMeLfvblBcfWhAkhQ76bDwRVxnh6"
-                  clientKey:@"UOctmS41hItgUkXn68cV84Oyp6f2uUH4Sqidkr2i"];
+    [Parse setApplicationId:[PUEnvironmentUtil parseAppID]
+                  clientKey:[PUEnvironmentUtil parseClientKey]];
     [PFFacebookUtils initializeFacebook];
 }
 
