@@ -119,6 +119,7 @@
                                                     <subviews>
                                                         <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Busque festas" translatesAutoresizingMaskIntoConstraints="NO" id="zlU-5f-L1N">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                            <color key="tintColor" red="0.078431372549019607" green="0.098039215686274508" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="gMk-6F-Jkm" id="5gZ-LK-wAm"/>
