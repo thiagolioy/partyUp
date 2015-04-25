@@ -309,7 +309,7 @@
 			children = (
 				3E8D1BFF1A9EE24C0097D362 /* tracking */,
 				3E8D1BFB1A9ED3CB0097D362 /* utils */,
-				20D960E819AFFB2700A893CF /* model */,
+				20D960E819AFFB2700A893CF /* models */,
 				20F2740A19ABF6FD00BDBE5E /* helpers */,
 				20497C2C19A86BFC00CB942F /* services */,
 				20497C1B19A84D9400CB942F /* extensions */,
@@ -380,7 +380,7 @@
 				20EBA8B519FC2FC700612C85 /* PUCustomTabController.h */,
 				20EBA8B619FC2FC700612C85 /* PUCustomTabController.m */,
 			);
-			name = controllers;
+			path = controllers;
 			sourceTree = "<group>";
 		};
 		20497C1B19A84D9400CB942F /* extensions */ = {
@@ -396,7 +396,7 @@
 				3E7AC3D71A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.h */,
 				3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */,
 			);
-			name = extensions;
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		20497C2619A8525200CB942F /* parties */ = {
@@ -444,7 +444,7 @@
 				3EB5EA111A2A3DAC00C18AED /* PUSocialService.h */,
 				3EB5EA121A2A3DAC00C18AED /* PUSocialService.m */,
 			);
-			name = services;
+			path = services;
 			sourceTree = "<group>";
 		};
 		209D78FD19A5A3C000FF0FF2 /* views */ = {
@@ -473,10 +473,10 @@
 				3E7AC3DA1A34B6A500ABEE55 /* PUErrorFeedbackCell.h */,
 				3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */,
 			);
-			name = views;
+			path = views;
 			sourceTree = "<group>";
 		};
-		20D960E819AFFB2700A893CF /* model */ = {
+		20D960E819AFFB2700A893CF /* models */ = {
 			isa = PBXGroup;
 			children = (
 				20D960E519AFFB2000A893CF /* PUParty.h */,
@@ -488,7 +488,7 @@
 				3EB5EA141A2A3E3D00C18AED /* PUUser.h */,
 				3EB5EA151A2A3E3D00C18AED /* PUUser.m */,
 			);
-			name = model;
+			path = models;
 			sourceTree = "<group>";
 		};
 		20F2740A19ABF6FD00BDBE5E /* helpers */ = {
@@ -505,7 +505,7 @@
 				3E737C321A338CE10054B222 /* PUPartiesAndPlacesHelper.h */,
 				3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */,
 			);
-			name = helpers;
+			path = helpers;
 			sourceTree = "<group>";
 		};
 		3E8D1BFB1A9ED3CB0097D362 /* utils */ = {
@@ -518,7 +518,7 @@
 				3E2F405E1AE88AB2001C532E /* PUEnvironmentUtil.h */,
 				3E2F405F1AE88AB2001C532E /* PUEnvironmentUtil.m */,
 			);
-			name = utils;
+			path = utils;
 			sourceTree = "<group>";
 		};
 		3E8D1BFF1A9EE24C0097D362 /* tracking */ = {
@@ -531,7 +531,7 @@
 				3E8D1C001A9EE25C0097D362 /* GAService.h */,
 				3E8D1C011A9EE25C0097D362 /* GAService.m */,
 			);
-			name = tracking;
+			path = tracking;
 			sourceTree = "<group>";
 		};
 		3EB5EA231A2A8ABE00C18AED /* components */ = {
