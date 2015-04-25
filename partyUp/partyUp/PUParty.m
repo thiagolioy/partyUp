@@ -20,8 +20,8 @@
     
     PFFile *imageFile = (PFFile*)obj[@"image"];
     party.promoImage = imageFile.url;
-    
-    party.date =  obj[@"date"];
+    NSDate *date = obj[@"date"];
+    party.date =  [PUParty convertParseDate:date];
     party.partyDescription =  obj[@"description"];
     party.malePrice =  obj[@"malePrice"];
     party.femalePrice =  obj[@"femalePrice"];
@@ -74,6 +74,19 @@
 
 -(NSString*)partyOrPlaceImageUrl{
     return  _promoImage != nil ? _promoImage : _place.image;
+}
+
++(NSDate *)convertParseDate:(NSDate *)sourceDate {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    NSString *input = (NSString *)sourceDate;
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    // Always use this locale when parsing fixed format date strings
+    NSLocale* posix = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.locale = posix;
+    NSDate *convertedDate = [dateFormatter dateFromString:input];
+    
+    assert(convertedDate != nil);
+    return convertedDate;
 }
 
 @end
