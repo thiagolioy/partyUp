@@ -42,10 +42,10 @@
 -(NSString*)prettyFormattedPrices{
     NSString *prettyPrices = @"";
     if([_malePrice isValid])
-        prettyPrices = [NSString stringWithFormat:@"M: %@",
+        prettyPrices = [NSString stringWithFormat:@"Masculino: %@",
                         [PUCurrencyUtil currencyWithValue:[_malePrice floatValue]]];
     if([_femalePrice isValid])
-        prettyPrices = [NSString stringWithFormat:@"%@  F: %@",prettyPrices,
+        prettyPrices = [NSString stringWithFormat:@"%@ | Feminino: %@",prettyPrices,
                         [PUCurrencyUtil currencyWithValue:[_femalePrice floatValue]]];
     
     return prettyPrices;

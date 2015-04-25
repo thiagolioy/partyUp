@@ -10,6 +10,7 @@
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 #import <GoogleAnalytics-iOS-SDK/GAIFields.h>
+#import "PUEnvironmentUtil.h"
 
 
 @interface GAService ()
@@ -28,7 +29,7 @@
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     
     // Initialize tracker. Replace with your tracking ID.
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-60159905-1"];
+    [[GAI sharedInstance] trackerWithTrackingId:[PUEnvironmentUtil googleAnalyticsAppID]];
     
     _tracker = [[GAI sharedInstance] defaultTracker];
 }

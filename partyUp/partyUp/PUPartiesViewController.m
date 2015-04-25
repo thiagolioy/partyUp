@@ -505,10 +505,11 @@ typedef NS_ENUM(NSUInteger, Sections) {
     if([self shouldShowErrorFeedback])
         return [PUErrorFeedbackCell cellSize];
     else{
+        CGFloat width = (self.view.bounds.size.width - 20);
         if([self isPartiesSegmentSelected])
-            return CGSizeMake(300, 240);
+            return CGSizeMake(width, 240);
         else
-            return CGSizeMake(300, 275);
+            return CGSizeMake(width, 275);
     }
     
 

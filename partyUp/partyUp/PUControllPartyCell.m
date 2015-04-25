@@ -69,6 +69,10 @@
 
 -(void)sendNamesToFacebookEvent{
     NSString *eventId = _party.sendNamesTo;
+    [self postOnEventFeed:eventId];
+}
+
+-(void)attendToFacebookEvent:(NSString*)eventId{
     [_service attendToEvent:eventId completion:^(NSError *error) {
         if(!error){
             [self postOnEventFeed:eventId];
@@ -94,8 +98,10 @@
                        if(!error){
                            [self notifyBuddies];
                            [self showEventFeedOnFacebookApp:evId];
-                       }else
-                           [PUAlertUtil showAlertWithMessage:@"Um erro ocorreu ao tentar enviar os nomes para o evento!"];
+                       }else{
+                           [self attendToFacebookEvent:eventId];
+                       }
+                       
                    }];
 }
 
