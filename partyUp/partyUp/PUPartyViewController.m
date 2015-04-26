@@ -35,7 +35,8 @@ typedef NS_ENUM(char , PaymentTableSection) {
 {
     [super viewDidLoad];
     [self fillNavigationBarWithPartyName];
-    [self trackPage];}
+    [self trackPage];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -120,6 +121,35 @@ typedef NS_ENUM(char , PaymentTableSection) {
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section) {
+        case ImageSection:
+            return 235.0f;
+            break;
+            
+        case AdressSection:
+            return 80.0f;
+            break;
+            
+        case PriceSection:
+            return 50.0f;
+            break;
+            
+        case DetailSection:
+            return 50.0f;
+            break;
+            
+        case ControllSection:
+            return 108.0f;
+            break;
+            
+        default:
+            return 44;
+            break;
+    }
+
+}
+
 -(void)fillNavigationBarWithPartyName{
     self.title = _party.name;
 }
@@ -139,7 +169,7 @@ typedef NS_ENUM(char , PaymentTableSection) {
     [_partyTableView reloadData];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated{
     [_partyTableView reloadData];
 }
 
