@@ -1327,6 +1327,9 @@
                                                 <state key="normal">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addTypedFriendToBestFriendsList:" destination="RTF-qu-7wA" eventType="touchUpInside" id="0T0-vX-BSh"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_icon_dark" translatesAutoresizingMaskIntoConstraints="NO" id="Oxq-eZ-o7T">
                                                 <rect key="frame" x="15" y="18" width="15" height="15"/>
@@ -1356,7 +1359,10 @@
                                         </constraints>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="RTF-qu-7wA" id="1T3-Bz-8nR"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1411,6 +1417,7 @@
                         <outlet property="buddiesTableView" destination="DWu-nl-g3H" id="1bK-On-pm7"/>
                         <outlet property="searchBar" destination="hc5-ZA-3xe" id="DMv-da-IXr"/>
                         <outlet property="sendBuddiesButton" destination="18L-m6-sCb" id="blS-xa-HCf"/>
+                        <outlet property="typeToAddFriendTextField" destination="QS1-yD-C8F" id="eeJ-FP-MNt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vk7-5Z-Xtn" userLabel="First Responder" sceneMemberID="firstResponder"/>
