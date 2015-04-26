@@ -237,6 +237,20 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
     }];
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    [searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [searchBar setShowsCancelButton:NO animated:YES];
+    _searchBar.text = @"";
+    _searchTerm = @"";
+    [self refreshBuddiesList];
+    [searchBar resignFirstResponder];
+}
+
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     _searchTerm = searchText;
     [self refreshBuddiesList];

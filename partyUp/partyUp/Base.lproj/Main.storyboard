@@ -1233,10 +1233,10 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove_icon_dark" translatesAutoresizingMaskIntoConstraints="NO" id="czj-PN-loP">
-                                                <rect key="frame" x="11" y="11" width="22" height="22"/>
+                                                <rect key="frame" x="15" y="15" width="15" height="15"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="22" id="4Z2-ha-NHL"/>
-                                                    <constraint firstAttribute="width" constant="22" id="9f6-jZ-6l4"/>
+                                                    <constraint firstAttribute="height" constant="15" id="4Z2-ha-NHL"/>
+                                                    <constraint firstAttribute="width" constant="15" id="9f6-jZ-6l4"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -1252,8 +1252,9 @@
                                         </constraints>
                                     </view>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar Amigos" translatesAutoresizingMaskIntoConstraints="NO" id="hc5-ZA-3xe">
-                                        <rect key="frame" x="50" y="0.0" width="540" height="50"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <rect key="frame" x="44" y="0.0" width="551" height="50"/>
+                                        <color key="tintColor" red="0.070588235294117646" green="0.090196078431372548" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="RTF-qu-7wA" id="0Wj-jR-0uv"/>
                                         </connections>
@@ -1262,13 +1263,20 @@
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="hc5-ZA-3xe" secondAttribute="bottom" id="6wo-GN-ydb"/>
+                                    <constraint firstItem="hc5-ZA-3xe" firstAttribute="leading" secondItem="OoL-Fc-x2J" secondAttribute="trailing" id="BXb-rY-HNy"/>
+                                    <constraint firstAttribute="centerY" secondItem="hc5-ZA-3xe" secondAttribute="centerY" id="DS9-jw-gS2"/>
                                     <constraint firstAttribute="height" constant="50" id="GJd-by-RAQ"/>
                                     <constraint firstItem="hc5-ZA-3xe" firstAttribute="leading" secondItem="qYG-ue-uX3" secondAttribute="leading" constant="50" id="Ouf-mh-Nsi"/>
-                                    <constraint firstAttribute="trailing" secondItem="hc5-ZA-3xe" secondAttribute="trailing" constant="10" id="SPs-xm-U00"/>
+                                    <constraint firstAttribute="trailing" secondItem="hc5-ZA-3xe" secondAttribute="trailing" constant="5" id="SPs-xm-U00"/>
                                     <constraint firstAttribute="centerY" secondItem="OoL-Fc-x2J" secondAttribute="centerY" id="XAI-CJ-HX8"/>
                                     <constraint firstItem="OoL-Fc-x2J" firstAttribute="leading" secondItem="qYG-ue-uX3" secondAttribute="leading" id="bYk-eV-wVS"/>
                                     <constraint firstItem="hc5-ZA-3xe" firstAttribute="top" secondItem="qYG-ue-uX3" secondAttribute="top" id="k2K-FD-IKO"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ouf-mh-Nsi"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y55-7M-0Du" userLabel="DoneView">
                                 <rect key="frame" x="0.0" y="546" width="600" height="54"/>
