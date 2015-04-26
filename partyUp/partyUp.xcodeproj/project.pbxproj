@@ -51,8 +51,6 @@
 		20F37F1E19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F37F1D19ECC6F30080367B /* PULoginBackgroundCollectionViewCell.m */; };
 		20F37F2019ECD0D20080367B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F37F1F19ECD0D20080367B /* LaunchScreen.xib */; };
 		20F9389919C903440069EE26 /* PUHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389819C903440069EE26 /* PUHeaderCell.m */; };
-		20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389B19C92D8A0069EE26 /* PUSearchSuggestionsService.m */; };
-		20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */; };
 		3E10FBCB1A31F3C20045A3D1 /* PUSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */; };
 		3E2F405D1AE88A15001C532E /* environments.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E2F405C1AE88A15001C532E /* environments.json */; };
 		3E2F40601AE88AB2001C532E /* PUEnvironmentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F405F1AE88AB2001C532E /* PUEnvironmentUtil.m */; };
@@ -163,10 +161,6 @@
 		20F37F1F19ECD0D20080367B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		20F9389719C903440069EE26 /* PUHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUHeaderCell.h; sourceTree = "<group>"; };
 		20F9389819C903440069EE26 /* PUHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUHeaderCell.m; sourceTree = "<group>"; };
-		20F9389A19C92D8A0069EE26 /* PUSearchSuggestionsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUSearchSuggestionsService.h; sourceTree = "<group>"; };
-		20F9389B19C92D8A0069EE26 /* PUSearchSuggestionsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchSuggestionsService.m; sourceTree = "<group>"; };
-		20F9389D19C92E590069EE26 /* PUSearchSuggestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUSearchSuggestion.h; sourceTree = "<group>"; };
-		20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchSuggestion.m; sourceTree = "<group>"; };
 		3E10FBC91A31F3C20045A3D1 /* PUSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUSearchCell.h; sourceTree = "<group>"; };
 		3E10FBCA1A31F3C20045A3D1 /* PUSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUSearchCell.m; sourceTree = "<group>"; };
 		3E2F405C1AE88A15001C532E /* environments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = environments.json; sourceTree = "<group>"; };
@@ -309,7 +303,7 @@
 			children = (
 				3E8D1BFF1A9EE24C0097D362 /* tracking */,
 				3E8D1BFB1A9ED3CB0097D362 /* utils */,
-				20D960E819AFFB2700A893CF /* model */,
+				20D960E819AFFB2700A893CF /* models */,
 				20F2740A19ABF6FD00BDBE5E /* helpers */,
 				20497C2C19A86BFC00CB942F /* services */,
 				20497C1B19A84D9400CB942F /* extensions */,
@@ -380,7 +374,7 @@
 				20EBA8B519FC2FC700612C85 /* PUCustomTabController.h */,
 				20EBA8B619FC2FC700612C85 /* PUCustomTabController.m */,
 			);
-			name = controllers;
+			path = controllers;
 			sourceTree = "<group>";
 		};
 		20497C1B19A84D9400CB942F /* extensions */ = {
@@ -396,7 +390,7 @@
 				3E7AC3D71A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.h */,
 				3E7AC3D81A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m */,
 			);
-			name = extensions;
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		20497C2619A8525200CB942F /* parties */ = {
@@ -439,12 +433,10 @@
 				20497C2E19A86C1800CB942F /* PUPartyService.m */,
 				20258BD519BE8DCA00FC5A5D /* PUPlacesService.h */,
 				20258BD619BE8DCA00FC5A5D /* PUPlacesService.m */,
-				20F9389A19C92D8A0069EE26 /* PUSearchSuggestionsService.h */,
-				20F9389B19C92D8A0069EE26 /* PUSearchSuggestionsService.m */,
 				3EB5EA111A2A3DAC00C18AED /* PUSocialService.h */,
 				3EB5EA121A2A3DAC00C18AED /* PUSocialService.m */,
 			);
-			name = services;
+			path = services;
 			sourceTree = "<group>";
 		};
 		209D78FD19A5A3C000FF0FF2 /* views */ = {
@@ -473,22 +465,20 @@
 				3E7AC3DA1A34B6A500ABEE55 /* PUErrorFeedbackCell.h */,
 				3E7AC3DB1A34B6A500ABEE55 /* PUErrorFeedbackCell.m */,
 			);
-			name = views;
+			path = views;
 			sourceTree = "<group>";
 		};
-		20D960E819AFFB2700A893CF /* model */ = {
+		20D960E819AFFB2700A893CF /* models */ = {
 			isa = PBXGroup;
 			children = (
 				20D960E519AFFB2000A893CF /* PUParty.h */,
 				20D960E619AFFB2000A893CF /* PUParty.m */,
 				20D960E919AFFB5F00A893CF /* PUPlace.h */,
 				20D960EA19AFFB5F00A893CF /* PUPlace.m */,
-				20F9389D19C92E590069EE26 /* PUSearchSuggestion.h */,
-				20F9389E19C92E590069EE26 /* PUSearchSuggestion.m */,
 				3EB5EA141A2A3E3D00C18AED /* PUUser.h */,
 				3EB5EA151A2A3E3D00C18AED /* PUUser.m */,
 			);
-			name = model;
+			path = models;
 			sourceTree = "<group>";
 		};
 		20F2740A19ABF6FD00BDBE5E /* helpers */ = {
@@ -505,7 +495,7 @@
 				3E737C321A338CE10054B222 /* PUPartiesAndPlacesHelper.h */,
 				3E737C331A338CE10054B222 /* PUPartiesAndPlacesHelper.m */,
 			);
-			name = helpers;
+			path = helpers;
 			sourceTree = "<group>";
 		};
 		3E8D1BFB1A9ED3CB0097D362 /* utils */ = {
@@ -518,7 +508,7 @@
 				3E2F405E1AE88AB2001C532E /* PUEnvironmentUtil.h */,
 				3E2F405F1AE88AB2001C532E /* PUEnvironmentUtil.m */,
 			);
-			name = utils;
+			path = utils;
 			sourceTree = "<group>";
 		};
 		3E8D1BFF1A9EE24C0097D362 /* tracking */ = {
@@ -531,7 +521,7 @@
 				3E8D1C001A9EE25C0097D362 /* GAService.h */,
 				3E8D1C011A9EE25C0097D362 /* GAService.m */,
 			);
-			name = tracking;
+			path = tracking;
 			sourceTree = "<group>";
 		};
 		3EB5EA231A2A8ABE00C18AED /* components */ = {
@@ -732,14 +722,12 @@
 				3E8D1C081A9EE3BF0097D362 /* AnalyticsTriggerManager.m in Sources */,
 				200055B019A43946008377FF /* main.m in Sources */,
 				74F62C091AA0089100B88394 /* PUDetailPartyCell.m in Sources */,
-				20F9389C19C92D8A0069EE26 /* PUSearchSuggestionsService.m in Sources */,
 				3EFEF1BC1A30E8030054CFE5 /* PUPlaceCell.m in Sources */,
 				74F62BFF1AA0080900B88394 /* PUImagePartyCell.m in Sources */,
 				3E737C341A338CE20054B222 /* PUPartiesAndPlacesHelper.m in Sources */,
 				3E7AC3D91A34A9E000ABEE55 /* UIScrollView+PUReloadAnimations.m in Sources */,
 				20D960EB19AFFB5F00A893CF /* PUPlace.m in Sources */,
 				200055BA19A43946008377FF /* PULoginViewController.m in Sources */,
-				20F9389F19C92E590069EE26 /* PUSearchSuggestion.m in Sources */,
 				74F62C0C1AA00EE800B88394 /* PUControllPartyCell.m in Sources */,
 				20497C2B19A8531300CB942F /* PUPartyViewController.m in Sources */,
 				20258BD719BE8DCA00FC5A5D /* PUPlacesService.m in Sources */,

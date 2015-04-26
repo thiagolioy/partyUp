@@ -44,6 +44,7 @@
         radiusDistance = [NSNumber numberWithInt:30];
     _radiusInitialValue = [radiusDistance intValue];
     [_radiusSlider setValue:[radiusDistance intValue] animated:YES];
+    [self setDistanceLabelValue:[self radiusDistanceAsInt]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -68,7 +69,11 @@
 }
 
 - (IBAction)changeRadiusDistance:(id)sender {
-    _radiusDistance.text =  [NSString stringWithFormat:@"%d km",[self radiusDistanceAsInt]];
+    [self setDistanceLabelValue:[self radiusDistanceAsInt]];
+}
+
+-(void)setDistanceLabelValue:(int)distance{
+    _radiusDistance.text =  [NSString stringWithFormat:@"%d km",distance];
 }
 
 

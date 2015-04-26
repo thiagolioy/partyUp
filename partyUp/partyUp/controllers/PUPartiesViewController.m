@@ -10,7 +10,6 @@
 #import "PUPartyCell.h"
 #import "PUPartyViewController.h"
 #import "PUPartyService.h"
-#import "PUSearchSuggestionsService.h"
 #import "PUHeaderCell.h"
 #import "PUPlaceCell.h"
 #import "PUPlacesService.h"

@@ -14,11 +14,12 @@
 #import "PUBuddiesStorage.h"
 #import "PUInviteBuddyToListCell.h"
 
-@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate,UISearchBarDelegate>
+@interface PUBuddiesListViewController ()<UITableViewDataSource,UITableViewDelegate,PUBestBuddyTableViewCellDelegate,PUBuddyTableViewCellDelegate,UISearchBarDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)IBOutlet UITableView *buddiesTableView;
 @property(nonatomic,strong)IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic,strong)IBOutlet UISearchBar *searchBar;
 @property(nonatomic,strong)IBOutlet UIButton *sendBuddiesButton;
+@property(nonatomic,strong)IBOutlet UITextField *typeToAddFriendTextField;
 @property(nonatomic,strong)NSMutableArray *buddies;
 @property(nonatomic,strong)NSMutableArray *bestBuddies;
 @property(nonatomic,strong)PUSocialService *service;
@@ -237,6 +238,20 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
     }];
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    [searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [searchBar setShowsCancelButton:NO animated:YES];
+    _searchBar.text = @"";
+    _searchTerm = @"";
+    [self refreshBuddiesList];
+    [searchBar resignFirstResponder];
+}
+
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     _searchTerm = searchText;
     [self refreshBuddiesList];
@@ -293,6 +308,23 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
     [self cleanSearch];
     [self refreshBuddiesList];
     [_searchBar resignFirstResponder];
+    [_typeToAddFriendTextField resignFirstResponder];
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self addTypedFriendToList:_typeToAddFriendTextField.text];
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(IBAction)addTypedFriendToBestFriendsList:(id)sender{
+    [_typeToAddFriendTextField resignFirstResponder];
+    [self addTypedFriendToList:_typeToAddFriendTextField.text];
+}
+
+-(void)addTypedFriendToList:(NSString*)friendName{
+    [PUAlertUtil showAlertWithMessage:friendName];
 }
 
 

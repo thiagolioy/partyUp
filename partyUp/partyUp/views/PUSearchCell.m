@@ -28,12 +28,23 @@ static NSString *searchCellID = @"searchCellID";
     _searchBar.placeholder = text;
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    [_searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [_searchBar setShowsCancelButton:NO animated:YES];
+    [self resignSearchBar];
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     NSString *query = searchBar.text;
+    [_searchBar setShowsCancelButton:NO animated:YES];
     [self resignSearchBar];
     if(_delegate)
         [_delegate search:query];
