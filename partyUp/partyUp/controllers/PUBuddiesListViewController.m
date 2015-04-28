@@ -182,10 +182,10 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 -(void)removeBuddy:(PUUser *)b{
     [self dismissKeyboard];
     PUUser *buddy = [self findBuddy:b onList:_bestBuddies];
-    if(buddy){
-        [self demoteToBuddies:buddy];
-        [self refreshBuddiesList];
-    }
+    [b.userId containsString:@"typed"] ?
+        [_bestBuddies removeObject:buddy] : [self demoteToBuddies:buddy];
+    
+    [self refreshBuddiesList];
 }
 
 -(void)promoteToBestBuddies:(PUUser*)buddy{
@@ -211,6 +211,7 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
         [self refreshBuddiesList];
     }
 }
+
 
 -(void)refreshBuddiesList{
     [_buddiesTableView triggerReloadAnimation];
@@ -324,7 +325,16 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 }
 
 -(void)addTypedFriendToList:(NSString*)friendName{
-    [PUAlertUtil showAlertWithMessage:friendName];
+    [self dismissKeyboard];
+    PUUser *friend = [PUUser new];
+    friend.name = friendName;
+    NSUInteger hash = [[friendName stringByReplacingOccurrencesOfString:@" " withString:@""] hash];
+    friend.userId = [NSString stringWithFormat:@"typed%lu",(unsigned long)hash];
+    
+    [_bestBuddies addObject:friend];
+    [PUBuddiesStorage storeBuddies:_bestBuddies];
+    [self refreshBuddiesList];
+
 }
 
 
