@@ -325,6 +325,7 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 }
 
 -(void)addTypedFriendToList:(NSString*)friendName{
+    _typeToAddFriendTextField.text = @"";
     [self dismissKeyboard];
     PUUser *friend = [PUUser new];
     friend.name = friendName;
