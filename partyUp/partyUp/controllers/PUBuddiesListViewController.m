@@ -325,6 +325,11 @@ typedef NS_ENUM(NSUInteger, BuddiesSections) {
 }
 
 -(void)addTypedFriendToList:(NSString*)friendName{
+    if(friendName.length == 0){
+        [PUAlertUtil showAlertWithMessage:@"Use um nome válido para adicionar a lista!"];
+        return;
+    }
+    
     _typeToAddFriendTextField.text = @"";
     [self dismissKeyboard];
     PUUser *friend = [PUUser new];
