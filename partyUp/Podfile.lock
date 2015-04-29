@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.1.5):
     - Bolts/Tasks
   - Bolts/Tasks (1.1.5)
+  - currencyParser (0.1.0)
   - DBEnvironmentConfiguration (0.2.0)
   - Facebook-iOS-SDK (3.23.0):
     - Bolts (~> 1.0)
@@ -24,6 +25,7 @@ PODS:
   - UIResponder+KeyboardCache (0.1)
 
 DEPENDENCIES:
+  - currencyParser (from `https://github.com/thiagolioy/currencyParser.git`)
   - DBEnvironmentConfiguration
   - Facebook-iOS-SDK
   - FDKeychain (~> 1.0.0)
@@ -34,8 +36,18 @@ DEPENDENCIES:
   - SVPullToRefresh
   - UIResponder+KeyboardCache
 
+EXTERNAL SOURCES:
+  currencyParser:
+    :git: https://github.com/thiagolioy/currencyParser.git
+
+CHECKOUT OPTIONS:
+  currencyParser:
+    :commit: 55f768c94650cbfb4a9fd14e9ffd214c5752f368
+    :git: https://github.com/thiagolioy/currencyParser.git
+
 SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  currencyParser: a815c62f2693472c0139401e8ea55f1eabc14680
   DBEnvironmentConfiguration: 49b45d992b01dc99a60d108b543a81453d4253ac
   Facebook-iOS-SDK: fcb0fd5bcdb50f1fe9ce27bf6b8cdf1aa5b2b0ed
   FDKeychain: 153d311d5753a52f4ed4817574a466903730c1e7

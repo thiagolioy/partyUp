@@ -43,10 +43,10 @@
     NSString *prettyPrices = @"";
     if([_malePrice isValid])
         prettyPrices = [NSString stringWithFormat:@"Masculino: %@",
-                        [PUCurrencyUtil currencyWithValue:[_malePrice floatValue]]];
+                        [CPCurrencyUtil format:[_malePrice floatValue] withLocaleID:@"pt_BR"]];
     if([_femalePrice isValid])
         prettyPrices = [NSString stringWithFormat:@"%@ | Feminino: %@",prettyPrices,
-                        [PUCurrencyUtil currencyWithValue:[_femalePrice floatValue]]];
+                        [CPCurrencyUtil format:[_femalePrice floatValue] withLocaleID:@"pt_BR"]];
     
     return prettyPrices;
 }

@@ -9,4 +9,6 @@ pod 'ParseFacebookUtils'
 pod 'GoogleAnalytics-iOS-SDK'
 pod 'DBEnvironmentConfiguration'
 pod "FDKeychain", "~> 1.0.0"
+pod 'currencyParser', :git => 'https://github.com/thiagolioy/currencyParser.git'
+
 end
