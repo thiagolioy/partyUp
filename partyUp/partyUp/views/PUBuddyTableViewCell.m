@@ -9,10 +9,10 @@
 #import "PUBuddyTableViewCell.h"
 
 @interface PUBuddyTableViewCell ()
-@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
-@property (strong, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) PUUser *buddy;
-@property (strong, nonatomic) id<PUBuddyTableViewCellDelegate> delegate;
+@property (weak, nonatomic) id<PUBuddyTableViewCellDelegate> delegate;
 @end
 
 static NSString *buddiesCellID = @"BuddyCellID";

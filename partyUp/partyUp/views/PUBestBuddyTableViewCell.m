@@ -10,10 +10,10 @@
 
 @interface PUBestBuddyTableViewCell ()
 
-@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
-@property (strong, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *name;
 
-@property (strong, nonatomic) id<PUBestBuddyTableViewCellDelegate> delegate;
+@property (weak, nonatomic) id<PUBestBuddyTableViewCellDelegate> delegate;
 @property (strong, nonatomic) PUUser *buddy;
 
 @end

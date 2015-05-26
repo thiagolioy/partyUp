@@ -10,11 +10,11 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PUPartyCell()
-@property (strong, nonatomic) IBOutlet UIImageView *promoImage;
-@property (strong, nonatomic) IBOutlet UILabel *name;
-@property (strong, nonatomic) IBOutlet UILabel *placeName;
-@property (strong, nonatomic) IBOutlet UILabel *distanceInKm;
-@property (strong, nonatomic) IBOutlet UILabel *date;
+@property (weak, nonatomic) IBOutlet UIImageView *promoImage;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *placeName;
+@property (weak, nonatomic) IBOutlet UILabel *distanceInKm;
+@property (weak, nonatomic) IBOutlet UILabel *date;
 
 @end
 static NSString *partyCellID = @"partyCellID";

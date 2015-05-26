@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PUHeaderCell : UICollectionReusableView
-@property(nonatomic,strong)IBOutlet UILabel *message;
+@property(nonatomic,weak)IBOutlet UILabel *message;
 +(NSString*)cellID;
 @end

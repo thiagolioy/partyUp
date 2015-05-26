@@ -11,8 +11,8 @@
 
 @interface PUImagePartyCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *promoImageView;
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *promoImageView;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 - (void)fillCell:(PUParty*)party;
 

@@ -22,7 +22,7 @@
 }
 
 - (void)fillCell:(PUParty*)party{
-    _dateLabel.text = [NSString stringWithFormat:@"Data: %@",[party prettyFormattedDatetime]];
+    _dateLabel.text = [NSString stringWithFormat:@"Data: %@h",[party prettyFormattedDatetime]];
     [self downloadPartyImage:party];
 }
 

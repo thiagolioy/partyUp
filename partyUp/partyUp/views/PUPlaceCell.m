@@ -10,12 +10,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PUPlaceCell ()
-@property (strong, nonatomic) IBOutlet UIImageView *promoImage;
-@property (strong, nonatomic) IBOutlet UILabel *placeName;
-@property (strong, nonatomic) IBOutlet UILabel *distanceInKm;
-@property (strong, nonatomic) IBOutlet UILabel *address;
-@property (strong, nonatomic) IBOutlet UILabel *neighborhood;
-@property (strong, nonatomic) IBOutlet UILabel *state;
+@property (weak, nonatomic) IBOutlet UIImageView *promoImage;
+@property (weak, nonatomic) IBOutlet UILabel *placeName;
+@property (weak, nonatomic) IBOutlet UILabel *distanceInKm;
+@property (weak, nonatomic) IBOutlet UILabel *address;
+@property (weak, nonatomic) IBOutlet UILabel *neighborhood;
+@property (weak, nonatomic) IBOutlet UILabel *state;
 @end
 
 static NSString *placeCellID = @"placeCellID";

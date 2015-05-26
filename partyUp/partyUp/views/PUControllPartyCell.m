@@ -19,7 +19,7 @@
 @interface PUControllPartyCell ()
 @property (strong,nonatomic) PUParty *party;
 @property (strong, nonatomic) PUSocialService *service;
-@property (strong, nonatomic) IBOutlet UIView *sendNamesContainerView;
+@property (weak, nonatomic) IBOutlet UIView *sendNamesContainerView;
 @end
 
 @implementation PUControllPartyCell

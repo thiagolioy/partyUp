@@ -10,7 +10,7 @@
 #import "PUParty.h"
 
 @interface PUPriceCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 -(void)fillCell:(PUParty*)party;
 @end
