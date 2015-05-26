@@ -19,6 +19,7 @@
 @interface PUControllPartyCell ()
 @property (strong,nonatomic) PUParty *party;
 @property (strong, nonatomic) PUSocialService *service;
+@property (strong, nonatomic) IBOutlet UIView *sendNamesContainerView;
 @end
 
 @implementation PUControllPartyCell
@@ -36,8 +37,17 @@
 -(void)fillCell:(PUParty*)party andDelegate:(id<PUControllPartyCellDelegate>)delegate{
     _party = party;
     _delegate = delegate;
-    
+
+    [self shouldShowSendNamesButton];
     [self initSocialService];
+}
+
+-(void)shouldShowSendNamesButton{
+    NSString *listType = _party.sendNamesType;
+    if([listType isEqualToString:@"facebook"] || [listType isEqualToString:@"mail"])
+        _sendNamesContainerView.hidden = NO;
+    else
+        _sendNamesContainerView.hidden = YES;
 }
 
 -(void)initSocialService{

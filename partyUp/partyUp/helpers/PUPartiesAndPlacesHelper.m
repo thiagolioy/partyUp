@@ -45,9 +45,9 @@
     }
 
     return @[
-             [PUPartiesAndPlacesHelper sortPartiesByDistance:todays],
-             [PUPartiesAndPlacesHelper sortPartiesByDistance:thisWeek],
-             [PUPartiesAndPlacesHelper sortPartiesByDistance:nextWeek]
+             [PUPartiesAndPlacesHelper sortPartiesByDate:todays],
+             [PUPartiesAndPlacesHelper sortPartiesByDate:thisWeek],
+             [PUPartiesAndPlacesHelper sortPartiesByDate:nextWeek]
              ];
 }
 
@@ -64,6 +64,14 @@
         double d1 = [[(PUParty*)a place] distanceInKm];
         double d2 = [[(PUParty*)b  place] distanceInKm];
         return d1 > d2;
+    }];
+}
+
++(NSArray*)sortPartiesByDate:(NSArray*)list{
+    return [list sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDate *d1 = ((PUParty*)a).date;
+        NSDate *d2 = ((PUParty*)b).date;
+        return [d1 compare:d2] == NSOrderedDescending;
     }];
 }
 

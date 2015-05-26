@@ -8,7 +8,7 @@
 
 #import "PUParty.h"
 @interface PUParty ()
-@property(nonatomic,strong)NSString *sendNamesType;
+
 @end
 
 @implementation PUParty
@@ -65,6 +65,13 @@
     [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
     NSString *stringFromDate = [formatter stringFromDate:_date];
     return stringFromDate;
+}
+
+-(BOOL)hasPrice{
+     if((!_malePrice || _malePrice.length == 0) &&
+        (!_femalePrice || _femalePrice.length == 0))
+         return NO;
+    return YES;
 }
 
 -(BOOL)isFacebookNamesList{

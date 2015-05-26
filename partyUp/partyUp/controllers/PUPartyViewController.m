@@ -132,7 +132,7 @@ typedef NS_ENUM(char , PaymentTableSection) {
             break;
             
         case PriceSection:
-            return 50.0f;
+            return _party.hasPrice ?  50.0f : 0.0f;
             break;
             
         case DetailSection:

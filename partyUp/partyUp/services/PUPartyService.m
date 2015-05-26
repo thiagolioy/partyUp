@@ -24,7 +24,7 @@
         query.maxCacheAge = 60 * 60 * 24;
         [query includeKey:@"place"];
         [query whereKey:@"date" lessThan:[NSCalendar oneWeekFromNow]];
-        [query whereKey:@"date" greaterThan:[NSCalendar yesterday]];
+        [query whereKey:@"date" greaterThanOrEqualTo:[NSCalendar today]];
         [query orderByAscending:@"date"];
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

@@ -16,6 +16,7 @@
 @property(nonatomic,strong)NSString *promoImage;
 @property(nonatomic,strong)NSString *malePrice;
 @property(nonatomic,strong)NSString *femalePrice;
+@property(nonatomic,strong)NSString *sendNamesType;
 @property(nonatomic,strong)NSString *sendNamesTo;
 @property(nonatomic,strong)NSDate *date;
 @property(nonatomic,strong)PUPlace  *place;
@@ -28,6 +29,6 @@
 
 -(BOOL)isFacebookNamesList;
 -(BOOL)isMailNamesList;
-
+-(BOOL)hasPrice;
 -(NSString*)partyOrPlaceImageUrl;
 @end
